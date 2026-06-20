@@ -102,6 +102,7 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.2; color: var(--ink);
 .header-inner {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 24px;
   height: 76px;
 }
