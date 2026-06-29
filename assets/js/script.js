@@ -153,3 +153,13 @@ contactForm.addEventListener('submit', async (event) => {
     submitBtn.disabled = false;
   }
 });
+
+// Meta Pixel: fire Contact when a visitor clicks a direct contact channel
+// (phone, email, or WhatsApp). Guarded so it no-ops if the pixel is blocked.
+document
+  .querySelectorAll('a[href^="tel:"], a[href^="mailto:"], a[href*="wa.me"]')
+  .forEach((link) => {
+    link.addEventListener('click', () => {
+      if (typeof fbq === 'function') fbq('track', 'Contact');
+    });
+  });
