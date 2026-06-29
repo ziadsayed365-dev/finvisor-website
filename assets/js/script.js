@@ -144,8 +144,18 @@ contactForm.addEventListener('submit', async (event) => {
     formNote.className = 'form-note is-success';
     contactForm.reset();
 
-    // Meta Pixel: fire Lead only after a successful submission.
-    if (typeof fbq === 'function') fbq('track', 'Lead');
+    // Meta Pixel: send advanced matching from the form, then fire Lead.
+    // Values are passed in plaintext; the Pixel normalizes and SHA-256 hashes
+    // them in the browser before sending, so raw PII never leaves the page.
+    if (typeof fbq === 'function') {
+      const [firstName, ...lastNameParts] = payload.fullName.split(/\s+/);
+      fbq('init', '890487917437592', {
+        fn: firstName || '',
+        ln: lastNameParts.join(' '),
+        ph: payload.phone.replace(/\D/g, ''),
+      });
+      fbq('track', 'Lead');
+    }
   } catch (err) {
     formNote.textContent = 'Something went wrong sending your request. Please try again or contact us directly.';
     formNote.className = 'form-note is-error';
