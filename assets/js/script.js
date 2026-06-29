@@ -143,6 +143,9 @@ contactForm.addEventListener('submit', async (event) => {
     formNote.textContent = "Thanks! We've received your details and will be in touch soon.";
     formNote.className = 'form-note is-success';
     contactForm.reset();
+
+    // Meta Pixel: fire Lead only after a successful submission.
+    if (typeof fbq === 'function') fbq('track', 'Lead');
   } catch (err) {
     formNote.textContent = 'Something went wrong sending your request. Please try again or contact us directly.';
     formNote.className = 'form-note is-error';
