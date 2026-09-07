@@ -86,8 +86,54 @@ if (testimonialSlider) {
   startAutoplay();
 }
 
+// Stat count-up. Each [data-count] ticks from 0 to its target the first time it
+// scrolls into view; data-prefix / data-suffix / data-decimals shape the text so
+// the markup keeps the final value as its no-JS fallback.
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const formatCount = (value, decimals) =>
+  decimals > 0
+    ? value.toFixed(decimals)
+    : Math.round(value).toLocaleString('en-US');
+
+const runCountUp = (el) => {
+  const target = parseFloat(el.dataset.count);
+  if (Number.isNaN(target)) return;
+
+  const decimals = parseInt(el.dataset.decimals || '0', 10);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  const render = (v) => { el.textContent = `${prefix}${formatCount(v, decimals)}${suffix}`; };
+
+  if (prefersReducedMotion) { render(target); return; }
+
+  const duration = 1400;
+  const start = performance.now();
+  const tick = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    // easeOutExpo: fast off the line, settles gently on the real figure
+    const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+    render(target * eased);
+    if (progress < 1) requestAnimationFrame(tick);
+  };
+  render(0);
+  requestAnimationFrame(tick);
+};
+
+const countUpObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      runCountUp(entry.target);
+      countUpObserver.unobserve(entry.target);
+    });
+  },
+  { threshold: 0.5 }
+);
+document.querySelectorAll('[data-count]').forEach((el) => countUpObserver.observe(el));
+
 // Scroll reveal
-document.querySelectorAll('.service-card, .stat, .testimonial-slider, .about-grid, .contact-grid').forEach((el) => {
+document.querySelectorAll('.service-card, .stat, .case-card, .process-list li, .dash-shell, .testimonial-slider, .about-grid, .contact-grid').forEach((el) => {
   el.setAttribute('data-reveal', '');
 });
 
@@ -128,6 +174,8 @@ contactForm.addEventListener('submit', async (event) => {
     businessName: data.get('businessName').trim(),
     businessType: data.get('businessType').trim(),
     phone: data.get('phone').trim(),
+    email: data.get('email').trim(),
+    monthlyOrders: data.get('monthlyOrders') || '',
   };
 
   submitBtn.disabled = true;
@@ -152,6 +200,7 @@ contactForm.addEventListener('submit', async (event) => {
       fbq('init', '890487917437592', {
         fn: firstName || '',
         ln: lastNameParts.join(' '),
+        em: payload.email.toLowerCase(),
         ph: payload.phone.replace(/\D/g, ''),
       });
       fbq('track', 'Lead');
