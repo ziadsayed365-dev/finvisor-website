@@ -107,6 +107,14 @@ const runCountUp = (el) => {
 
   if (prefersReducedMotion) { render(target); return; }
 
+  // The markup still holds the final value, so measure it now and pin that width: without
+  // this, "EGP 4M+" growing to "EGP 20M+" mid-count shoves whatever sits beside it. Only
+  // shrink-wrapped numbers can jitter — a block-level one already owns its whole line.
+  if (getComputedStyle(el).display !== 'block') {
+    const settledWidth = el.getBoundingClientRect().width;
+    if (settledWidth) el.style.minWidth = `${Math.ceil(settledWidth)}px`;
+  }
+
   const duration = 1400;
   const start = performance.now();
   const tick = (now) => {
@@ -130,10 +138,78 @@ const countUpObserver = new IntersectionObserver(
   },
   { threshold: 0.5 }
 );
-document.querySelectorAll('[data-count]').forEach((el) => countUpObserver.observe(el));
+// The hero's counters are driven by the entrance sequence below, not by scroll position —
+// they are already on screen at load, so the observer would fire them behind a faded-out hero.
+document.querySelectorAll('[data-count]').forEach((el) => {
+  if (el.closest('.hero')) return;
+  countUpObserver.observe(el);
+});
+
+// Hero headline split test. Variant A is what the markup ships with; a visitor drawn into
+// variant C gets the copy parked on data-variant-c. The assignment is sticky per browser so
+// a returning visitor never sees the headline change under them.
+const HERO_VARIANT_KEY = 'fv_hero_variant';
+let heroVariant = 'a';
+try {
+  heroVariant = localStorage.getItem(HERO_VARIANT_KEY) || (Math.random() < 0.5 ? 'a' : 'c');
+  localStorage.setItem(HERO_VARIANT_KEY, heroVariant);
+} catch (err) {
+  // Private mode or blocked storage: everyone falls back to the shipped variant.
+  heroVariant = 'a';
+}
+
+// Rebuilds an element's text from a small markup shorthand: "|" is a line break, *asterisks*
+// mark the accented phrase, and ~tildes~ mark the phrase to be struck through. Assembled from
+// real nodes rather than innerHTML.
+const MARKERS = { '*': 'hl', '~': 'strike' };
+
+const setLines = (el, text) => {
+  el.textContent = '';
+  text.split('|').forEach((line, index) => {
+    // The space matters on phones, where the <br> is hidden: without it the words either side
+    // of the break run together.
+    if (index) el.append(' ', document.createElement('br'));
+    line.split(/(\*[^*]+\*|~[^~]+~)/).forEach((part) => {
+      if (!part) return;
+      const cls = part.length > 2 && part[0] === part[part.length - 1] ? MARKERS[part[0]] : null;
+      if (cls) {
+        const span = document.createElement('span');
+        span.className = cls;
+        span.textContent = part.slice(1, -1);
+        el.appendChild(span);
+      } else {
+        el.appendChild(document.createTextNode(part));
+      }
+    });
+  });
+};
+
+if (heroVariant === 'c') {
+  const headline = document.getElementById('heroHeadline');
+  if (headline && headline.dataset.variantC) setLines(headline, headline.dataset.variantC);
+}
+
+// Hero entrance: stagger the column in, then start its counters as the proof strip lands.
+const heroEl = document.querySelector('.hero');
+if (heroEl) {
+  const heroSteps = heroEl.querySelectorAll('.hero-anim');
+  heroSteps.forEach((el, index) => el.style.setProperty('--step', index));
+
+  // Two frames: the first lets the browser paint the starting state, so adding .is-ready in
+  // the second actually transitions instead of snapping straight to the end.
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => heroEl.classList.add('is-ready'));
+  });
+
+  const heroCounters = heroEl.querySelectorAll('[data-count]');
+  if (heroCounters.length) {
+    const countersStart = prefersReducedMotion ? 0 : heroSteps.length * 90 + 200;
+    window.setTimeout(() => heroCounters.forEach(runCountUp), countersStart);
+  }
+}
 
 // Scroll reveal
-document.querySelectorAll('.service-card, .stat, .case-card, .process-list li, .dash-shell, .testimonial-slider, .about-grid, .contact-grid').forEach((el) => {
+document.querySelectorAll('.service-card, .stat, .app-tool, .process-list li, .dash-shell, .testimonial-slider, .about-grid, .contact-grid').forEach((el) => {
   el.setAttribute('data-reveal', '');
 });
 
@@ -171,11 +247,12 @@ contactForm.addEventListener('submit', async (event) => {
   const data = new FormData(contactForm);
   const payload = {
     fullName: data.get('fullName').trim(),
-    businessName: data.get('businessName').trim(),
+    storeWebsite: data.get('storeWebsite').trim(),
     businessType: data.get('businessType').trim(),
     phone: data.get('phone').trim(),
-    email: data.get('email').trim(),
     monthlyOrders: data.get('monthlyOrders') || '',
+    // Fills the sheet's Source column; the app preview pages send their own value.
+    source: 'Website Contact Form',
   };
 
   submitBtn.disabled = true;
@@ -200,10 +277,11 @@ contactForm.addEventListener('submit', async (event) => {
       fbq('init', '890487917437592', {
         fn: firstName || '',
         ln: lastNameParts.join(' '),
-        em: payload.email.toLowerCase(),
         ph: payload.phone.replace(/\D/g, ''),
       });
-      fbq('track', 'Lead');
+      // hero_variant tags the conversion with the headline this visitor saw, so the split
+      // test can be read off Lead volume per variant in Events Manager.
+      fbq('track', 'Lead', { hero_variant: heroVariant });
     }
   } catch (err) {
     formNote.textContent = 'Something went wrong sending your request. Please try again or contact us directly.';
@@ -219,6 +297,37 @@ document
   .querySelectorAll('a[href^="tel:"], a[href^="mailto:"], a[href*="wa.me"]')
   .forEach((link) => {
     link.addEventListener('click', () => {
-      if (typeof fbq === 'function') fbq('track', 'Contact');
+      if (typeof fbq === 'function') fbq('track', 'Contact', { hero_variant: heroVariant });
     });
   });
+
+// Services: each problem card opens a dialog listing the services that fix it. The close button,
+// the booking link inside, a click on the backdrop and Esc all close it. Opens are sent to the
+// Pixel so interest in each problem can be compared.
+document.querySelectorAll('[data-service-open]').forEach((button) => {
+  const dialog = document.getElementById(button.dataset.serviceOpen);
+  if (!dialog) return;
+  button.addEventListener('click', () => {
+    dialog.showModal();
+    if (typeof fbq === 'function') fbq('trackCustom', 'ServiceDetails', { service: button.dataset.serviceOpen });
+  });
+});
+
+document.querySelectorAll('.svc-dialog').forEach((dialog) => {
+  dialog.querySelectorAll('[data-close-dialog]').forEach((control) => {
+    control.addEventListener('click', () => dialog.close());
+  });
+  // The card fills the dialog, so a click that lands on the dialog element itself is on the
+  // backdrop around it.
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+});
+
+// Meta Pixel: count clicks on the FinVisor App tiles, so demand for each tool can be
+// measured before the app is built.
+document.querySelectorAll('.app-tool[data-tool]').forEach((tile) => {
+  tile.addEventListener('click', () => {
+    if (typeof fbq === 'function') fbq('trackCustom', 'AppToolInterest', { tool: tile.dataset.tool });
+  });
+});

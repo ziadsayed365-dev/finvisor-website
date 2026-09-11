@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CPA Limit of Your Product | FinVisor App</title>
+<meta name="description" content="FinVisor's free CPA limit tool shows the most you can pay for each order and still make money, worked out from your delivery rate, product cost and fixed expenses.">
+<!-- Kept out of search results while the app is in beta. Remove this tag to let it rank. -->
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#060a1f">
+<link rel="icon" type="image/jpeg" href="assets/img/favicon.jpeg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<!-- A visitor who has already signed up (see assets/js/early-access.js) is marked before first
+     paint, so the calculator's lock overlay never flashes up for them. -->
+<script>try { if (localStorage.getItem('fv_app_unlocked')) document.documentElement.setAttribute('data-app-unlocked', ''); } catch (err) {}</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '890487917437592');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body class="tool-page">
+
+<header class="tool-header">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <img src="assets/img/logo.jpg" alt="FinVisor - Financial Analysis">
+    </a>
+    <a href="index.html" class="tool-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      Back to FinVisor
+    </a>
+  </div>
+</header>
+
+<main class="tool-main">
+  <section class="container tool-hero">
+    <div>
+      <div class="app-pill"><span class="dot" aria-hidden="true"></span>FinVisor App &middot; Free Beta</div>
+      <h1>CPA Limit of <span class="grad">Your Product</span></h1>
+      <!-- The example: ad platforms count every order placed, so the real cost per delivered order is
+           CPA ÷ delivery rate. EGP 200 ÷ 0.70 = EGP 285.7, shown as EGP 286. -->
+      <p class="tool-lead">A campaign can look profitable on Meta and still lose you money. The platform counts every order placed, but you only get paid for the ones delivered. With a 70% delivery rate, a EGP 200 CPA really costs you <strong>EGP 286</strong> per delivered order.</p>
+      <p class="tool-lead">Know the most you can pay for each order before an ad starts eating your profit.</p>
+      <div class="tool-actions">
+        <a href="#cpaCalc" class="btn btn-accent" data-open-dialog="earlyAccessDialog">Use the Tool</a>
+      </div>
+      <p class="tool-status">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        Free to use. The numbers you enter stay in your browser.
+      </p>
+    </div>
+
+    <div class="tool-mock">
+      <div class="tool-mock-chrome" aria-hidden="true">
+        <span class="dash-dots"><i></i><i></i><i></i></span>
+        <span class="tool-mock-url">app.fin-visor.com/cpa-limit</span>
+        <span class="app-tool-tag tool-mock-soon">Beta</span>
+      </div>
+
+      <!-- Values below are the example the calculator opens with; the outputs are pre-filled with
+           its results so the panel reads correctly before the script runs. The slider mirrors the
+           number box named in its data-sync, which is the value the calculation reads. -->
+      <form class="tool-mock-body tool-calc" id="cpaCalc" aria-label="CPA limit calculator" novalidate>
+        <div class="tool-mock-heading">
+          <h2>CPA limit</h2>
+          <span>All amounts in EGP</span>
+        </div>
+
+        <p class="tool-group-label">Your business, per month</p>
+        <div class="tool-fields">
+          <label class="tool-field"><span>Total orders per month</span><input type="number" name="orders" value="1000" min="0" step="1" inputmode="numeric" disabled></label>
+          <label class="tool-field"><span>Fixed expenses per month</span><input type="number" name="fixed" value="60000" min="0" step="any" inputmode="decimal" disabled></label>
+        </div>
+        <p class="tool-group-note">Rent, salaries, software and other running costs. Leave out stock purchases and marketing spend.</p>
+
+        <div class="tool-slider">
+          <div class="tool-slider-head">
+            <label for="deliveryRateRange">Average delivery rate</label>
+            <span class="tool-slider-value"><input type="number" name="deliveryRate" value="85" min="1" max="100" step="0.1" inputmode="decimal" aria-label="Average delivery rate, in percent" disabled>%</span>
+          </div>
+          <input type="range" class="tool-range" id="deliveryRateRange" data-sync="deliveryRate" value="85" min="10" max="100" step="0.5" style="--fill:83.3%" disabled>
+          <div class="tool-slider-scale" aria-hidden="true"><span>10%</span><span>100%</span></div>
+        </div>
+
+        <div class="tool-slider">
+          <div class="tool-slider-head">
+            <label for="itemsRange">Average items per order</label>
+            <span class="tool-slider-value"><input type="number" name="items" value="1" min="1" max="20" step="0.1" inputmode="decimal" aria-label="Average items per order" disabled><small>items</small></span>
+          </div>
+          <input type="range" class="tool-range" id="itemsRange" data-sync="items" value="1" min="1" max="5" step="0.1" style="--fill:0%" disabled>
+          <div class="tool-slider-scale" aria-hidden="true"><span>1</span><span>5</span></div>
+        </div>
+
+        <p class="tool-group-label">Your product</p>
+        <div class="tool-fields">
+          <label class="tool-field"><span>Selling price</span><input type="number" name="price" value="500" min="0" step="any" inputmode="decimal" disabled></label>
+          <label class="tool-field"><span>Product cost</span><input type="number" name="cost" value="180" min="0" step="any" inputmode="decimal" disabled></label>
+        </div>
+
+        <div class="tool-result">
+          <div class="tool-result-row">
+            <div>
+              <span class="tool-result-label">Your CPA limit</span>
+              <span class="tool-result-value" aria-live="polite"><small>EGP</small><span data-out="limit">221</span></span>
+            </div>
+            <span class="tool-result-sub">Pay more per order and you lose money</span>
+          </div>
+        </div>
+
+        <div class="tool-stats">
+          <div><span>Break-even ROAS</span><strong data-out="roas">2.26</strong></div>
+          <div><span>Max monthly ad spend</span><strong data-out="budget">EGP 221,000</strong></div>
+          <div><span>Fixed cost per item</span><strong data-out="fixedPerItem">EGP 60</strong></div>
+        </div>
+        <p class="tool-calc-note" data-out="note"></p>
+
+        <div class="tool-lock">
+          <div>
+            <span class="tool-lock-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            </span>
+            <h3>Unlock the calculator</h3>
+            <p>Free, takes 20 seconds, and you only do it once.</p>
+            <button type="button" class="btn btn-accent" data-open-dialog="earlyAccessDialog">Use the Tool</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/img/logo.jpg" alt="FinVisor - Financial Analysis">
+    </a>
+    <p>&copy; <span id="year"></span> FinVisor. All rights reserved.</p>
+    <a href="index.html" class="back-to-top">Back to FinVisor &rarr;</a>
+  </div>
+</footer>
+
+<!-- Sign-up that unlocks the calculator. Same fields as the homepage contact form; data-source is
+     written to the Google Sheet's Source column so these leads can be told apart. -->
+<dialog class="ea-dialog" id="earlyAccessDialog" aria-labelledby="eaTitle">
+  <div class="ea-card">
+    <button type="button" class="ea-close" data-close-dialog aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+
+    <div class="ea-head">
+      <span class="app-tool-tag">CPA Limit App &middot; Free Tool</span>
+      <h2 class="ea-title" id="eaTitle">Use the CPA Limit Tool</h2>
+      <p class="ea-lead">Tell us a little about your business and the calculator unlocks straight away. You only need to do this once.</p>
+    </div>
+
+    <form class="contact-form ea-form" data-source="CPA Limit App" novalidate>
+      <div class="form-row">
+        <label for="eaFullName">Full name</label>
+        <input type="text" id="eaFullName" name="fullName" autocomplete="name" required autofocus>
+      </div>
+      <div class="form-row">
+        <label for="eaStoreWebsite">Store website</label>
+        <input type="text" id="eaStoreWebsite" name="storeWebsite" inputmode="url" autocomplete="url" placeholder="e.g. yourstore.com" required>
+      </div>
+      <div class="form-row">
+        <label for="eaBusinessType">Type of business</label>
+        <input type="text" id="eaBusinessType" name="businessType" placeholder="e.g. bath &amp; body, fashion, home goods" required>
+      </div>
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label for="eaPhone">Phone</label>
+          <input type="tel" id="eaPhone" name="phone" autocomplete="tel" required>
+        </div>
+        <div class="form-row">
+          <label for="eaMonthlyOrders">Monthly orders</label>
+          <select id="eaMonthlyOrders" name="monthlyOrders" required>
+            <option value="">Select a range</option>
+            <option>Under 100</option>
+            <option>100 – 500</option>
+            <option>500 – 2,000</option>
+            <option>2,000 – 10,000</option>
+            <option>Over 10,000</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-accent btn-block">Unlock the Tool</button>
+      <p class="form-note" role="status" aria-live="polite"></p>
+      <p class="form-privacy">Your details go to FinVisor only, and are never shared.</p>
+    </form>
+  </div>
+</dialog>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="assets/js/early-access.js"></script>
+<script src="assets/js/tool-calc.js"></script>
+<script src="assets/js/cpa-tool.js"></script>
+</body>
+</html>

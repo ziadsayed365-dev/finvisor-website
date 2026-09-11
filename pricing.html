@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing Your Product | FinVisor App</title>
+<meta name="description" content="FinVisor's free product pricing tool finds the selling price that covers product cost, packaging, ad spend and fixed expenses at your delivery rate, and still leaves the margin you want.">
+<!-- Kept out of search results while the app is in beta. Remove this tag to let it rank. -->
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#060a1f">
+<link rel="icon" type="image/jpeg" href="assets/img/favicon.jpeg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<!-- A visitor who has already signed up (see assets/js/early-access.js) is marked before first
+     paint, so the calculator's lock overlay never flashes up for them. -->
+<script>try { if (localStorage.getItem('fv_app_unlocked')) document.documentElement.setAttribute('data-app-unlocked', ''); } catch (err) {}</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '890487917437592');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body class="tool-page">
+
+<header class="tool-header">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <img src="assets/img/logo.jpg" alt="FinVisor - Financial Analysis">
+    </a>
+    <a href="index.html" class="tool-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      Back to FinVisor
+    </a>
+  </div>
+</header>
+
+<main class="tool-main">
+  <section class="container tool-hero">
+    <div>
+      <div class="app-pill"><span class="dot" aria-hidden="true"></span>FinVisor App &middot; Free Beta</div>
+      <h1>Pricing <span class="grad">Your Product</span></h1>
+      <!-- The example holds up in the calculator: EGP 180 cost, 70% delivery rate, EGP 220 CPA, with
+           its default packaging (12) and fixed costs (60,000 over 1,000 orders, 1 item each) gives a
+           cost per item of 180 + 220 ÷ 0.7 + 12 + 60 = EGP 566.29, so EGP 540 loses about EGP 26. -->
+      <p class="tool-lead">Most store owners set their price by multiplying the product cost by 3. On a EGP 180 product that gives EGP 540, which looks like a healthy margin. But at a 70% delivery rate and a EGP 220 CPA, that order actually <strong>loses EGP 26</strong>.</p>
+      <p class="tool-lead">Enter your real costs and get the selling price that leaves the margin you want.</p>
+      <div class="tool-actions">
+        <a href="#pricingCalc" class="btn btn-accent" data-open-dialog="earlyAccessDialog">Use the Tool</a>
+      </div>
+      <p class="tool-status">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        Free to use. The numbers you enter stay in your browser.
+      </p>
+    </div>
+
+    <div class="tool-mock">
+      <div class="tool-mock-chrome" aria-hidden="true">
+        <span class="dash-dots"><i></i><i></i><i></i></span>
+        <span class="tool-mock-url">app.fin-visor.com/pricing</span>
+        <span class="app-tool-tag tool-mock-soon">Beta</span>
+      </div>
+
+      <!-- Values below are the example the calculator opens with; the outputs are pre-filled with
+           its results so the panel reads correctly before the script runs. Each slider mirrors the
+           number box named in its data-sync, which is the value the calculation reads. -->
+      <form class="tool-mock-body tool-calc" id="pricingCalc" aria-label="Pricing calculator" novalidate>
+        <div class="tool-mock-heading">
+          <h2>Product pricing</h2>
+          <span>All amounts in EGP</span>
+        </div>
+
+        <p class="tool-group-label">Your business, per month</p>
+        <div class="tool-fields">
+          <label class="tool-field"><span>Total orders per month</span><input type="number" name="orders" value="1000" min="0" step="1" inputmode="numeric" disabled></label>
+          <label class="tool-field"><span>Fixed expenses per month</span><input type="number" name="fixed" value="60000" min="0" step="any" inputmode="decimal" disabled></label>
+        </div>
+        <p class="tool-group-note">Rent, salaries, software and other running costs. Leave out stock purchases and marketing spend.</p>
+
+        <div class="tool-slider">
+          <div class="tool-slider-head">
+            <label for="deliveryRateRange">Average delivery rate</label>
+            <span class="tool-slider-value"><input type="number" name="deliveryRate" value="85" min="1" max="100" step="0.1" inputmode="decimal" aria-label="Average delivery rate, in percent" disabled>%</span>
+          </div>
+          <input type="range" class="tool-range" id="deliveryRateRange" data-sync="deliveryRate" value="85" min="10" max="100" step="0.5" style="--fill:83.3%" disabled>
+          <div class="tool-slider-scale" aria-hidden="true"><span>10%</span><span>100%</span></div>
+        </div>
+
+        <div class="tool-slider">
+          <div class="tool-slider-head">
+            <label for="itemsRange">Average items per order</label>
+            <span class="tool-slider-value"><input type="number" name="items" value="1" min="1" max="20" step="0.1" inputmode="decimal" aria-label="Average items per order" disabled><small>items</small></span>
+          </div>
+          <input type="range" class="tool-range" id="itemsRange" data-sync="items" value="1" min="1" max="5" step="0.1" style="--fill:0%" disabled>
+          <div class="tool-slider-scale" aria-hidden="true"><span>1</span><span>5</span></div>
+        </div>
+
+        <p class="tool-group-label">Per order</p>
+        <div class="tool-fields tool-fields-3">
+          <label class="tool-field"><span>Product cost</span><input type="number" name="cost" value="180" min="0" step="any" inputmode="decimal" disabled></label>
+          <label class="tool-field"><span>Average / expected CPA</span><input type="number" name="cpa" value="120" min="0" step="any" inputmode="decimal" disabled></label>
+          <label class="tool-field"><span>Packaging per item</span><input type="number" name="packaging" value="12" min="0" step="any" inputmode="decimal" disabled></label>
+        </div>
+
+        <div class="tool-slider">
+          <div class="tool-slider-head">
+            <label for="marginRange">Target net margin</label>
+            <span class="tool-slider-value"><input type="number" name="margin" value="20" min="0" max="500" step="0.1" inputmode="decimal" aria-label="Target net margin, in percent" disabled>%</span>
+          </div>
+          <input type="range" class="tool-range tool-range-profit" id="marginRange" data-sync="margin" value="20" min="0" max="100" step="0.5" style="--fill:20%" disabled>
+          <div class="tool-slider-scale" aria-hidden="true"><span>0%</span><span>100%</span></div>
+        </div>
+
+        <div class="tool-result">
+          <div class="tool-result-row">
+            <div>
+              <span class="tool-result-label">Recommended selling price</span>
+              <span class="tool-result-value" aria-live="polite"><small>EGP</small><span data-out="price">472</span></span>
+            </div>
+            <span class="tool-result-sub">Profit EGP <span data-out="profit">79</span> per item</span>
+          </div>
+          <div class="tool-bar" aria-hidden="true">
+            <i data-seg="cost" style="width:38.1%"></i><i data-seg="packaging" style="width:2.5%"></i><i data-seg="ads" style="width:29.9%"></i><i data-seg="fixed" style="width:12.7%"></i><i data-seg="profit" style="width:16.7%"></i>
+          </div>
+          <ul class="tool-legend">
+            <li data-seg="cost">Product <b data-leg="cost">180</b></li>
+            <li data-seg="packaging">Packaging <b data-leg="packaging">12</b></li>
+            <li data-seg="ads">Ads <b data-leg="ads">141</b></li>
+            <li data-seg="fixed">Fixed costs <b data-leg="fixed">60</b></li>
+            <li data-seg="profit">Profit <b data-leg="profit">79</b></li>
+          </ul>
+          <p class="tool-legend-note">Split per item. Ad cost is divided by your delivery rate, because you pay for ads on every order, including the ones that never arrive.</p>
+        </div>
+
+        <div class="tool-stats">
+          <div><span>Break-even price</span><strong data-out="breakEven">EGP 393</strong></div>
+          <div><span>Ad cost per item</span><strong data-out="adsPerItem">EGP 141</strong></div>
+          <div><span>Fixed cost per item</span><strong data-out="fixedPerItem">EGP 60</strong></div>
+        </div>
+        <p class="tool-calc-note" data-out="note"></p>
+
+        <div class="tool-lock">
+          <div>
+            <span class="tool-lock-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            </span>
+            <h3>Unlock the calculator</h3>
+            <p>Free, takes 20 seconds, and you only do it once.</p>
+            <button type="button" class="btn btn-accent" data-open-dialog="earlyAccessDialog">Use the Tool</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="tool-features-head">
+      <p class="eyebrow eyebrow-center eyebrow-light">Pricing Approaches</p>
+      <h2 class="section-title">Three Ways to Set a Price</h2>
+      <!-- Shares are the "average influence" of each approach across the pricing surveys reviewed
+           in Hinterhuber, "Customer value-based pricing strategies: why companies resist",
+           Journal of Business Strategy 29(4), 2008. -->
+      <p class="tool-features-source">Share of companies using each approach, averaged across two decades of pricing surveys in the US, Europe and Asia (Hinterhuber, <em>Journal of Business Strategy</em>, 2008).</p>
+    </div>
+    <!-- The three common approaches, with the one this calculator uses marked by .is-used. -->
+    <div class="tool-features">
+      <article class="tool-feature is-used">
+        <div class="tool-feature-top">
+          <span class="app-tool-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
+          </span>
+          <span class="tool-feature-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            Used in this tool
+          </span>
+        </div>
+        <div class="tool-feature-share"><strong>37%</strong><span>of companies price this way</span></div>
+        <div class="tool-feature-bar" aria-hidden="true"><i style="width:37%"></i></div>
+        <h3>Cost-based pricing</h3>
+        <p>Start from what each delivered order really costs you, then add the margin you want on top.</p>
+        <ul class="tool-feature-points">
+          <li>Product, packaging, ads and fixed expenses</li>
+          <li>Failed deliveries covered by the orders that arrive</li>
+          <li>The net margin you choose</li>
+        </ul>
+      </article>
+      <article class="tool-feature">
+        <div class="tool-feature-top">
+          <span class="app-tool-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </span>
+        </div>
+        <div class="tool-feature-share"><strong>44%</strong><span>of companies price this way</span></div>
+        <div class="tool-feature-bar" aria-hidden="true"><i style="width:44%"></i></div>
+        <h3>Competitor-based pricing</h3>
+        <p>Check what similar stores charge and price close to them. Quick to set, but their costs, delivery rate and ad spend aren't yours, so the same price can make them money and lose you money.</p>
+      </article>
+      <article class="tool-feature">
+        <div class="tool-feature-top">
+          <span class="app-tool-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>
+          </span>
+        </div>
+        <div class="tool-feature-share"><strong>17%</strong><span>of companies price this way</span></div>
+        <div class="tool-feature-bar" aria-hidden="true"><i style="width:17%"></i></div>
+        <h3>Value-based pricing</h3>
+        <p>Price by what customers are willing to pay for the product. It can earn higher margins, but without knowing your full costs you can't tell whether a price actually makes money.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/img/logo.jpg" alt="FinVisor - Financial Analysis">
+    </a>
+    <p>&copy; <span id="year"></span> FinVisor. All rights reserved.</p>
+    <a href="index.html" class="back-to-top">Back to FinVisor &rarr;</a>
+  </div>
+</footer>
+
+<!-- Sign-up that unlocks the calculator. Same fields as the homepage contact form; data-source is
+     written to the Google Sheet's Source column so these leads can be told apart. -->
+<dialog class="ea-dialog" id="earlyAccessDialog" aria-labelledby="eaTitle">
+  <div class="ea-card">
+    <button type="button" class="ea-close" data-close-dialog aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+
+    <div class="ea-head">
+      <span class="app-tool-tag">Pricing App &middot; Free Tool</span>
+      <h2 class="ea-title" id="eaTitle">Use the Pricing Tool</h2>
+      <p class="ea-lead">Tell us a little about your business and the calculator unlocks straight away. You only need to do this once.</p>
+    </div>
+
+    <form class="contact-form ea-form" data-source="Pricing App" novalidate>
+      <div class="form-row">
+        <label for="eaFullName">Full name</label>
+        <input type="text" id="eaFullName" name="fullName" autocomplete="name" required autofocus>
+      </div>
+      <div class="form-row">
+        <label for="eaStoreWebsite">Store website</label>
+        <input type="text" id="eaStoreWebsite" name="storeWebsite" inputmode="url" autocomplete="url" placeholder="e.g. yourstore.com" required>
+      </div>
+      <div class="form-row">
+        <label for="eaBusinessType">Type of business</label>
+        <input type="text" id="eaBusinessType" name="businessType" placeholder="e.g. bath &amp; body, fashion, home goods" required>
+      </div>
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label for="eaPhone">Phone</label>
+          <input type="tel" id="eaPhone" name="phone" autocomplete="tel" required>
+        </div>
+        <div class="form-row">
+          <label for="eaMonthlyOrders">Monthly orders</label>
+          <select id="eaMonthlyOrders" name="monthlyOrders" required>
+            <option value="">Select a range</option>
+            <option>Under 100</option>
+            <option>100 – 500</option>
+            <option>500 – 2,000</option>
+            <option>2,000 – 10,000</option>
+            <option>Over 10,000</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-accent btn-block">Unlock the Tool</button>
+      <p class="form-note" role="status" aria-live="polite"></p>
+      <p class="form-privacy">Your details go to FinVisor only, and are never shared.</p>
+    </form>
+  </div>
+</dialog>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="assets/js/early-access.js"></script>
+<script src="assets/js/tool-calc.js"></script>
+<script src="assets/js/pricing-tool.js"></script>
+</body>
+</html>

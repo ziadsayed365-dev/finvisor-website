@@ -12,6 +12,7 @@
   --ink: #0a0f30;
   --ink-soft: #515a7a;
   --border: #e4e6f0;
+  --green-400: #22c55e;
 
   --font-head: 'Montserrat', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -87,6 +88,25 @@ h1, h2, h3 { font-family: var(--font-head); line-height: 1.2; color: var(--ink);
   color: var(--ink);
 }
 .btn-outline:hover { border-color: var(--indigo-500); color: var(--indigo-600); }
+/* Hero link down to the app teaser: navy so it reads apart from the two service CTAs, with a
+   "Beta" chip in the same cyan as the app section it points to. */
+.btn-app {
+  background: var(--navy-900);
+  color: #fff;
+  padding-right: 14px;
+  box-shadow: 0 12px 24px -10px rgba(10, 15, 48, 0.55);
+}
+.btn-app:hover { transform: translateY(-2px); box-shadow: 0 16px 28px -10px rgba(10, 15, 48, 0.6); }
+.btn-app-tag {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy-900);
+  background: #67e8f9;
+  border-radius: 999px;
+  padding: 3px 9px;
+}
 .btn-sm { padding: 10px 20px; font-size: 0.85rem; }
 .btn-block { width: 100%; }
 
@@ -194,7 +214,10 @@ main section[id] { scroll-margin-top: 76px; }
 .section-dark p { color: rgba(255, 255, 255, 0.7); }
 
 #services .section-title,
-#clients .section-title { text-align: center; margin-inline: auto; }
+#dashboard .section-title,
+#clients .section-title,
+#testimonials .section-title,
+#process .section-title { text-align: center; margin-inline: auto; }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -215,9 +238,11 @@ main section[id] { scroll-margin-top: 76px; }
   mask-image: linear-gradient(to left, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 85%);
   -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 85%);
 }
-.hero-inner { position: relative; max-width: 700px; }
+/* Wide enough to hold the longest headline variant on two lines. .hero-lead caps itself at
+   600px, so the paragraph stays readable and does not stretch with the extra width. */
+.hero-inner { position: relative; max-width: 1040px; }
 .hero h1 {
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-size: clamp(2rem, 5vw, 3.6rem);
   font-weight: 800;
   margin-bottom: 22px;
   letter-spacing: -0.01em;
@@ -228,12 +253,18 @@ main section[id] { scroll-margin-top: 76px; }
   max-width: 600px;
   margin-bottom: 36px;
 }
+.hero-lead p + p { margin-top: 16px; }
+/* The closing line is the payoff, so it carries a little more weight than the setup above it. */
+.hero-lead-punch {
+  color: var(--ink);
+  font-weight: 500;
+}
 .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
 /* ---------- Services ---------- */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-top: 48px;
 }
@@ -272,7 +303,11 @@ main section[id] { scroll-margin-top: 76px; }
 .achievements .container { position: relative; }
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* minmax(0, 1fr), not 1fr: a bare 1fr floors each column at its content width, so while the
+     figures count up (and the nowrap text keeps changing width) all four columns renegotiate
+     their share every frame and the whole row slides sideways. A 0 minimum keeps the columns
+     fixed and equal, so a growing number expands from its own centre instead. */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 32px;
   margin-top: 36px;
   text-align: center;
@@ -280,13 +315,30 @@ main section[id] { scroll-margin-top: 76px; }
 .stat-num {
   display: block;
   font-family: var(--font-head);
-  font-size: clamp(2.2rem, 4vw, 3rem);
+  /* Capped so the longest figure ("EGP 500K-2M") still fits its column on one line. A figure
+     that wraps drops its label below the others and breaks the row's alignment. */
+  /* Sized so the longest figure ("EGP 0.8-7.7M") fits its column at every width. The columns
+     no longer stretch to fit their content, so type that is too big overflows rather than
+     widening the grid. */
+  font-size: clamp(1.8rem, 3.25vw, 2.6rem);
   font-weight: 800;
+  white-space: nowrap;
+  /* Equal-width digits, so a counting figure does not jitter as its digits change. */
+  font-variant-numeric: tabular-nums;
   color: #fff;
   background: linear-gradient(135deg, #fff, var(--indigo-400));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+/* Currency marker: smaller and set back from the figure it belongs to, so the number reads
+   as the headline and the unit as an annotation. Inherits the parent's clipped gradient. */
+.stat-num .cur {
+  font-size: 0.5em;
+  font-weight: 700;
+  opacity: 0.72;
+  margin-right: 0.18em;
+  letter-spacing: 0.02em;
 }
 .stat-label {
   display: block;
@@ -361,8 +413,7 @@ main section[id] { scroll-margin-top: 76px; }
   line-height: 1.45;
 }
 .testimonial footer { margin-top: 28px; }
-.testimonial-name { display: block; font-weight: 600; color: #fff; }
-.testimonial-role { display: block; font-size: 0.88rem; color: var(--indigo-400); margin-top: 4px; }
+.testimonial-role { display: block; font-size: 0.95rem; font-weight: 600; color: var(--indigo-400); }
 
 .testimonial-dots {
   display: flex;
@@ -465,6 +516,22 @@ main section[id] { scroll-margin-top: 76px; }
 .back-to-top { color: rgba(255, 255, 255, 0.55); font-size: 0.85rem; }
 .back-to-top:hover { color: #fff; }
 
+/* ---------- Hero entrance ---------- */
+/* Each .hero-anim child fades and rises in turn once script.js adds .is-ready, staggered by
+   the --step index it sets. Gated on .js so a script-less page paints the hero normally. */
+.js .hero-anim {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.js .hero.is-ready .hero-anim {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--step, 0) * 90ms);
+}
+
 /* ---------- Scroll reveal ---------- */
 [data-reveal] {
   opacity: 0;
@@ -489,7 +556,10 @@ main section[id] { scroll-margin-top: 76px; }
   .nav-link::after { display: none; }
   .header-cta { display: none; }
   .nav-toggle { display: flex; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+  /* Two columns are far wider than four were, so the figures can grow again. The base floor
+     is set low enough for the narrow four-column band just above this breakpoint. */
+  .stat-num { font-size: clamp(2rem, 5vw, 2.6rem); }
 }
 
 @media (max-width: 600px) {
@@ -527,33 +597,86 @@ main section[id] { scroll-margin-top: 76px; }
 .section-title-light { color: #fff; }
 .section-dark .section-lead { color: rgba(255, 255, 255, 0.7); }
 
-/* ---------- Hero proof strip ---------- */
-.hero-proof {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px 14px;
-  margin-top: 34px;
-}
-.hero-proof li {
-  display: flex;
-  align-items: baseline;
-  gap: 7px;
-  padding: 9px 16px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(6px);
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.86rem;
+/* ---------- Hero headline emphasis ---------- */
+/* Two marks that carry the argument: the number Shopify reports gets crossed out, the real
+   one gets underlined. Both rules draw themselves with a scaleX sweep once the hero entrance
+   has landed, staggered so the strike reads first and the underline answers it. Drawn as
+   pseudo-elements rather than text-decoration so the sweep can be animated. */
+/* nowrap matters: the marks are absolutely-positioned pseudo-elements, so a phrase that split
+   across two lines would get one line drawn across its whole bounding box instead of per line.
+   Keeping each phrase intact forces the break to happen before it. */
+.hero h1 .strike,
+.hero h1 .hl {
+  position: relative;
   white-space: nowrap;
 }
-.hero-proof strong {
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 0.98rem;
-  color: #fff;
+
+.hero h1 .strike { color: var(--ink-soft); }
+.hero h1 .hl { color: var(--indigo-600); }
+
+.hero h1 .strike::after,
+.hero h1 .hl::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
 }
+.hero h1 .strike::after {
+  left: -0.03em;
+  right: -0.03em;
+  top: 0.52em;
+  height: 0.07em;
+}
+.hero h1 .hl::after {
+  left: 0;
+  right: 0;
+  bottom: -0.02em;
+  height: 0.09em;
+  background: var(--indigo-400);
+}
+.hero.is-ready h1 .strike::after,
+.hero.is-ready h1 .hl::after { transform: scaleX(1); }
+.hero.is-ready h1 .strike::after {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.7s;
+}
+.hero.is-ready h1 .hl::after {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 1.15s;
+}
+
+/* ---------- Hero badge ---------- */
+/* Sits where the plain eyebrow used to, in the hero's own palette: a navy pill against the
+   light hero, with a green dot that pulses to read as "live". It carries .hero-anim, so the
+   entrance stagger picks it up as the first step ahead of the headline. */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 17px 7px 13px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--navy-900);
+  color: var(--navy-900);
+  font-size: 0.84rem;
+  font-weight: 500;
+  line-height: 1.45;
+  margin-bottom: 26px;
+}
+.hero-badge .dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--green-400);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.22);
+  animation: dotPulse 2s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
 
 /* ---------- Achievements extras ---------- */
 .achievements .section-title { margin-bottom: 4px; }
@@ -599,6 +722,31 @@ main section[id] { scroll-margin-top: 76px; }
 }
 
 /* ---------- Dashboard showcase ---------- */
+/* Confidentiality notice above the demo: amber so it is read before the figures are. */
+.demo-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: fit-content;
+  max-width: 720px;
+  margin: 6px auto 0;
+  padding: 12px 18px;
+  border: 1px solid #f59e0b;
+  border-radius: 12px;
+  background: #fffbeb;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #92400e;
+  box-shadow: 0 10px 24px -16px rgba(245, 158, 11, 0.6);
+}
+.demo-notice svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: #d97706;
+}
+.demo-notice strong { color: #78350f; }
 .dash-shell {
   margin-top: 44px;
   border-radius: 16px;
@@ -645,242 +793,84 @@ main section[id] { scroll-margin-top: 76px; }
   white-space: nowrap;
 }
 
-.dash-topbar {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  padding: 0 18px;
-  height: 52px;
-  background: var(--navy-900);
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.dash-topbar::-webkit-scrollbar { display: none; }
-.dash-brand {
-  font-family: var(--font-head);
-  font-weight: 700;
-  color: #fff;
-  font-size: 0.95rem;
-  white-space: nowrap;
-}
-.dash-nav {
-  display: flex;
-  gap: 6px;
-}
-.dash-nav span {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.62);
-  padding: 6px 11px;
-  border-radius: 6px;
-  white-space: nowrap;
-}
-.dash-nav span.is-active {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  font-weight: 500;
-}
-
-.dash-body { padding: 26px 24px 22px; }
-.dash-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-.dash-head h3 { font-size: 1.15rem; }
-.dash-range { font-size: 0.8rem; color: var(--ink-soft); }
-
-.dash-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-bottom: 24px;
-}
-.dash-card {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 14px 16px;
-  background: #fbfcff;
-}
-.dash-card-label {
+/* The live demo dashboard (demo-dashboard.html) runs inside the browser frame. */
+.dash-frame {
   display: block;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ink-soft);
-}
-.dash-card-value {
-  display: block;
-  margin-top: 6px;
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 1.42rem;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-}
-.dash-card-value.is-good { color: #12805c; }
-.dash-card-sub {
-  display: block;
-  margin-top: 3px;
-  font-size: 0.74rem;
-  color: var(--ink-soft);
-}
-
-.dash-table-wrap { overflow-x: auto; }
-.dash-table {
   width: 100%;
-  min-width: 520px;
-  border-collapse: collapse;
-  font-size: 0.83rem;
-  font-variant-numeric: tabular-nums;
+  height: 820px;
+  border: 0;
+  background: #f9fafb;
 }
-.dash-table th,
-.dash-table td {
-  padding: 7px 12px;
-  text-align: right;
-  white-space: nowrap;
+.dash-open {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.9rem;
 }
-.dash-table th[scope="row"] {
-  text-align: left;
-  font-weight: 500;
-  color: var(--ink);
-}
-.dash-table thead th {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--ink-soft);
-  border-bottom: 1px solid var(--border);
-  font-weight: 600;
-}
-.dash-table tbody tr:hover { background: #f7f8fd; }
-.dash-table .is-muted th,
-.dash-table .is-muted td {
-  color: var(--ink-soft);
-  font-size: 0.78rem;
-}
-.dash-table .is-band td,
-.dash-table .is-band th { background: rgba(79, 70, 229, 0.045); }
-.dash-table .is-band2 td,
-.dash-table .is-band2 th { background: rgba(234, 88, 12, 0.05); }
-.dash-table .is-total th,
-.dash-table .is-total td {
-  font-weight: 700;
-  border-top: 1px solid var(--border);
-  color: var(--ink);
-}
-.dash-table .is-net th,
-.dash-table .is-net td {
-  color: #12805c;
-  border-top: 2px solid var(--ink);
-}
-.dash-table .is-header th {
-  padding-top: 18px;
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 0.76rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.dash-open a {
   color: var(--indigo-600);
-  text-align: left;
+  font-weight: 600;
+  text-decoration: none;
 }
-.dash-table .is-header:hover { background: transparent; }
+.dash-open a:hover { text-decoration: underline; }
 
-.dash-foot {
-  margin-top: 16px;
-  font-size: 0.76rem;
-  color: var(--ink-soft);
-}
-
-.dash-features {
+/* Two highlight cards under the demo, each with a gradient border and icon tile. */
+.dash-perks {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px 28px;
-  margin-top: 40px;
-}
-.dash-features li {
-  position: relative;
-  padding-left: 26px;
-  color: var(--ink-soft);
-  font-size: 0.93rem;
-}
-.dash-features li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 9px;
-  width: 10px;
-  height: 10px;
-  border-radius: 3px;
-  background: linear-gradient(135deg, var(--indigo-500), var(--indigo-600));
-}
-.dash-features strong { color: var(--ink); font-weight: 600; }
-
-/* ---------- Case studies ---------- */
-.case-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
-  margin-top: 44px;
+  max-width: 940px;
+  margin: 44px auto 0;
 }
-.case-card {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px 26px;
-  background: #fff;
+.dash-perk {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 26px 26px 24px;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, rgba(79, 70, 229, 0.6), rgba(34, 211, 238, 0.5) 55%, var(--border)) border-box;
+  box-shadow: 0 24px 48px -30px rgba(10, 15, 48, 0.35);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.case-card:hover {
+.dash-perk:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow);
+  box-shadow: 0 30px 56px -28px rgba(67, 56, 202, 0.45);
 }
-.case-tag {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--indigo-600);
-  background: rgba(79, 70, 229, 0.09);
-  border-radius: 999px;
-  padding: 5px 12px;
+.dash-perk-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--indigo-500), #22d3ee);
+  box-shadow: 0 12px 24px -10px rgba(79, 70, 229, 0.7);
 }
-.case-card h3 {
-  margin: 16px 0 10px;
-  font-size: 1.18rem;
-  line-height: 1.32;
-}
-.case-card > p {
-  color: var(--ink-soft);
-  font-size: 0.94rem;
-}
-.case-card strong { color: var(--ink); }
-.case-metrics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 26px;
-  margin-top: 22px;
-  padding-top: 18px;
-  border-top: 1px solid var(--border);
-}
-.case-metrics li {
-  font-size: 0.76rem;
-  color: var(--ink-soft);
-  line-height: 1.35;
-}
-.case-metrics span {
-  display: block;
+.dash-perk-icon svg { width: 26px; height: 26px; }
+.dash-perk-title {
+  margin: 2px 0 6px;
   font-family: var(--font-head);
+  font-size: 1.08rem;
   font-weight: 700;
-  font-size: 1.06rem;
   color: var(--ink);
-  font-variant-numeric: tabular-nums;
+}
+.dash-perk p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dash-perk { transition: none; }
+  .dash-perk:hover { transform: none; }
 }
 
 /* ---------- Process ---------- */
 .process-list {
+  list-style: none;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 26px;
@@ -932,7 +922,9 @@ main section[id] { scroll-margin-top: 76px; }
 /* ---------- Contact form extras ---------- */
 .form-grid-2 {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* minmax(0, 1fr): a bare 1fr floors each column at the input's intrinsic width, which pushed
+     the Email field past the edge of the narrower early-access dialog. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0 14px;
 }
 .contact-form select {
@@ -985,29 +977,1079 @@ main section[id] { scroll-margin-top: 76px; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 980px) {
-  .dash-cards { grid-template-columns: repeat(2, 1fr); }
   .process-list { grid-template-columns: repeat(2, 1fr); }
-  .dash-features { grid-template-columns: 1fr; }
+  .dash-perks { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 760px) {
-  .case-grid { grid-template-columns: 1fr; }
-  .hero-proof { gap: 8px; }
-  .hero-proof li { font-size: 0.78rem; padding: 7px 12px; }
-  .dash-body { padding: 20px 16px 18px; }
+  /* The headline's <br> is a desktop line break; on a phone the text already wraps, so
+     forcing it adds a fourth line. Let it flow instead. */
+  .hero h1 br { display: none; }
+  .dash-frame { height: 680px; }
   .dash-badge { display: none; }
   .form-grid-2 { grid-template-columns: 1fr; }
   .whatsapp-fab { width: 48px; height: 48px; right: 14px; bottom: 14px; }
   .whatsapp-fab svg { width: 24px; height: 24px; }
 }
 
+/* Two columns leave ~200px per figure here, which is narrower than the longest one can be
+   drawn at a legible size. One per row keeps the numbers large instead of shrinking them. */
+@media (max-width: 560px) {
+  .stats-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
 @media (max-width: 520px) {
-  .dash-cards { grid-template-columns: 1fr; }
   .process-list { grid-template-columns: 1fr; }
+}
+
+/* ==================================================================
+   FinVisor App — homepage teaser and tool preview pages
+   ================================================================== */
+
+/* Registered so the tiles' border sweep can animate the conic gradient's start angle. A browser
+   without @property shows the gradient border standing still, which still reads fine. */
+@property --sweep {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes sweep { to { --sweep: 360deg; } }
+
+/* ---------- Shared pieces ---------- */
+.app-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 15px 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(129, 140, 248, 0.45);
+  background: rgba(79, 70, 229, 0.16);
+  color: #c7d2fe;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.app-pill .dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #67e8f9;
+  box-shadow: 0 0 0 3px rgba(103, 232, 249, 0.2);
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+.app-tool-icon {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--indigo-500), #0891b2);
+  box-shadow: 0 10px 24px -8px rgba(79, 70, 229, 0.75);
+}
+.app-tool-icon svg { width: 26px; height: 26px; }
+
+.app-tool-tag {
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #a5f3fc;
+  border: 1px solid rgba(103, 232, 249, 0.35);
+  background: rgba(103, 232, 249, 0.08);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+/* ---------- Homepage teaser ---------- */
+.app-teaser { overflow: hidden; text-align: center; }
+.app-teaser-glow {
+  position: absolute;
+  top: -180px;
+  left: 50%;
+  width: 900px;
+  height: 520px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(79, 70, 229, 0.4), transparent);
+  pointer-events: none;
+}
+.app-teaser .container { position: relative; }
+.app-teaser .section-title { margin-inline: auto; }
+
+.app-tools {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 940px;
+  margin: 48px auto 0;
+  text-align: left;
+}
+
+.app-tool {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 28px 22px;
+  border-radius: 20px;
+  background: linear-gradient(160deg, rgba(27, 35, 79, 0.95), rgba(10, 15, 48, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+  /* Opacity is listed because this rule outranks [data-reveal]'s transition by source order;
+     without it the scroll reveal would snap in instead of fading. */
+  transition: opacity 0.6s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+/* The sweeping border: a conic gradient masked down to a 1px ring and spun via --sweep. The
+   second tile runs half a turn behind so the two never flash in step. */
+.app-tool::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--sweep), transparent 0 55%, rgba(129, 140, 248, 0.95) 72%, #67e8f9 82%, transparent 94%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: sweep 5s linear infinite;
+  pointer-events: none;
+}
+.app-tool + .app-tool::before { animation-delay: -2.5s; }
+.app-tool:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 40px 70px -30px rgba(0, 0, 0, 0.7), 0 0 60px -18px rgba(99, 102, 241, 0.65);
+}
+.app-tool:focus-visible { outline: 2px solid #67e8f9; outline-offset: 4px; }
+
+.app-tool-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.app-tool-title {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: #fff;
+}
+.app-tool-desc {
+  margin-top: 8px;
+  font-size: 0.93rem;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.app-tool-preview {
+  margin-top: 22px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.app-mini {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: space-between;
+  gap: 12px;
+}
+.app-mini span {
+  display: block;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+.app-mini strong {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-head);
+  font-size: 1.02rem;
+  color: #fff;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.app-mini .is-key strong { color: #86efac; }
+
+/* margin-top: auto pins the CTA row to the bottom, so both tiles line it up even when their
+   descriptions run to different lengths. The preview's bottom margin keeps the gap above it. */
+.app-tool-preview { margin-bottom: 22px; }
+.app-tool-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #fff;
+}
+.app-tool-arrow {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.app-tool-arrow svg { width: 17px; height: 17px; }
+.app-tool:hover .app-tool-arrow {
+  background: linear-gradient(135deg, var(--indigo-500), #0891b2);
+  transform: translate(2px, -2px);
+}
+
+.app-teaser .app-note {
+  margin-top: 30px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- Tool preview pages ---------- */
+.tool-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: rgba(255, 255, 255, 0.8);
+  background:
+    radial-gradient(900px 520px at 85% -10%, rgba(79, 70, 229, 0.35), transparent 60%),
+    radial-gradient(700px 480px at -10% 105%, rgba(8, 145, 178, 0.16), transparent 60%),
+    var(--navy-950);
+}
+.tool-page h1,
+.tool-page h2,
+.tool-page h3 { color: #fff; }
+
+.tool-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 76px;
+}
+.tool-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s ease;
+}
+.tool-back svg { width: 16px; height: 16px; }
+.tool-back:hover { color: #fff; }
+
+.tool-main { flex: 1; }
+
+.tool-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 64px;
+  align-items: center;
+  /* Block padding only: this sits on the same element as .container, whose side gutter a
+     padding shorthand would wipe out on narrow screens. */
+  padding-block: 56px 80px;
+}
+.tool-hero h1 {
+  font-size: clamp(2.1rem, 4.6vw, 3.3rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-bottom: 18px;
+}
+.tool-hero h1 .grad {
+  background: linear-gradient(135deg, #fff 10%, var(--indigo-400) 60%, #67e8f9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.tool-lead {
+  max-width: 520px;
+  font-size: 1.06rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+.tool-lead + .tool-lead { margin-top: 14px; color: #fff; }
+/* The loss in the "cost × 3" example: the one figure the reader should remember. */
+.tool-lead strong { color: #fca5a5; font-weight: 600; }
+.tool-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+.btn-ghost-light {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+.btn-ghost-light:hover { border-color: var(--indigo-400); background: rgba(255, 255, 255, 0.06); }
+.tool-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+.tool-status svg { width: 15px; height: 15px; color: #67e8f9; }
+
+/* Mock app window */
+.tool-mock {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(160deg, rgba(27, 35, 79, 0.88), rgba(10, 15, 48, 0.94));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 50px 90px -40px rgba(0, 0, 0, 0.85), 0 0 80px -30px rgba(79, 70, 229, 0.55);
+}
+.tool-mock-chrome {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.tool-mock .dash-dots i { background: rgba(255, 255, 255, 0.18); }
+.tool-mock-url {
+  flex: 1;
+  text-align: center;
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+.tool-mock-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.tool-mock-soon svg { width: 11px; height: 11px; }
+
+/* A slow band of light passes over the body, like a screen that is still loading in. */
+.tool-mock-body { position: relative; padding: 22px; }
+.tool-mock-body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.06) 50%, transparent 65%);
+  background-size: 250% 100%;
+  animation: mockShimmer 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes mockShimmer {
+  from { background-position: 120% 0; }
+  to { background-position: -120% 0; }
+}
+.tool-mock-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.tool-mock-heading h2 { font-size: 1.02rem; }
+.tool-mock-heading span { font-size: 0.74rem; color: rgba(255, 255, 255, 0.45); }
+
+.tool-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.tool-field {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.tool-field span {
+  display: block;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.tool-result {
+  margin-top: 14px;
+  padding: 18px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.3), rgba(8, 145, 178, 0.14));
+  border: 1px solid rgba(129, 140, 248, 0.32);
+}
+.tool-result-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px 16px;
+  flex-wrap: wrap;
+}
+.tool-result-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #c7d2fe;
+}
+.tool-result-value {
+  display: block;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+  line-height: 1.15;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+.tool-result-value small { font-size: 0.5em; opacity: 0.7; margin-right: 0.2em; }
+.tool-result-sub { font-size: 0.8rem; color: rgba(255, 255, 255, 0.62); }
+
+.tool-mock-caption {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.74rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Live calculator (pricing.html). The fields are real inputs set into the same tiles as the
+   static preview, and stay disabled under .tool-lock until the visitor has signed up. */
+.tool-calc .tool-field {
+  cursor: text;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.tool-calc .tool-field:focus-within {
+  border-color: var(--indigo-400);
+  background: rgba(129, 140, 248, 0.1);
+}
+.tool-field input {
+  display: block;
+  width: 100%;
+  margin-top: 2px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.tool-field input::-webkit-outer-spin-button,
+.tool-field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.tool-field input:focus { outline: none; }
+.tool-field input:disabled { color: rgba(255, 255, 255, 0.55); opacity: 1; }
+
+/* Field groups: a small heading above each block of inputs. */
+.tool-group-label {
+  margin: 18px 0 8px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #c7d2fe;
+}
+.tool-mock-heading + .tool-group-label { margin-top: 0; }
+.tool-group-note {
+  margin-top: 8px;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+.tool-fields-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* Sliders: a drag handle for the percentages, with an editable number beside the label for an
+   exact figure. The track fills up to the thumb from --fill, which the script keeps current. */
+.tool-slider {
+  margin-top: 12px;
+  padding: 12px 14px 8px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.tool-slider-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.tool-slider-head label { font-size: 0.78rem; color: rgba(255, 255, 255, 0.62); }
+.tool-slider-value {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #fff;
+}
+.tool-slider-value input {
+  width: 3.4em;
+  padding: 0 2px 0 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.tool-slider-value input::-webkit-outer-spin-button,
+.tool-slider-value input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.tool-slider-value input:focus { outline: 2px solid var(--indigo-400); outline-offset: 2px; }
+/* A worded unit ("items") after the number, set smaller than a % sign would be. */
+.tool-slider-value small {
+  margin-left: 4px;
+  font-size: 0.6em;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.tool-range {
+  --track: linear-gradient(90deg, var(--indigo-500), #22d3ee);
+  display: block;
+  width: 100%;
+  height: 26px;
+  margin: 6px 0 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.tool-range-profit { --track: linear-gradient(90deg, var(--indigo-500), #4ade80); }
+.tool-range::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--track) 0 0 / var(--fill, 50%) 100% no-repeat, rgba(255, 255, 255, 0.1);
+}
+.tool-range::-moz-range-track {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.tool-range::-moz-range-progress {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--track);
+}
+.tool-range::-webkit-slider-thumb {
+  width: 22px;
+  height: 22px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: #fff;
+  border: 4px solid var(--indigo-500);
+  box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.25), 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.2s ease;
+  -webkit-appearance: none;
+}
+.tool-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 4px solid var(--indigo-500);
+  box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.25), 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+.tool-range:active::-webkit-slider-thumb { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0.3), 0 4px 10px rgba(0, 0, 0, 0.4); }
+.tool-range:focus-visible { outline: none; }
+.tool-range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px #67e8f9, 0 4px 10px rgba(0, 0, 0, 0.4); }
+.tool-range:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px #67e8f9, 0 4px 10px rgba(0, 0, 0, 0.4); }
+.tool-range:disabled { cursor: default; }
+.tool-slider-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.66rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.tool-legend-note {
+  margin-top: 10px;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* One colour per slice of the price, shared by the bar segment and its legend entry. */
+.tool-calc [data-seg="cost"] { --c: #818cf8; }
+.tool-calc [data-seg="packaging"] { --c: #c084fc; }
+.tool-calc [data-seg="ads"] { --c: #fbbf24; }
+.tool-calc [data-seg="fixed"] { --c: #38bdf8; }
+.tool-calc [data-seg="profit"] { --c: #4ade80; }
+
+.tool-bar {
+  display: flex;
+  height: 10px;
+  margin-top: 16px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+.tool-bar i {
+  height: 100%;
+  background: var(--c);
+  transition: width 0.3s ease;
+}
+.tool-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 12px;
+  font-size: 0.74rem;
+  color: rgba(255, 255, 255, 0.62);
+}
+.tool-legend li { display: flex; align-items: center; gap: 6px; }
+.tool-legend li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--c);
+}
+.tool-legend b {
+  font-weight: 600;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.tool-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+.tool-stats div {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.tool-stats span {
+  display: block;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+.tool-stats strong {
+  display: block;
+  margin-top: 2px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.tool-calc-note {
+  margin-top: 10px;
+  font-size: 0.76rem;
+  color: #fbbf24;
+}
+.tool-calc-note:empty { display: none; }
+
+/* Lock overlay: the example stays visible, blurred, behind the call to sign up. */
+.tool-lock {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  background: rgba(6, 10, 31, 0.6);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+.tool-lock-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--indigo-500), #0891b2);
+  box-shadow: 0 10px 24px -8px rgba(79, 70, 229, 0.75);
+}
+.tool-lock-icon svg { width: 24px; height: 24px; }
+.tool-lock h3 { font-size: 1.15rem; margin-bottom: 6px; }
+.tool-lock p {
+  margin-bottom: 18px;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+/* Once unlocked the overlay goes, and so does the loading shimmer: this is a working tool now. */
+[data-app-unlocked] .tool-lock,
+[data-app-unlocked] .tool-calc::after { display: none; }
+
+/* What the tool will do */
+.tool-features-head { text-align: center; margin-bottom: 30px; }
+.tool-features-head .section-title { margin-inline: auto; }
+.tool-features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  padding-bottom: 88px;
+}
+.tool-feature {
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.tool-feature .app-tool-icon { width: 42px; height: 42px; border-radius: 12px; }
+.tool-feature .app-tool-icon svg { width: 21px; height: 21px; }
+.tool-feature h3 { font-size: 1rem; margin: 16px 0 6px; }
+.tool-feature p { font-size: 0.9rem; color: rgba(255, 255, 255, 0.62); }
+
+/* Pricing approaches: the card for the approach the tool uses is lit up, with a green "Used in
+   this tool" badge; the other approaches step back with muted icons. */
+.tool-feature-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.tool-feature:not(.is-used) .app-tool-icon {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+  color: rgba(255, 255, 255, 0.7);
+}
+.tool-feature.is-used {
+  background: linear-gradient(160deg, rgba(79, 70, 229, 0.24), rgba(8, 145, 178, 0.1));
+  border-color: rgba(129, 140, 248, 0.6);
+  box-shadow: 0 30px 60px -30px rgba(79, 70, 229, 0.65);
+}
+.tool-feature.is-used p { color: rgba(255, 255, 255, 0.78); }
+.tool-feature-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  color: #052e16;
+  background: #4ade80;
+}
+.tool-feature-badge svg { width: 13px; height: 13px; }
+
+/* How many companies use each approach: a large figure and a bar scaled to it. Placed straight
+   under the icon row, which is the same height in every card, so the figures line up. */
+.tool-features-head .tool-features-source {
+  max-width: 640px;
+  margin: -4px auto 0;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+.tool-feature-share {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 18px;
+}
+.tool-feature-share strong {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.9rem;
+  line-height: 1;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+.tool-feature-share span { font-size: 0.8rem; color: rgba(255, 255, 255, 0.55); }
+.tool-feature-bar {
+  height: 6px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+.tool-feature-bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.35);
+}
+.tool-feature.is-used .tool-feature-share strong { color: #86efac; }
+.tool-feature.is-used .tool-feature-bar i { background: linear-gradient(90deg, #22c55e, #86efac); }
+.tool-feature-points {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+.tool-feature-points li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+.tool-feature-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: rgba(74, 222, 128, 0.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234ade80' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 10px no-repeat;
+}
+
+@media (max-width: 900px) {
+  .tool-hero { grid-template-columns: 1fr; gap: 44px; padding-top: 28px; }
+  .tool-features { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+  .app-tools { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .app-tool { padding: 24px 20px 20px; }
+  .app-tool-title { font-size: 1.2rem; }
+  .app-mini strong { font-size: 0.92rem; }
+  .tool-mock-url { display: none; }
+  .tool-mock-body { padding: 16px; }
+  .tool-actions .btn { width: 100%; }
+  /* Three cost fields are too cramped side by side on a phone: two per row, the last one full. */
+  .tool-fields-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tool-fields-3 > :last-child { grid-column: 1 / -1; }
+  /* Monthly figures run to six digits, so each stat gets its own row. */
+  .tool-stats { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .tool-stats div { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+}
+
+/* ---------- Early-access dialog ---------- */
+/* A white card over the dark tool page, reusing the contact form's field styles. */
+.ea-dialog {
+  width: min(540px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.6);
+  overflow-y: auto;
+}
+.ea-dialog::backdrop {
+  background: rgba(6, 10, 31, 0.72);
+  backdrop-filter: blur(6px);
+}
+.ea-dialog[open] { animation: eaIn 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+@keyframes eaIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+}
+body:has(.ea-dialog[open]) { overflow: hidden; }
+
+.ea-card { position: relative; padding: 32px; }
+.ea-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--light-bg);
+  color: var(--ink-soft);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.ea-close:hover { background: var(--border); color: var(--ink); }
+.ea-close svg { width: 18px; height: 18px; }
+
+.ea-head { margin-bottom: 22px; padding-right: 36px; }
+.ea-card .app-tool-tag {
+  color: var(--indigo-600);
+  border-color: rgba(79, 70, 229, 0.3);
+  background: rgba(79, 70, 229, 0.08);
+}
+.ea-dialog .ea-title {
+  margin: 12px 0 6px;
+  font-size: 1.5rem;
+  color: var(--ink);
+}
+.ea-lead { font-size: 0.92rem; color: var(--ink-soft); }
+
+.ea-form {
+  padding: 0;
+  gap: 14px;
+  border-radius: 0;
+  box-shadow: none;
+}
+/* The empty status line and the privacy note's own margin left a wide hole under the button. */
+.ea-form .form-note { min-height: 0; }
+.ea-form .form-privacy { margin-top: 0; }
+
+/* ---------- Services: problem cards and their detail dialogs ---------- */
+/* Placed after the dialog rules above so .svc-dialog can widen .ea-dialog. Each card's title is a
+   button (a link on the dashboard card) whose ::after stretches over the whole card, so a click
+   anywhere on it opens the details. */
+.service-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.service-card .service-problem {
+  margin-bottom: 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #dc2626;
+}
+.service-card-feature .service-problem { color: #67e8f9; }
+.service-open {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.service-open::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.service-open:focus-visible { outline: none; }
+.service-card:has(.service-open:focus-visible) { outline: 2px solid var(--indigo-500); outline-offset: 3px; }
+.service-card h3 + p { margin-bottom: 18px; }
+.service-card .service-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  color: var(--ink-soft);
+}
+/* "See how we fix it" is its own button (for mouse and touch; the title button is the one
+   keyboards and screen readers use), raised above the stretched title so it always gets the click. */
+.service-meta-cta {
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--indigo-600);
+  transition: transform 0.2s ease;
+}
+.service-card:hover .service-meta-cta { transform: translateX(3px); }
+.service-card-feature .service-meta { color: rgba(255, 255, 255, 0.6); }
+.service-card-feature .service-meta-cta { color: #fff; }
+
+.svc-dialog { width: min(640px, calc(100% - 32px)); }
+/* The card takes focus when a dialog opens (autofocus), so the close button isn't lit up with a
+   focus ring on every open. Keyboard users still Tab straight to it. */
+.svc-dialog .ea-card:focus { outline: none; }
+.svc-problem {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #fef2f2;
+  font-size: 0.9rem;
+  color: #7f1d1d;
+}
+.svc-problem strong { color: #b91c1c; }
+.svc-label {
+  margin-bottom: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--indigo-600);
+}
+.svc-list { display: grid; gap: 10px; }
+.svc-list li {
+  position: relative;
+  padding: 12px 14px 12px 44px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.svc-list li::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(22, 163, 74, 0.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2316a34a' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 12px no-repeat;
+}
+.svc-list h3 { margin-bottom: 4px; font-size: 0.98rem; }
+.svc-list p { font-size: 0.88rem; color: var(--ink-soft); }
+.svc-proof {
+  margin: 16px 0;
+  padding: 12px 14px;
+  border-left: 3px solid var(--indigo-500);
+  border-radius: 10px;
+  background: rgba(79, 70, 229, 0.07);
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.svc-proof .svc-label { margin-bottom: 10px; }
+.svc-proof ul { display: grid; gap: 12px; }
+/* Each result: the growth figure as the headline, then the problem that was solved beneath it,
+   marked with a green up-trend arrow. */
+.svc-proof li {
+  position: relative;
+  padding-left: 32px;
+  line-height: 1.45;
+}
+.svc-proof li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(22, 163, 74, 0.14) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2316a34a' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 16l6-6 4 4 6-6'/%3E%3Cpath d='M15 8h5v5'/%3E%3C/svg%3E") center / 13px no-repeat;
+}
+.svc-win {
+  display: block;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1rem;
+  color: #15803d;
+}
+/* A starting loss inside a growth line (e.g. "−EGP 68,872 → +EGP 3,730"), in red so it reads as a loss. */
+.svc-win .svc-loss { color: #dc2626; }
+.svc-how {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 480px) {
+  .ea-card { padding: 26px 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .ea-dialog[open] { animation: none; }
+  .app-tool::before,
+  .app-pill .dot { animation: none; }
+  .tool-mock-body::after { display: none; }
+  .app-tool:hover { transform: none; }
   .logo-track { animation: none; }
-  .case-card:hover { transform: none; }
+  .js .hero-anim,
+  .js .hero.is-ready .hero-anim {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-badge .dot { animation: none; }
+  /* The marks still need to be drawn — they just arrive without the sweep. */
+  .hero.is-ready h1 .strike::after,
+  .hero.is-ready h1 .hl::after { transition: none; }
 }

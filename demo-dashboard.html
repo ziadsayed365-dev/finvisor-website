@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" class="h-full antialiased">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Demo Dashboard | FinVisor</title>
+  <meta name="description" content="An interactive FinVisor client dashboard running on sample data. No client figures are shown.">
+  <link rel="icon" type="image/jpeg" href="assets/img/favicon.jpeg">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.13/dist/index.global.js"></script>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; background: #f9fafb; color: #171717; }
+  </style>
+</head>
+<body class="flex min-h-full flex-col">
+  <div id="demo-strip" class="border-b border-amber-200 bg-amber-50 px-4 py-1.5 text-center text-xs text-amber-900"></div>
+  <div class="flex min-h-full flex-1 flex-col bg-gray-50 text-gray-900">
+    <header id="app-header" style="background-color:#050a30"></header>
+    <main id="app-main" class="mx-auto w-full max-w-6xl flex-1 px-4 py-6">
+      <p class="text-sm text-gray-400">Loading the demo dashboard…</p>
+    </main>
+  </div>
+  <div id="app-modal"></div>
+  <div id="app-toast" role="status" aria-live="polite"></div>
+  <noscript><p style="padding:16px">The demo dashboard needs JavaScript turned on.</p></noscript>
+
+  <script src="assets/js/demo-data.js"></script>
+  <script src="assets/js/demo/core.js"></script>
+  <script src="assets/js/demo/income.js"></script>
+  <script src="assets/js/demo/products.js"></script>
+  <script src="assets/js/demo/records.js"></script>
+  <script src="assets/js/demo/shipping.js"></script>
+  <script src="assets/js/demo/purchasing.js"></script>
+  <script src="assets/js/demo/product-list.js"></script></body>
+</html>
