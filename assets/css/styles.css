@@ -903,22 +903,6 @@ main section[id] { scroll-margin-top: 76px; }
 .process-list h3 { font-size: 1.03rem; margin-bottom: 8px; }
 .process-list p { color: var(--ink-soft); font-size: 0.9rem; }
 
-/* ---------- About badges ---------- */
-.about-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 24px;
-}
-.about-badges span {
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--ink-soft);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 6px 14px;
-}
-
 /* ---------- Contact form extras ---------- */
 .form-grid-2 {
   display: grid;
