@@ -271,7 +271,10 @@ main section[id] { scroll-margin-top: 76px; }
   padding: 40px 0 56px;
   align-items: flex-start;
 }
-.hero-brand .hero-inner { max-width: 1160px; width: 100%; }
+.hero-brand .hero-inner { max-width: 1160px; width: 100%; text-align: center; }
+/* Centre the badge and the wordmark; the cards keep their normal left-aligned layout. */
+.hero-brand .hero-badge { margin-left: auto; margin-right: auto; }
+.hero-services { text-align: left; }
 .hero-brand .hero-wordmark {
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(3rem, 11vw, 7.5rem);
