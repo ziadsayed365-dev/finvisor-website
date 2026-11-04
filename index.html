@@ -119,77 +119,10 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
     <div class="container hero-inner">
       <p class="hero-badge hero-anim"><span class="dot" aria-hidden="true"></span>Your Outsourced Finance Department</p>
       <h1 class="hero-wordmark hero-anim">Fin<span class="accent">&#8209;visor</span></h1>
-      <div class="hero-lead hero-anim">
-        <p class="hero-lead-punch">A virtual CFO for e-commerce brands.</p>
-        <p>Daily P&amp;L, SKU profitability, break-even ROAS and cash flow — delivered in a live financial dashboard built for your store.</p>
-      </div>
-      <div class="hero-actions hero-anim">
-        <a href="#services" class="btn btn-accent">See Our Services</a>
-        <a href="#contact" class="btn btn-outline">Book a Free Review</a>
-      </div>
-    </div>
-  </section>
 
-  <!-- ACHIEVEMENTS -->
-  <section class="section section-dark achievements" id="achievements">
-    <div class="achievements-bg" style="background-image:url('assets/img/section-bg1.jpg')" aria-hidden="true"></div>
-    <div class="container">
-      <p class="eyebrow eyebrow-center eyebrow-light">The Work, In Numbers</p>
-      <div class="stats-grid">
-        <!-- The currency sits in its own smaller span so the figure stays on one line: at full
-             size "EGP 500K-2M" overflowed the column and wrapped, dropping its label out of
-             line with the other three. Keeping data-count on an inner span also stops the
-             count-up from overwriting the prefix when it rewrites the text. -->
-        <div class="stat">
-          <span class="stat-num"><span class="cur">EGP</span><span data-count="0.8" data-decimals="1">0.8</span>&ndash;<span data-count="7.7" data-decimals="1" data-suffix="M">7.7M</span></span>
-          <span class="stat-label">Average revenue range/Month across clients</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num" data-count="160000" data-suffix="+">160,000+</span>
-          <span class="stat-label">Orders costed to the item level</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num"><span class="cur">EGP</span><span data-count="22" data-suffix="M+">22M+</span></span>
-          <span class="stat-label">Ad spend analysed against profit</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num" data-count="29">29</span>
-          <span class="stat-label">Custom dashboards built and live</span>
-        </div>
-      </div>
-      <div class="stats-grid stats-grid-sub">
-        <div class="stat stat-sm">
-          <span class="stat-num" data-count="30" data-suffix="+">30+</span>
-          <span class="stat-label">Ongoing Retainer</span>
-        </div>
-        <div class="stat stat-sm">
-          <span class="stat-num" data-count="9">9</span>
-          <span class="stat-label">Industries worked in</span>
-        </div>
-        <div class="stat stat-sm">
-          <span class="stat-num" data-count="3" data-suffix=" yrs">3 yrs</span>
-          <span class="stat-label">With our first client, and counting</span>
-        </div>
-        <div class="stat stat-sm">
-          <span class="stat-num">Daily</span>
-          <span class="stat-label">P&amp;L rebuilt every morning</span>
-        </div>
-      </div>
-      <p class="stats-note">Figures are drawn from live client dashboards operated by FinVisor. Client names are withheld under our confidentiality terms.</p>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="section" id="services">
-    <div class="container">
-      <p class="eyebrow eyebrow-center">Services</p>
-      <h2 class="section-title">The Five Blind Spots Every E&#8209;Commerce Store Has</h2>
-      <p class="section-lead">Sales figures hide the truth. These are the problems we find in almost every store we work with, and how we fix each one, all visible in a live dashboard you can open on any device.</p>
-
-      <!-- Each card names a problem. Its title is a button stretched over the whole card that opens
-           the matching dialog below (data-service-open = the dialog's id), which lists the services
-           that fix it. The dashboard card links down to the dashboard preview instead. -->
-      <div class="services-grid">
+      <!-- Service cards live directly under the wordmark in this temporary brand view. The
+           buttons open the matching dialogs further down, same as before. -->
+      <div class="services-grid hero-services hero-anim" id="services">
         <article class="service-card">
           <div class="service-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 2 5-6"/></svg>
@@ -250,6 +183,55 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
           <p class="service-meta"><span>Open on any device</span><a href="#dashboard" class="service-meta-cta" tabindex="-1" aria-hidden="true">See the dashboard &darr;</a></p>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section class="section section-dark achievements" id="achievements">
+    <div class="achievements-bg" style="background-image:url('assets/img/section-bg1.jpg')" aria-hidden="true"></div>
+    <div class="container">
+      <p class="eyebrow eyebrow-center eyebrow-light">The Work, In Numbers</p>
+      <div class="stats-grid">
+        <!-- The currency sits in its own smaller span so the figure stays on one line: at full
+             size "EGP 500K-2M" overflowed the column and wrapped, dropping its label out of
+             line with the other three. Keeping data-count on an inner span also stops the
+             count-up from overwriting the prefix when it rewrites the text. -->
+        <div class="stat">
+          <span class="stat-num"><span class="cur">EGP</span><span data-count="0.8" data-decimals="1">0.8</span>&ndash;<span data-count="7.7" data-decimals="1" data-suffix="M">7.7M</span></span>
+          <span class="stat-label">Average revenue range/Month across clients</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count="160000" data-suffix="+">160,000+</span>
+          <span class="stat-label">Orders costed to the item level</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num"><span class="cur">EGP</span><span data-count="22" data-suffix="M+">22M+</span></span>
+          <span class="stat-label">Ad spend analysed against profit</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count="29">29</span>
+          <span class="stat-label">Custom dashboards built and live</span>
+        </div>
+      </div>
+      <div class="stats-grid stats-grid-sub">
+        <div class="stat stat-sm">
+          <span class="stat-num" data-count="30" data-suffix="+">30+</span>
+          <span class="stat-label">Ongoing Retainer</span>
+        </div>
+        <div class="stat stat-sm">
+          <span class="stat-num" data-count="9">9</span>
+          <span class="stat-label">Industries worked in</span>
+        </div>
+        <div class="stat stat-sm">
+          <span class="stat-num" data-count="3" data-suffix=" yrs">3 yrs</span>
+          <span class="stat-label">With our first client, and counting</span>
+        </div>
+        <div class="stat stat-sm">
+          <span class="stat-num">Daily</span>
+          <span class="stat-label">P&amp;L rebuilt every morning</span>
+        </div>
+      </div>
+      <p class="stats-note">Figures are drawn from live client dashboards operated by FinVisor. Client names are withheld under our confidentiality terms.</p>
     </div>
   </section>
 

@@ -264,17 +264,38 @@ main section[id] { scroll-margin-top: 76px; }
 /* ---------- Temporary brand hero wordmark ----------
    Added for the temporary "Fin-visor" brand view. The original hero and this block can both
    be removed by restoring the backup-before-temp-view branch/tag. */
+.hero-brand {
+  /* Brand name + service cards share this first section, so let it grow with the cards
+     instead of reserving a full viewport and leaving the grid below the fold. */
+  min-height: auto;
+  padding: 40px 0 56px;
+  align-items: flex-start;
+}
+.hero-brand .hero-inner { max-width: 1160px; width: 100%; }
 .hero-brand .hero-wordmark {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(3.4rem, 14vw, 9.5rem);
+  font-size: clamp(3rem, 11vw, 7.5rem);
   font-weight: 800;
   line-height: 1.02;
   letter-spacing: -0.035em;
-  margin: 10px 0 26px;
+  margin: 6px 0 30px;
   color: var(--ink);
   white-space: nowrap;
 }
 .hero-brand .hero-wordmark .accent { color: var(--indigo-600); }
+
+/* Compact the service cards so all six sit with the wordmark in the opening screen. */
+.hero-services { margin-top: 0; gap: 18px; }
+.hero-services .service-card { padding: 22px 20px; }
+.hero-services .service-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  margin-bottom: 14px;
+}
+.hero-services .service-icon svg { width: 22px; height: 22px; }
+.hero-services .service-card h3 { font-size: 1rem; margin-bottom: 7px; }
+.hero-services .service-card p { font-size: 0.88rem; }
 
 /* ---------- Services ---------- */
 .services-grid {
