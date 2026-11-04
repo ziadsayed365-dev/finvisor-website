@@ -112,29 +112,20 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
 
 <main id="main">
 
-  <!-- HERO -->
-  <section class="hero">
+  <!-- HERO (TEMPORARY brand view — restore the original hero from the backup-before-temp-view
+       branch / tag when this temp view is retired) -->
+  <section class="hero hero-brand">
     <div class="hero-bg" style="background-image:url('assets/img/hero-bg.jpg')" aria-hidden="true"></div>
     <div class="container hero-inner">
-      <!-- Headline split test. Variant A is the markup default, so it is what search engines
-           and any visitor without JS see. script.js assigns each visitor a variant on first
-           visit and, for variant C, swaps in the copy held on data-variant-c (lines split on
-           "|"). The swap runs while the hero is still faded out for its entrance animation,
-           so the wrong headline never flashes. The chosen variant rides along on the Pixel's
-           Lead and Contact events as hero_variant, so the two can be compared on conversions.
-           Only the headline changes between variants — the lead below is held constant so the
-           result measures the headline and nothing else. -->
       <p class="hero-badge hero-anim"><span class="dot" aria-hidden="true"></span>Your Outsourced Finance Department</p>
-      <h1 class="hero-anim" id="heroHeadline"
-          data-variant-c="Shopify Says ~2M Revenue~.|We Show You *the Real Number*">Your EGP 10M on Shopify <br>Is a Fake Number</h1>
-      <div class="hero-lead hero-anim" id="heroLead">
-        <p>Our dashboard delivers daily financial analysis, P&amp;L, SKU profitability, and cash flow, backed by a fractional finance team.</p>
-        <p class="hero-lead-punch">We don't just report the numbers. We tell you what to scale, reprice, or stop.</p>
+      <h1 class="hero-wordmark hero-anim">Fin<span class="accent">&#8209;visor</span></h1>
+      <div class="hero-lead hero-anim">
+        <p class="hero-lead-punch">A virtual CFO for e-commerce brands.</p>
+        <p>Daily P&amp;L, SKU profitability, break-even ROAS and cash flow — delivered in a live financial dashboard built for your store.</p>
       </div>
       <div class="hero-actions hero-anim">
-        <a href="#contact" class="btn btn-accent">Book a Free Financial Review</a>
-        <a href="#dashboard" class="btn btn-outline">See the Dashboard</a>
-        <a href="#app" class="btn btn-app">Try the Free Tools <span class="btn-app-tag">Beta</span></a>
+        <a href="#services" class="btn btn-accent">See Our Services</a>
+        <a href="#contact" class="btn btn-outline">Book a Free Review</a>
       </div>
     </div>
   </section>

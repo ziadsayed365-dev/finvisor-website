@@ -261,6 +261,21 @@ main section[id] { scroll-margin-top: 76px; }
 }
 .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
+/* ---------- Temporary brand hero wordmark ----------
+   Added for the temporary "Fin-visor" brand view. The original hero and this block can both
+   be removed by restoring the backup-before-temp-view branch/tag. */
+.hero-brand .hero-wordmark {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(3.4rem, 14vw, 9.5rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin: 10px 0 26px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.hero-brand .hero-wordmark .accent { color: var(--indigo-600); }
+
 /* ---------- Services ---------- */
 .services-grid {
   display: grid;
