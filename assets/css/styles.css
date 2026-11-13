@@ -739,6 +739,11 @@ main section[id] { scroll-margin-top: 76px; }
   color: rgba(255, 255, 255, 0.45);
 }
 
+/* Light variant of "The Work, In Numbers": dark text on a light background */
+.achievements-light .stat-num { background: linear-gradient(135deg, var(--ink), var(--indigo-600)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.achievements-light .stat-label { color: var(--ink-soft); }
+.achievements-light .stats-note { color: var(--ink-soft); }
+
 /* ---------- Service card extras ---------- */
 .service-meta {
   margin-top: 14px;
