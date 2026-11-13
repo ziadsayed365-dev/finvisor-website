@@ -100,7 +100,8 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   .plan-card.is-featured { border-color: var(--indigo-500); box-shadow: 0 24px 48px -24px rgba(67,56,202,0.45); }
   .plan-flag { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--indigo-500), var(--indigo-600)); color: #fff; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; white-space: nowrap; }
   .plan-name { font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; color: var(--ink); margin-bottom: 4px; }
-  .plan-for { color: var(--ink-soft); font-size: 0.88rem; margin-bottom: 18px; min-height: 2.6em; }
+  .plan-for { color: var(--ink-soft); font-size: 0.88rem; margin-bottom: 18px; min-height: 6em; }
+  @media (max-width: 860px) { .plan-for { min-height: 0; } }
   .plan-price { font-family: var(--font-head); font-weight: 800; font-size: 2.1rem; color: var(--ink); line-height: 1; }
   .plan-price .per { font-size: 0.9rem; font-weight: 500; color: var(--ink-soft); }
   .plan-price.is-custom { font-size: 1.6rem; }
@@ -109,6 +110,11 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   .plan-features li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.92rem; color: var(--ink); }
   .plan-features svg { flex-shrink: 0; width: 19px; height: 19px; color: var(--green-400); margin-top: 2px; }
   .plan-card .btn { width: 100%; }
+  .plan-card .product-tier { margin-bottom: 10px; }
+
+  #plans { scroll-margin-top: 90px; }
+  .home-plan-note { text-align: center; color: var(--ink-soft); font-size: 0.9rem; margin-top: 24px; }
+  .home-plan-note a { color: var(--indigo-600); font-weight: 600; }
 
   @media (max-width: 860px) {
     .home-products { grid-template-columns: 1fr; max-width: 440px; margin-inline: auto; }
@@ -155,37 +161,56 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
       <h1 class="home-wordmark">Fin<span class="accent">&#8209;visor</span></h1>
       <p class="home-tagline">Most brands grow their sales without knowing their real profit. <strong>We fix that</strong>. Pick the level that fits, from a self-serve tracker to a full finance department.</p>
 
-      <div class="home-products">
-        <a class="product-card" href="ad-profit-tracker.html">
+      <div class="plans-grid" id="plans">
+        <!-- Ad Profit Tracker -->
+        <div class="plan-card">
           <span class="product-tier">Start here</span>
-          <h2>Ad Profit Tracker</h2>
-          <p>See which Meta campaigns actually make you money, profit after product cost, cancellations and returns. Works with Shopify, Salla &amp; Zid.</p>
-          <div class="product-price">$40<span> / month</span></div>
-          <span class="product-cta">Explore the tracker
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
-          </span>
-        </a>
+          <div class="plan-name">Ad Profit Tracker</div>
+          <p class="plan-for">See which Meta campaigns actually make you money: profit after product cost, cancellations and returns. Works with Shopify, Salla &amp; Zid.</p>
+          <div class="plan-price">$40<span class="per"> / mo</span></div>
+          <p class="plan-sub">Your first 30 orders are free.</p>
+          <ul class="plan-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Real profit per Meta campaign</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Products Sold per campaign</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>One-page PDF export</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Shopify, Salla &amp; Zid</li>
+          </ul>
+          <a href="ad-profit-tracker.html" class="btn btn-outline">Explore the tracker</a>
+        </div>
 
-        <a class="product-card" href="yourcfo.html">
+        <!-- YourCFO SaaS (featured) -->
+        <div class="plan-card is-featured">
           <span class="product-tier">Most popular</span>
-          <h2>YourCFO SaaS</h2>
-          <p>Your whole finance dashboard, self-serve: daily P&amp;L, product profit, cash and equity, refreshed every morning. Includes the Ad Profit Tracker.</p>
-          <div class="product-price">$60<span> / month</span></div>
-          <span class="product-cta">See the dashboard
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
-          </span>
-        </a>
+          <div class="plan-name">YourCFO SaaS</div>
+          <p class="plan-for">Your whole finance dashboard, self-serve: daily P&amp;L, product profit, cash and equity, refreshed every morning. Includes the Ad Profit Tracker.</p>
+          <div class="plan-price">$60<span class="per"> / mo</span></div>
+          <p class="plan-sub">The dashboard, self-serve.</p>
+          <ul class="plan-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><strong>Everything in Ad Profit Tracker</strong></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Daily P&amp;L and product profit</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cash, equity &amp; stock view</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Refreshed every morning</li>
+          </ul>
+          <a href="yourcfo.html" class="btn btn-accent">Get started</a>
+        </div>
 
-        <a class="product-card" href="finance-department.html">
+        <!-- YourCFO Fractional -->
+        <div class="plan-card">
           <span class="product-tier">Done for you</span>
-          <h2>YourCFO Fractional</h2>
-          <p>A dedicated CFO and finance team running your numbers, costing, pricing, ad limits, inventory and cash, all handled for you.</p>
-          <div class="product-price">On call<span> &middot; custom</span></div>
-          <span class="product-cta">Meet your CFO
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
-          </span>
-        </a>
+          <div class="plan-name">YourCFO Fractional</div>
+          <p class="plan-for">A dedicated CFO and finance team running your numbers: costing, pricing, ad limits, inventory and cash, all handled for you.</p>
+          <div class="plan-price is-custom">On call</div>
+          <p class="plan-sub">Custom retainer, priced to your brand.</p>
+          <ul class="plan-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><strong>Everything in YourCFO SaaS</strong></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>A dedicated CFO on call</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Costing, pricing &amp; purchasing done for you</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Daily &amp; monthly reports and reviews</li>
+          </ul>
+          <a href="finance-department.html" class="btn btn-outline">Book a call</a>
+        </div>
       </div>
+      <p class="home-plan-note">Each tier includes everything in the one before it. Prices in USD. Not sure which fits? <a href="#contact">Tell us about your brand</a> and we'll point you to the right one.</p>
     </div>
   </section>
 
@@ -231,64 +256,6 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
         </div>
       </div>
       <p class="stats-note">Figures are drawn from live client dashboards operated by FinVisor. Client names are withheld under our confidentiality terms.</p>
-    </div>
-  </section>
-
-  <!-- PLANS -->
-  <section class="section" id="plans">
-    <div class="container">
-      <p class="eyebrow eyebrow-center">Plans</p>
-      <h2 class="section-title" style="text-align:center;margin-inline:auto;">Three ways to work with FinVisor</h2>
-      <p class="section-lead">Start self-serve and move up as you grow, or hand the whole finance function to us. Prices in USD.</p>
-
-      <div class="plans-grid">
-        <!-- Tier 3: Ad Profit Tracker -->
-        <div class="plan-card">
-          <div class="plan-name">Ad Profit Tracker</div>
-          <p class="plan-for">For brands who just want to know which ad campaigns make money.</p>
-          <div class="plan-price">$40<span class="per"> / mo</span></div>
-          <p class="plan-sub">Your first 30 orders are free.</p>
-          <ul class="plan-features">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Real profit per Meta campaign</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Products Sold per campaign</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>One-page PDF export</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Shopify, Salla &amp; Zid</li>
-          </ul>
-          <a href="ad-profit-tracker.html" class="btn btn-outline">Explore</a>
-        </div>
-
-        <!-- Tier 2: YourCFO SaaS (featured) -->
-        <div class="plan-card is-featured">
-          <span class="plan-flag">Most popular</span>
-          <div class="plan-name">YourCFO SaaS</div>
-          <p class="plan-for">For brands who want the full picture without hiring a finance team.</p>
-          <div class="plan-price">$60<span class="per"> / mo</span></div>
-          <p class="plan-sub">The dashboard, self-serve.</p>
-          <ul class="plan-features">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><strong>Everything in Ad Profit Tracker</strong></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Daily P&amp;L and product profit</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cash, equity &amp; stock view</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Refreshed every morning</li>
-          </ul>
-          <a href="yourcfo.html" class="btn btn-accent">Get started</a>
-        </div>
-
-        <!-- Tier 1: YourCFO Fractional -->
-        <div class="plan-card">
-          <div class="plan-name">YourCFO Fractional</div>
-          <p class="plan-for">For brands who want a CFO and finance team to run it all.</p>
-          <div class="plan-price is-custom">On call</div>
-          <p class="plan-sub">Custom retainer &middot; priced to your brand.</p>
-          <ul class="plan-features">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><strong>Everything in YourCFO SaaS</strong></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>A dedicated CFO on call</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Costing, pricing &amp; purchasing done for you</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Daily &amp; monthly reports and reviews</li>
-          </ul>
-          <a href="finance-department.html" class="btn btn-outline">Book a call</a>
-        </div>
-      </div>
-      <p class="stats-note" style="text-align:center;">Each tier includes everything in the one before it. Not sure which fits? <a href="#contact" style="color:var(--indigo-600);font-weight:600;">Tell us about your brand</a> and we'll point you to the right one.</p>
     </div>
   </section>
 
