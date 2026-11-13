@@ -115,9 +115,11 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   #plans { scroll-margin-top: 90px; }
   .home-plan-note { text-align: center; color: var(--ink-soft); font-size: 0.9rem; margin-top: 24px; }
   .home-plan-note a { color: var(--indigo-600); font-weight: 600; }
-  .plan-platforms { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 2px 0 22px; }
-  .plan-platforms .pp-label { font-size: 0.8rem; font-weight: 600; color: var(--ink-soft); margin-right: 2px; }
-  .plan-platforms img { height: 30px; width: 30px; object-fit: contain; background: #fff; border: 1px solid var(--border); border-radius: 7px; padding: 3px; }
+  .plan-platforms { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; margin: 4px 0 22px; }
+  .plan-platforms .pp-label { font-size: 0.8rem; font-weight: 600; color: var(--ink-soft); margin-right: 3px; }
+  .pp-logo { width: 40px; height: 40px; border-radius: 10px; background: #fff; box-shadow: 0 3px 10px -5px rgba(10,15,48,0.35); display: inline-flex; align-items: center; justify-content: center; overflow: hidden; }
+  .pp-logo img { width: 100%; height: 100%; object-fit: contain; padding: 7px; }
+  .pp-logo.is-shopify img { padding: 0; object-fit: cover; transform: scale(1.5) translateY(11%); }
 
   @media (max-width: 860px) {
     .home-products { grid-template-columns: 1fr; max-width: 440px; margin-inline: auto; }
@@ -179,9 +181,9 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
           </ul>
           <div class="plan-platforms">
             <span class="pp-label">Platforms:</span>
-            <img src="assets/img/platforms/shopify.webp" alt="Shopify" loading="lazy">
-            <img src="assets/img/platforms/easyorders.png" alt="EasyOrders" loading="lazy">
-            <img src="assets/img/platforms/vondera.png" alt="Vondera" loading="lazy">
+            <span class="pp-logo is-shopify"><img src="assets/img/platforms/shopify.webp" alt="Shopify" loading="lazy"></span>
+            <span class="pp-logo"><img src="assets/img/platforms/easyorders.png" alt="EasyOrders" loading="lazy"></span>
+            <span class="pp-logo"><img src="assets/img/platforms/vondera.png" alt="Vondera" loading="lazy"></span>
           </div>
           <a href="ad-profit-tracker.html" class="btn btn-outline">Explore the tracker</a>
         </div>
@@ -199,6 +201,12 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cash, equity &amp; stock view</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Refreshed every morning</li>
           </ul>
+          <div class="plan-platforms">
+            <span class="pp-label">Platforms:</span>
+            <span class="pp-logo is-shopify"><img src="assets/img/platforms/shopify.webp" alt="Shopify" loading="lazy"></span>
+            <span class="pp-logo"><img src="assets/img/platforms/easyorders.png" alt="EasyOrders" loading="lazy"></span>
+            <span class="pp-logo"><img src="assets/img/platforms/vondera.png" alt="Vondera" loading="lazy"></span>
+          </div>
           <a href="yourcfo.html" class="btn btn-accent">Get started</a>
         </div>
 
@@ -215,6 +223,12 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Costing, pricing &amp; purchasing done for you</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Daily &amp; monthly reports and reviews</li>
           </ul>
+          <div class="plan-platforms">
+            <span class="pp-label">Platforms:</span>
+            <span class="pp-logo is-shopify"><img src="assets/img/platforms/shopify.webp" alt="Shopify" loading="lazy"></span>
+            <span class="pp-logo"><img src="assets/img/platforms/easyorders.png" alt="EasyOrders" loading="lazy"></span>
+            <span class="pp-logo"><img src="assets/img/platforms/vondera.png" alt="Vondera" loading="lazy"></span>
+          </div>
           <a href="finance-department.html" class="btn btn-outline">Book a call</a>
         </div>
       </div>
