@@ -580,13 +580,9 @@ main section[id] { scroll-margin-top: 76px; }
 [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 980px) {
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
-  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-  .about-media { order: -1; }
-  /* Collapse to the hamburger here (not 860px): the multi-word product labels
-     (YourCFO Fractional / YourCFO SaaS / Ad Profit Tracker) need the room, so switch
-     to the menu before they would wrap onto two lines. */
+/* Collapse the nav to the hamburger at 1180px: six items, including the long
+   "YourCFO ..." labels, only fit on one line above this width. */
+@media (max-width: 1180px) {
   .nav { position: fixed; inset: 76px 0 0 0; background: var(--navy-900); display: none; overflow-y: auto; }
   .nav.is-open { display: block; }
   .nav-list { flex-direction: column; gap: 0; padding: 12px 24px 24px; }
@@ -595,6 +591,12 @@ main section[id] { scroll-margin-top: 76px; }
   .nav-link::after { display: none; }
   .header-cta { display: none; }
   .nav-toggle { display: flex; }
+}
+
+@media (max-width: 980px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-media { order: -1; }
 }
 
 @media (max-width: 860px) {
