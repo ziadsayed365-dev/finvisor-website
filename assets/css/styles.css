@@ -415,6 +415,8 @@ main section[id] { scroll-margin-top: 76px; }
   transition: filter 0.25s ease, opacity 0.25s ease;
 }
 .logo-track img:hover { filter: grayscale(0%); opacity: 1; }
+/* On the navy Clients section, give the logo tiles a crisp white card so they pop. */
+.section-dark .logo-track img { background: #fff; border-color: rgba(255, 255, 255, 0.14); opacity: 1; }
 
 @keyframes marquee {
   from { transform: translateX(0); }
