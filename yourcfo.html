@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="facebook-domain-verification" content="468x91xjyrl4etkbvhcsgvmhu1o7n9">
+<title>YourCFO | FinVisor — Your Finance Dashboard, Self-Serve</title>
+<meta name="description" content="YourCFO is FinVisor's self-serve finance dashboard: daily P&L, product profit, cash and equity, refreshed every morning — and it includes the Ad Profit Tracker. $60/month.">
+<link rel="canonical" href="https://www.fin-visor.com/yourcfo.html">
+<meta name="theme-color" content="#0a0f30">
+<link rel="icon" type="image/jpeg" href="assets/img/favicon.jpeg">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FinVisor">
+<meta property="og:url" content="https://www.fin-visor.com/yourcfo.html">
+<meta property="og:title" content="YourCFO | FinVisor">
+<meta property="og:description" content="Your finance dashboard, self-serve: daily P&L, product profit, cash and equity — includes the Ad Profit Tracker. $60/month.">
+<meta property="og:image" content="https://www.fin-visor.com/assets/img/hero-bg.jpg">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="YourCFO | FinVisor">
+<meta name="twitter:description" content="Your finance dashboard, self-serve. Includes the Ad Profit Tracker. $60/month.">
+<meta name="twitter:image" content="https://www.fin-visor.com/assets/img/hero-bg.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '890487917437592');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<style>
+  .yc-hero { position: relative; background: var(--navy-900); color: #fff; overflow: hidden; padding: 80px 0 88px; }
+  .yc-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center right; opacity: 0.2; mask-image: linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 90%); -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 90%); }
+  .yc-hero .container { position: relative; max-width: 880px; }
+  .yc-badge { display: inline-flex; align-items: center; gap: 9px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; color: #c7d2fe; background: rgba(129,140,248,0.12); border: 1px solid rgba(129,140,248,0.3); padding: 7px 15px; border-radius: 999px; margin-bottom: 22px; }
+  .yc-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-400); box-shadow: 0 0 0 4px rgba(34,197,94,0.18); }
+  .yc-hero h1 { color: #fff; font-size: clamp(2rem, 4.6vw, 3.2rem); font-weight: 800; letter-spacing: -0.015em; line-height: 1.1; max-width: 720px; margin-bottom: 20px; }
+  .yc-hero h1 .accent { color: var(--indigo-400); }
+  .yc-lead { font-size: 1.1rem; color: rgba(255,255,255,0.78); max-width: 640px; margin-bottom: 30px; }
+  .yc-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .yc-price-tag { color: rgba(255,255,255,0.65); font-size: 0.92rem; }
+  .yc-price-tag strong { color: #fff; font-weight: 700; }
+
+  .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+  .feat-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px; }
+  .feat-icon { width: 46px; height: 46px; border-radius: 12px; background: linear-gradient(135deg, var(--indigo-500), var(--indigo-600)); color: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .feat-icon svg { width: 24px; height: 24px; }
+  .feat-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .feat-card p { color: var(--ink-soft); font-size: 0.92rem; }
+
+  .includes-band { background: var(--navy-900); color: #fff; }
+  .includes-inner { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; justify-content: space-between; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 32px 34px; }
+  .includes-inner h2 { color: #fff; font-size: 1.4rem; margin-bottom: 6px; }
+  .includes-inner p { color: rgba(255,255,255,0.72); max-width: 560px; }
+
+  .price-card { max-width: 520px; margin: 44px auto 0; background: #fff; border: 1px solid var(--indigo-500); border-radius: 18px; padding: 40px 36px; text-align: center; box-shadow: 0 24px 48px -24px rgba(67,56,202,0.45); }
+  .price-big { font-family: var(--font-head); font-weight: 800; font-size: 3rem; color: var(--ink); line-height: 1; }
+  .price-big .per { font-size: 1rem; font-weight: 500; color: var(--ink-soft); }
+  .price-sub { color: var(--ink-soft); margin: 10px 0 24px; }
+  .price-points { display: grid; gap: 12px; text-align: left; margin: 0 auto 28px; max-width: 380px; }
+  .price-points li { display: flex; gap: 10px; align-items: flex-start; color: var(--ink); font-size: 0.95rem; }
+  .price-points svg { flex-shrink: 0; width: 20px; height: 20px; color: var(--green-400); margin-top: 2px; }
+
+  .cta-band { background: linear-gradient(135deg, var(--indigo-600), var(--navy-900)); color: #fff; }
+  .cta-band .container { text-align: center; }
+  .cta-band h2 { color: #fff; font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 14px; }
+  .cta-band p { color: rgba(255,255,255,0.8); max-width: 560px; margin: 0 auto 28px; }
+  .cta-band-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-ghost-light { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); color: #fff; }
+  .btn-ghost-light:hover { background: rgba(255,255,255,0.18); }
+
+  @media (max-width: 860px) { .feat-grid { grid-template-columns: 1fr; } }
+</style>
+
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/img/logo.jpg" alt="FinVisor - Financial Analysis">
+    </a>
+    <nav class="nav" id="nav">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="finance-department.html" class="nav-link">Finance Department</a></li>
+        <li><a href="yourcfo.html" class="nav-link is-active">YourCFO</a></li>
+        <li><a href="ad-profit-tracker.html" class="nav-link">Ad Profit Tracker</a></li>
+        <li><a href="index.html#plans" class="nav-link">Plans</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="index.html#contact" class="btn btn-accent btn-sm header-cta">Schedule a Meeting</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="yc-hero">
+    <div class="yc-hero-bg" style="background-image:url('assets/img/hero-bg.jpg')" aria-hidden="true"></div>
+    <div class="container">
+      <p class="yc-badge"><span class="dot" aria-hidden="true"></span>YourCFO &middot; Self-serve dashboard</p>
+      <h1>Your finance dashboard, <span class="accent">on autopilot</span>.</h1>
+      <p class="yc-lead">The same daily dashboard our CFOs run for clients &mdash; now self-serve. Your profit, products, ads and cash in one place, refreshed every morning. And it includes the full Ad Profit Tracker.</p>
+      <div class="yc-actions">
+        <!-- TODO: point this at the YourCFO self-serve signup URL once it's live. For now it goes to the contact section. -->
+        <a href="index.html#contact" class="btn btn-accent">Get started &mdash; $60/mo</a>
+        <a href="#dashboard" class="btn btn-outline" style="border-color:rgba(255,255,255,0.3);color:#fff;">See the dashboard</a>
+        <span class="yc-price-tag"><strong>$60</strong> / month</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="section section-tint" id="features">
+    <div class="container">
+      <p class="eyebrow eyebrow-center">What you get</p>
+      <h2 class="section-title" style="text-align:center;margin-inline:auto;">Your whole business, on one screen</h2>
+      <p class="section-lead">Everything a founder needs to run on profit &mdash; without hiring a finance team or waiting on a monthly report.</p>
+
+      <div class="feat-grid">
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 2 5-6"/></svg></div>
+          <h3>Daily P&amp;L</h3>
+          <p>Revenue, product cost, courier, ads and net profit &mdash; rebuilt every morning, by day, month and product.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l6 6 4-4 8 8"/><path d="M21 11v6h-6"/></svg></div>
+          <h3>Product profit</h3>
+          <p>Net profit per SKU after courier, packaging, returns and ads &mdash; so you scale winners and stop the losers.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg></div>
+          <h3>Ad Profit Tracker, built in</h3>
+          <p>Real profit per Meta campaign, included &mdash; the full tracker is part of YourCFO at no extra cost.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21.2 15.9A10 10 0 1 1 8 2.8"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg></div>
+          <h3>Cash &amp; equity</h3>
+          <p>Where your money actually is &mdash; cash, courier wallet, COD in transit and stock at cost, minus what you owe.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></div>
+          <h3>PDF reports</h3>
+          <p>Your Daily P&amp;L and Analysis by Product as a clean PDF, ready to read or forward to your team.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="14" height="10" rx="1.5"/><path d="M1 18h12"/><rect x="16" y="8" width="7" height="13" rx="1.5"/></svg></div>
+          <h3>On any device</h3>
+          <p>Open it from any phone, tablet or computer, wherever you are &mdash; no spreadsheet, no waiting.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD DEMO -->
+  <section class="section" id="dashboard">
+    <div class="container">
+      <p class="eyebrow eyebrow-center">The Dashboard</p>
+      <h2 class="section-title" style="text-align:center;margin-inline:auto;">Try the live demo</h2>
+      <p class="demo-notice" role="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <span><strong>Demo dashboard.</strong> Every number shown here is sample data.</span>
+      </p>
+      <p class="section-lead">A working copy running on sample data: open any tab, change the dates, record an expense.</p>
+
+      <div class="dash-shell">
+        <div class="dash-chrome">
+          <span class="dash-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="dash-url">your-brand-dashboard.app</span>
+          <span class="dash-badge">Demo data</span>
+        </div>
+        <iframe class="dash-frame" src="demo-dashboard.html" title="Interactive FinVisor demo dashboard running on sample data" loading="lazy"></iframe>
+      </div>
+      <p class="dash-open"><a href="demo-dashboard.html" target="_blank" rel="noopener">Open the demo full screen <span aria-hidden="true">↗</span></a></p>
+    </div>
+  </section>
+
+  <!-- INCLUDES AD PROFIT TRACKER -->
+  <section class="section includes-band">
+    <div class="container">
+      <div class="includes-inner">
+        <div>
+          <h2>Includes the Ad Profit Tracker</h2>
+          <p>Every YourCFO plan comes with the full Ad Profit Tracker built in &mdash; real profit per Meta campaign, across Shopify, Salla and Zid. On its own it's $40/mo; here it's part of the package.</p>
+        </div>
+        <a href="ad-profit-tracker.html" class="btn btn-accent">See the tracker</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREE TOOLS -->
+  <section class="section section-tint" id="tools">
+    <div class="container">
+      <p class="eyebrow eyebrow-center">Free tools</p>
+      <h2 class="section-title" style="text-align:center;margin-inline:auto;">Run a number yourself, free</h2>
+      <p class="section-lead">Two of the calculations behind the dashboard, free to use any time.</p>
+
+      <div class="app-tools" style="margin-top:40px;">
+        <a class="app-tool" href="pricing.html" target="_blank" rel="noopener" data-tool="pricing">
+          <div class="app-tool-top">
+            <span class="app-tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1.5"/></svg>
+            </span>
+            <span class="app-tool-tag">Try it free</span>
+          </div>
+          <span class="app-tool-title">Pricing Your Product</span>
+          <span class="app-tool-desc">Find the selling price that covers product cost, packaging, ad spend and fixed expenses, and still leaves the margin you want.</span>
+          <span class="app-tool-cta">Open the tool
+            <span class="app-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+          </span>
+          <span class="visually-hidden">(opens in a new tab)</span>
+        </a>
+
+        <a class="app-tool" href="cpa-limit.html" target="_blank" rel="noopener" data-tool="cpa-limit">
+          <div class="app-tool-top">
+            <span class="app-tool-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.34 19a10 10 0 1 1 17.32 0"/><path d="m12 14 4-4"/><circle cx="12" cy="14" r="1.2"/></svg>
+            </span>
+            <span class="app-tool-tag">Try it free</span>
+          </div>
+          <span class="app-tool-title">CPA Limit of Your Product</span>
+          <span class="app-tool-desc">The most you can pay for each order and still make money, after your delivery rate, product cost and fixed expenses.</span>
+          <span class="app-tool-cta">Open the tool
+            <span class="app-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+          </span>
+          <span class="visually-hidden">(opens in a new tab)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <p class="eyebrow eyebrow-center">Pricing</p>
+      <h2 class="section-title" style="text-align:center;margin-inline:auto;">One simple plan</h2>
+
+      <div class="price-card">
+        <div class="price-big">$60<span class="per"> / month</span></div>
+        <p class="price-sub">Everything in YourCFO, billed monthly. Cancel anytime.</p>
+        <ul class="price-points">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Daily P&amp;L, product profit, cash &amp; equity</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>The full Ad Profit Tracker, included</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>PDF reports, on any device</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Need it done for you? Upgrade to the Finance Department anytime</li>
+        </ul>
+        <!-- TODO: point this at the YourCFO self-serve signup URL once it's live. -->
+        <a href="index.html#contact" class="btn btn-accent btn-block">Get started</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="section cta-band">
+    <div class="container">
+      <h2>See your real profit, every morning</h2>
+      <p>Get set up on YourCFO and open your dashboard tomorrow &mdash; or tell us about your brand and we'll help you start.</p>
+      <div class="cta-band-actions">
+        <a href="index.html#contact" class="btn btn-accent">Get started</a>
+        <a href="https://wa.me/201553908909" target="_blank" rel="noopener" class="btn btn-ghost-light">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/img/logo.jpg" alt="FinVisor - Financial Analysis">
+    </a>
+    <p>&copy; <span id="year"></span> FinVisor. All rights reserved.</p>
+    <a href="#top" class="back-to-top">Back to top &uarr;</a>
+  </div>
+</footer>
+
+<a class="whatsapp-fab" href="https://wa.me/201553908909" target="_blank" rel="noopener" aria-label="Chat with FinVisor on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.06-1.33A10 10 0 1 0 12 2zm0 18.06a8 8 0 0 1-4.08-1.12l-.29-.17-3 .79.8-2.93-.19-.3A8.06 8.06 0 1 1 12 20.06zm4.4-5.93c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.18-.7-.62-1.18-1.39-1.32-1.63-.14-.24-.01-.37.11-.49.12-.12.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.04-.33-.04-.45-.08-.12-.5-1.2-.68-1.64-.18-.43-.37-.37-.5-.38-.13-.01-.28-.01-.43-.01-.15 0-.39.06-.6.3-.21.24-.8.78-.8 1.9 0 1.12.82 2.2.94 2.36.12.16 1.6 2.45 3.9 3.34 2.3.89 2.3.59 2.72.55.42-.04 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
+</a>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

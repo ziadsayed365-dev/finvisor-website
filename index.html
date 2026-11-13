@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="facebook-domain-verification" content="468x91xjyrl4etkbvhcsgvmhu1o7n9">
-<title>FinVisor | E-Commerce Virtual CFO &amp; Financial Analysis</title>
-<meta name="description" content="FinVisor is a virtual CFO for e-commerce brands. Daily P&amp;L, SKU-level unit economics, break-even ROAS and CPA limits, working capital planning — delivered in a financial dashboard built for your store.">
+<title>FinVisor | Finance &amp; Profit Tracking for E-Commerce Brands</title>
+<meta name="description" content="FinVisor helps e-commerce brands know their real profit — from a self-serve ad profit tracker and finance dashboard to a full outsourced finance department with a CFO on call.">
 <link rel="canonical" href="https://www.fin-visor.com/">
 <meta name="theme-color" content="#0a0f30">
 <link rel="icon" type="image/jpeg" href="assets/img/favicon.jpeg">
@@ -14,14 +14,14 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FinVisor">
 <meta property="og:url" content="https://www.fin-visor.com/">
-<meta property="og:title" content="FinVisor | E-Commerce Virtual CFO">
-<meta property="og:description" content="Daily P&amp;L, SKU-level profitability, break-even ROAS and CPA limits — in a financial dashboard built for your store.">
+<meta property="og:title" content="FinVisor | Finance for E-Commerce Brands">
+<meta property="og:description" content="Know your real profit — a self-serve profit tracker, a finance dashboard, or a full outsourced finance department.">
 <meta property="og:image" content="https://www.fin-visor.com/assets/img/hero-bg.jpg">
-<meta property="og:image:alt" content="FinVisor — virtual CFO for e-commerce">
+<meta property="og:image:alt" content="FinVisor — finance for e-commerce">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="FinVisor | E-Commerce Virtual CFO">
-<meta name="twitter:description" content="Daily P&amp;L, SKU-level profitability, break-even ROAS and CPA limits — in a financial dashboard built for your store.">
+<meta name="twitter:title" content="FinVisor | Finance for E-Commerce Brands">
+<meta name="twitter:description" content="Know your real profit — a self-serve profit tracker, a finance dashboard, or a full outsourced finance department.">
 <meta name="twitter:image" content="https://www.fin-visor.com/assets/img/hero-bg.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +37,7 @@
   "url": "https://www.fin-visor.com/",
   "logo": "https://www.fin-visor.com/assets/img/logo.jpg",
   "image": "https://www.fin-visor.com/assets/img/hero-bg.jpg",
-  "description": "Virtual CFO and financial analysis for e-commerce brands and small businesses: daily P&L, SKU-level unit economics, marketing break-even analysis, working capital planning and custom financial dashboards.",
+  "description": "Finance and profit tracking for e-commerce brands: a self-serve ad profit tracker, a self-serve finance dashboard, and a full outsourced finance department with a CFO on call.",
   "foundingDate": "2023",
   "areaServed": ["EG", "AE", "SA", "US"],
   "address": { "@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG" },
@@ -46,14 +46,6 @@
   "sameAs": [
     "https://www.linkedin.com/company/finvisorr",
     "https://www.instagram.com/fin_visorrr/"
-  ],
-  "makesOffer": [
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Daily P&L and Management Reporting" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SKU Profitability and Product Costing" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ad Budget Allocation and Break-Even ROAS" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Inventory and Purchasing Planning" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Equity, Cash Flow and Profit Reconciliation" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Live Financial Dashboard" } }
   ]
 }
 </script>
@@ -76,9 +68,54 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 
-<!-- Marks the document as script-enabled before first paint. The hero entrance animation
-     starts its elements at opacity 0, so it is gated on this class: without JS the hero
-     renders plainly instead of staying invisible. -->
+<style>
+  /* ---- Home hero ---- */
+  .home-hero { position: relative; background: var(--light-bg); overflow: hidden; padding: 64px 0 76px; }
+  .home-hero-bg {
+    position: absolute; inset: 0; background-size: cover; background-position: center right; opacity: 0.5;
+    mask-image: linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 88%);
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 88%);
+  }
+  .home-hero .container { position: relative; text-align: center; }
+  .home-wordmark { font-family: var(--font-head); font-size: clamp(3rem, 10vw, 6.4rem); font-weight: 800; line-height: 1.02; letter-spacing: -0.035em; color: var(--ink); white-space: nowrap; margin: 14px 0 14px; }
+  .home-wordmark .accent { color: var(--indigo-600); }
+  .home-tagline { font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--ink-soft); max-width: 640px; margin: 0 auto 10px; }
+  .home-tagline strong { color: var(--ink); font-weight: 600; }
+
+  /* ---- Product cards (three tiers) ---- */
+  .home-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px; text-align: left; }
+  .product-card { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 26px; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+  .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--indigo-400); }
+  .product-tier { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--indigo-600); margin-bottom: 10px; }
+  .product-card h2 { font-size: 1.25rem; margin-bottom: 8px; }
+  .product-card p { color: var(--ink-soft); font-size: 0.93rem; margin-bottom: 18px; flex-grow: 1; }
+  .product-price { font-family: var(--font-head); font-weight: 700; color: var(--ink); font-size: 1.05rem; margin-bottom: 16px; }
+  .product-price span { font-weight: 500; font-size: 0.82rem; color: var(--ink-soft); }
+  .product-cta { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; color: var(--indigo-600); font-size: 0.95rem; }
+  .product-card:hover .product-cta { gap: 11px; }
+
+  /* ---- Plans ---- */
+  .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; align-items: stretch; }
+  .plan-card { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 34px 30px; }
+  .plan-card.is-featured { border-color: var(--indigo-500); box-shadow: 0 24px 48px -24px rgba(67,56,202,0.45); }
+  .plan-flag { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--indigo-500), var(--indigo-600)); color: #fff; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; white-space: nowrap; }
+  .plan-name { font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; color: var(--ink); margin-bottom: 4px; }
+  .plan-for { color: var(--ink-soft); font-size: 0.88rem; margin-bottom: 18px; min-height: 2.6em; }
+  .plan-price { font-family: var(--font-head); font-weight: 800; font-size: 2.1rem; color: var(--ink); line-height: 1; }
+  .plan-price .per { font-size: 0.9rem; font-weight: 500; color: var(--ink-soft); }
+  .plan-price.is-custom { font-size: 1.6rem; }
+  .plan-sub { color: var(--ink-soft); font-size: 0.85rem; margin: 8px 0 22px; }
+  .plan-features { display: grid; gap: 11px; margin-bottom: 26px; flex-grow: 1; }
+  .plan-features li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.92rem; color: var(--ink); }
+  .plan-features svg { flex-shrink: 0; width: 19px; height: 19px; color: var(--green-400); margin-top: 2px; }
+  .plan-card .btn { width: 100%; }
+
+  @media (max-width: 860px) {
+    .home-products { grid-template-columns: 1fr; max-width: 440px; margin-inline: auto; }
+    .plans-grid { grid-template-columns: 1fr; max-width: 440px; margin-inline: auto; }
+  }
+</style>
+
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -94,11 +131,10 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
     <nav class="nav" id="nav">
       <ul class="nav-list">
         <li><a href="#top" class="nav-link is-active">Home</a></li>
-        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="finance-department.html" class="nav-link">Finance Department</a></li>
+        <li><a href="yourcfo.html" class="nav-link">YourCFO</a></li>
         <li><a href="ad-profit-tracker.html" class="nav-link">Ad Profit Tracker</a></li>
-        <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
-        <li><a href="#clients" class="nav-link">Clients</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#plans" class="nav-link">Plans</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
     </nav>
@@ -113,76 +149,44 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
 
 <main id="main">
 
-  <!-- HERO (TEMPORARY brand view — restore the original hero from the backup-before-temp-view
-       branch / tag when this temp view is retired) -->
-  <section class="hero hero-brand">
-    <div class="hero-bg" style="background-image:url('assets/img/hero-bg.jpg')" aria-hidden="true"></div>
-    <div class="container hero-inner">
-      <p class="hero-badge hero-anim"><span class="dot" aria-hidden="true"></span>Your Outsourced Finance Department</p>
-      <h1 class="hero-wordmark hero-anim">Fin<span class="accent">&#8209;visor</span></h1>
+  <!-- HERO: brand + the three ways to work with FinVisor -->
+  <section class="home-hero">
+    <div class="home-hero-bg" style="background-image:url('assets/img/hero-bg.jpg')" aria-hidden="true"></div>
+    <div class="container">
+      <p class="hero-badge"><span class="dot" aria-hidden="true"></span>Finance for E-Commerce Brands</p>
+      <h1 class="home-wordmark">Fin<span class="accent">&#8209;visor</span></h1>
+      <p class="home-tagline">Most brands grow their sales without knowing their real profit. <strong>We fix that</strong> &mdash; pick the level that fits, from a self-serve tracker to a full finance department.</p>
 
-      <!-- Service cards live directly under the wordmark in this temporary brand view. The
-           buttons open the matching dialogs further down, same as before. -->
-      <div class="services-grid hero-services hero-anim" id="services">
-        <article class="service-card">
-          <div class="service-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 2 5-6"/></svg>
-          </div>
-          <p class="service-problem">Service 1</p>
-          <h3><button type="button" class="service-open" data-service-open="svcProfit" aria-haspopup="dialog">Know Your Real Profit</button></h3>
-          <p>Sales look strong, but you can't say what you actually earn once product cost, courier fees, returns and ads are paid.</p>
-          <p class="service-meta"><span>4 services</span><button type="button" class="service-meta-cta" data-service-open="svcProfit" tabindex="-1" aria-hidden="true">See how we fix it &rarr;</button></p>
-        </article>
+      <div class="home-products">
+        <a class="product-card" href="ad-profit-tracker.html">
+          <span class="product-tier">Start here</span>
+          <h2>Ad Profit Tracker</h2>
+          <p>See which Meta campaigns actually make you money &mdash; profit after product cost, cancellations and returns. Works with Shopify, Salla &amp; Zid.</p>
+          <div class="product-price">$40<span> / month</span></div>
+          <span class="product-cta">Explore the tracker
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
 
-        <article class="service-card">
-          <div class="service-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7l6 6 4-4 8 8"/><path d="M21 11v6h-6"/></svg>
-          </div>
-          <p class="service-problem">Service 2</p>
-          <h3><button type="button" class="service-open" data-service-open="svcProducts" aria-haspopup="dialog">Stop the Products That Lose Money</button></h3>
-          <p>Some of your best-sellers lose money on every order, and without numbers per product you keep pushing them.</p>
-          <p class="service-meta"><span>4 services</span><button type="button" class="service-meta-cta" data-service-open="svcProducts" tabindex="-1" aria-hidden="true">See how we fix it &rarr;</button></p>
-        </article>
+        <a class="product-card" href="yourcfo.html">
+          <span class="product-tier">Most popular</span>
+          <h2>YourCFO</h2>
+          <p>Your whole finance dashboard, self-serve: daily P&amp;L, product profit, cash and equity &mdash; refreshed every morning. Includes the Ad Profit Tracker.</p>
+          <div class="product-price">$60<span> / month</span></div>
+          <span class="product-cta">See the dashboard
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
 
-        <article class="service-card">
-          <div class="service-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
-          </div>
-          <p class="service-problem">Service 3</p>
-          <h3><button type="button" class="service-open" data-service-open="svcAds" aria-haspopup="dialog">Move Your Ad Budget to the Winners</button></h3>
-          <p>Your ad spend is spread across products without knowing which ads bring profit and which ones burn cash.</p>
-          <p class="service-meta"><span>4 services</span><button type="button" class="service-meta-cta" data-service-open="svcAds" tabindex="-1" aria-hidden="true">See how we fix it &rarr;</button></p>
-        </article>
-
-        <article class="service-card">
-          <div class="service-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/></svg>
-          </div>
-          <p class="service-problem">Service 4</p>
-          <h3><button type="button" class="service-open" data-service-open="svcInventory" aria-haspopup="dialog">Buy the Right Stock, in the Right Amount</button></h3>
-          <p>Too much stock locks up your cash, too little loses sales, and purchase orders are based on guesswork.</p>
-          <p class="service-meta"><span>3 services</span><button type="button" class="service-meta-cta" data-service-open="svcInventory" tabindex="-1" aria-hidden="true">See how we fix it &rarr;</button></p>
-        </article>
-
-        <article class="service-card">
-          <div class="service-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21.2 15.9A10 10 0 1 1 8 2.8"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
-          </div>
-          <p class="service-problem">Service 5</p>
-          <h3><button type="button" class="service-open" data-service-open="svcEquity" aria-haspopup="dialog">See Where Your Profit Actually Is</button></h3>
-          <p>You're profitable on paper, but the cash isn't in the bank. It's with the courier, on the shelf, or owed to someone.</p>
-          <p class="service-meta"><span>4 services</span><button type="button" class="service-meta-cta" data-service-open="svcEquity" tabindex="-1" aria-hidden="true">See how we fix it &rarr;</button></p>
-        </article>
-
-        <article class="service-card service-card-feature">
-          <div class="service-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="15" height="11" rx="1.5"/><path d="M7 19h5"/><path d="M9.5 15v4"/><rect x="17" y="9" width="5" height="11" rx="1"/></svg>
-          </div>
-          <p class="service-problem">The solution, live</p>
-          <h3><a href="#dashboard" class="service-open">Your Live Financial Dashboard</a></h3>
-          <p>Your daily numbers and analysis in one place, on your phone, tablet or laptop, anytime. Refreshed every morning from your store, courier and ad accounts.</p>
-          <p class="service-meta"><span>Open on any device</span><a href="#dashboard" class="service-meta-cta" tabindex="-1" aria-hidden="true">See the dashboard &darr;</a></p>
-        </article>
+        <a class="product-card" href="finance-department.html">
+          <span class="product-tier">Done for you</span>
+          <h2>Outsourced Finance Department</h2>
+          <p>A dedicated CFO and finance team running your numbers &mdash; costing, pricing, ad limits, inventory and cash, all handled for you.</p>
+          <div class="product-price">On call<span> &middot; custom</span></div>
+          <span class="product-cta">Meet your CFO
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
       </div>
     </div>
   </section>
@@ -193,10 +197,6 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
     <div class="container">
       <p class="eyebrow eyebrow-center eyebrow-light">The Work, In Numbers</p>
       <div class="stats-grid">
-        <!-- The currency sits in its own smaller span so the figure stays on one line: at full
-             size "EGP 500K-2M" overflowed the column and wrapped, dropping its label out of
-             line with the other three. Keeping data-count on an inner span also stops the
-             count-up from overwriting the prefix when it rewrites the text. -->
         <div class="stat">
           <span class="stat-num"><span class="cur">EGP</span><span data-count="0.8" data-decimals="1">0.8</span>&ndash;<span data-count="7.7" data-decimals="1" data-suffix="M">7.7M</span></span>
           <span class="stat-label">Average revenue range/Month across clients</span>
@@ -236,258 +236,61 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
     </div>
   </section>
 
-  <!-- SERVICE DETAILS: one dialog per problem card above, opened by assets/js/script.js. The text
-       lives in the page rather than being loaded in, so search engines read it too. -->
-  <dialog class="ea-dialog svc-dialog" id="svcProfit" aria-labelledby="svcProfitTitle">
-    <div class="ea-card" tabindex="-1" autofocus>
-      <button type="button" class="ea-close" data-close-dialog aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-      </button>
-      <div class="ea-head">
-        <span class="app-tool-tag">Problem 1 of 5</span>
-        <h2 class="ea-title" id="svcProfitTitle">Know Your Real Profit</h2>
-        <p class="svc-problem"><strong>The problem:</strong> your store shows sales, not profit. Product cost, courier fees, failed deliveries, returns and ad spend all come out after the sale, so the number you see is not the number you keep.</p>
-      </div>
-      <p class="svc-label">How we fix it</p>
-      <ul class="svc-list">
-        <li><h3>Daily P&amp;L &amp; Management Reporting</h3><p>A full income statement rebuilt every day: revenue, product cost, courier fees, ad spend, contribution margin and net profit, by day, month and product.</p></li>
-        <li><h3>Daily &amp; Weekly Performance Reports</h3><p>Short daily and weekly reports with review meetings, so you catch a drop in margin or delivery rate the day it starts.</p></li>
-        <li><h3>Expense Control &amp; Cost Optimisation</h3><p>We record your expenses and cash collections, analyse where the money goes, and show you which costs to cut or restructure.</p></li>
-        <li><h3>Budgeting &amp; Variance Analysis</h3><p>Monthly budgets built on your own margins and delivery rates, compared with actual results so gaps are caught early.</p></li>
-      </ul>
-      <div class="svc-proof">
-        <p class="svc-label">Client growth</p>
-        <ul>
-          <li><span class="svc-win">Break-even &rarr; EGP 700,000 profit in 9 months</span><span class="svc-how">General store: daily and weekly profit reports showed what to fix.</span></li>
-          <!-- Al Tawbah, dashboard Analysis by Product, Jan-Mar vs Apr-Jun 2026: product profit (before
-               salaries and rent) 11,774 -> 210,267; ad spend 576,407 -> 456,938 (-20.7%). -->
-          <li><span class="svc-win">Product profit EGP 11,774 &rarr; EGP 210,267 in one quarter</span><span class="svc-how">Niche store: ads cut on losing products, with 21% less ad spend.</span></li>
-          <li><span class="svc-win">&minus;40% fixed costs in 2 months</span><span class="svc-how">Body care brand: expenses analysed and payroll tied to production.</span></li>
-        </ul>
-      </div>
-      <a href="#contact" class="btn btn-accent btn-block" data-close-dialog>Book a Free Financial Review</a>
-    </div>
-  </dialog>
-
-  <dialog class="ea-dialog svc-dialog" id="svcProducts" aria-labelledby="svcProductsTitle">
-    <div class="ea-card" tabindex="-1" autofocus>
-      <button type="button" class="ea-close" data-close-dialog aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-      </button>
-      <div class="ea-head">
-        <span class="app-tool-tag">Problem 2 of 5</span>
-        <h2 class="ea-title" id="svcProductsTitle">Stop the Products That Lose Money</h2>
-        <p class="svc-problem"><strong>The problem:</strong> a product can sell well and still lose money on every order once its courier fee, packaging, returns and ad cost are added. Without numbers per product, you keep scaling the wrong ones.</p>
-      </div>
-      <p class="svc-label">How we fix it</p>
-      <ul class="svc-list">
-        <li><h3>Product Costing (Bill of Materials)</h3><p>Every product costed from its raw materials, so when one material's price changes, every product that uses it is repriced.</p></li>
-        <li><h3>SKU Profitability Analysis</h3><p>Net profit per product after courier, packaging, returns and ads, so you know which products to scale, reprice or stop.</p></li>
-        <li><h3>Pricing Strategy &amp; Sales Targets</h3><p>Prices set from your real costs to hit your target margin, and the sales you need each month to reach your profit goal.</p></li>
-        <li><h3>Shipping &amp; Courier Cost Analysis</h3><p>Courier fees, return penalties and delivery rates by governorate, compared with what your customers actually pay for shipping.</p></li>
-      </ul>
-      <div class="svc-proof">
-        <p class="svc-label">Client growth</p>
-        <ul>
-          <!-- Al Tawbah best-seller (Zamzam water), Jan-Mar vs Apr-Jun 2026: profit -68,872 -> 3,730;
-               its ad spend -16.6%, its sales +8.1%. -->
-          <li><span class="svc-win">Best-seller: <span class="svc-loss">&minus;EGP 68,872</span> &rarr; +EGP 3,730 profit</span><span class="svc-how">Niche store: its ads were cut 17%, and it still sold 8% more.</span></li>
-          <!-- Sources: shipping-breakeven.xlsx in the O Garage project. Al Tawbah: shipping differences
-               -45,903 of a -63,528.80 total shipping result (72%). O Garage: -30,028 shipping
-               differences. Both repriced by governorate after the analysis (confirmed by the owner). -->
-          <li><span class="svc-win">EGP 45,903 shipping loss closed, 72% of the total</span><span class="svc-how">Niche store: shipping repriced by governorate.</span></li>
-          <li><span class="svc-win">EGP 30,028 shipping loss closed</span><span class="svc-how">Car accessories store: the courier charged more than customers paid, so shipping was repriced.</span></li>
-        </ul>
-      </div>
-      <a href="#contact" class="btn btn-accent btn-block" data-close-dialog>Book a Free Financial Review</a>
-    </div>
-  </dialog>
-
-  <dialog class="ea-dialog svc-dialog" id="svcAds" aria-labelledby="svcAdsTitle">
-    <div class="ea-card" tabindex="-1" autofocus>
-      <button type="button" class="ea-close" data-close-dialog aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-      </button>
-      <div class="ea-head">
-        <span class="app-tool-tag">Problem 3 of 5</span>
-        <h2 class="ea-title" id="svcAdsTitle">Move Your Ad Budget to the Winners</h2>
-        <p class="svc-problem"><strong>The problem:</strong> ad platforms report ROAS on orders placed, not on profit. Budget gets split across products by feel, so money keeps flowing to ads that look good but lose you money.</p>
-      </div>
-      <p class="svc-label">How we fix it</p>
-      <ul class="svc-list">
-        <li><h3>Real ROAS per Product</h3><p>Ad performance tracked product by product, measured against delivered orders and real profit, not the platform's view.</p></li>
-        <li><h3>Break-Even ROAS &amp; CPA Limits</h3><p>The lowest ROAS and the highest CPA each product can reach before its ads stop making money.</p></li>
-        <li><h3>Ad Budget Reallocation</h3><p>We show you where to move spend: away from products that burn cash, and towards the products with the highest profitable ROAS.</p></li>
-        <li><h3>Marketing Agency Alignment</h3><p>We work with your agency or in-house team to set ROAS targets and ad budgets tied to real profit.</p></li>
-      </ul>
-      <div class="svc-proof">
-        <p class="svc-label">Client growth</p>
-        <ul>
-          <li><span class="svc-win">+100% profit</span><span class="svc-how">Body care brand: ad spend moved to its most profitable products.</span></li>
-          <li><span class="svc-win">Losing products cut from 7 to 2 in one quarter</span><span class="svc-how">Niche store: ad budget moved to the products that earn, with 21% less ad spend.</span></li>
-        </ul>
-      </div>
-      <a href="#contact" class="btn btn-accent btn-block" data-close-dialog>Book a Free Financial Review</a>
-    </div>
-  </dialog>
-
-  <dialog class="ea-dialog svc-dialog" id="svcInventory" aria-labelledby="svcInventoryTitle">
-    <div class="ea-card" tabindex="-1" autofocus>
-      <button type="button" class="ea-close" data-close-dialog aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-      </button>
-      <div class="ea-head">
-        <span class="app-tool-tag">Problem 4 of 5</span>
-        <h2 class="ea-title" id="svcInventoryTitle">Buy the Right Stock, in the Right Amount</h2>
-        <p class="svc-problem"><strong>The problem:</strong> buy too much and your cash sits on the shelf as dead stock. Buy too little and your best products sell out while your ads keep running. Most purchase orders are based on guesswork.</p>
-      </div>
-      <p class="svc-label">How we fix it</p>
-      <ul class="svc-list">
-        <li><h3>Purchase Quantities per Product</h3><p>How much to buy of each product, based on its profitability and how fast it sells, so your cash goes into stock that moves.</p></li>
-        <li><h3>Stock Turnover &amp; Days of Cover</h3><p>How many days of stock you hold per product and when to reorder, so you avoid both overstock and stock-outs.</p></li>
-        <li><h3>Raw Material Purchasing System</h3><p>For brands that manufacture: a system that calculates the raw materials to buy to cover your planned finished goods.</p></li>
-      </ul>
-      <div class="svc-proof">
-        <p class="svc-label">Client growth</p>
-        <ul>
-          <li><span class="svc-win">EGP 2.38M monthly sales in 9 months</span><span class="svc-how">General store: stock bought by turnover to protect cash flow.</span></li>
-        </ul>
-      </div>
-      <a href="#contact" class="btn btn-accent btn-block" data-close-dialog>Book a Free Financial Review</a>
-    </div>
-  </dialog>
-
-  <dialog class="ea-dialog svc-dialog" id="svcEquity" aria-labelledby="svcEquityTitle">
-    <div class="ea-card" tabindex="-1" autofocus>
-      <button type="button" class="ea-close" data-close-dialog aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-      </button>
-      <div class="ea-head">
-        <span class="app-tool-tag">Problem 5 of 5</span>
-        <h2 class="ea-title" id="svcEquityTitle">See Where Your Profit Actually Is</h2>
-        <p class="svc-problem"><strong>The problem:</strong> your P&amp;L says you made a profit, but the cash isn't in the bank. It may be sitting as COD with the courier, as stock on the shelf, or already gone on paying debts. Without knowing where it is, you can't tell how much you can safely take out.</p>
-      </div>
-      <p class="svc-label">How we fix it</p>
-      <ul class="svc-list">
-        <li><h3>Equity Calculation</h3><p>What your business is worth on any day: cash and bank balances, courier wallet and payment gateways, COD still with the courier, and stock at cost, minus everything you owe.</p></li>
-        <li><h3>Profit Reconciliation</h3><p>The change in your equity is checked against the profit your P&amp;L reports, so you know the profit is real and exactly where it sits.</p></li>
-        <li><h3>Cash Flow Forecast &amp; Safe Withdrawals</h3><p>When money comes in and goes out, your burn rate, and how much profit you can withdraw without hurting operations.</p></li>
-        <li><h3>What-If Scenario Planning</h3><p>See the impact of a decision before you make it: a new product, a different courier, a loan or a price change.</p></li>
-      </ul>
-      <div class="svc-proof">
-        <p class="svc-label">Client growth</p>
-        <ul>
-          <li><span class="svc-win">Daily profit withdrawals at EGP 2.38M monthly sales</span><span class="svc-how">General store: a cash flow forecast set how much could safely be taken out.</span></li>
-        </ul>
-      </div>
-      <a href="#contact" class="btn btn-accent btn-block" data-close-dialog>Book a Free Financial Review</a>
-    </div>
-  </dialog>
-
-  <!-- DASHBOARD -->
-  <section class="section section-tint" id="dashboard">
+  <!-- PLANS -->
+  <section class="section" id="plans">
     <div class="container">
-      <p class="eyebrow eyebrow-center">The Dashboard</p>
-      <h2 class="section-title">Your Whole Business, On One Screen</h2>
-      <p class="demo-notice" role="note">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-        <span><strong>Demo dashboard.</strong> Every number shown here is sample data. To protect our clients' confidentiality, we never show their real figures.</span>
-      </p>
-      <p class="section-lead">Every client gets a private dashboard on their own database, refreshed every morning from their store, courier and ad accounts. Below is a working copy running on sample data: open any tab, change the dates, record an expense.</p>
+      <p class="eyebrow eyebrow-center">Plans</p>
+      <h2 class="section-title" style="text-align:center;margin-inline:auto;">Three ways to work with FinVisor</h2>
+      <p class="section-lead">Start self-serve and move up as you grow &mdash; or hand the whole finance function to us. Prices in USD.</p>
 
-      <div class="dash-shell">
-        <div class="dash-chrome">
-          <span class="dash-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span class="dash-url">your-brand-dashboard.app</span>
-          <span class="dash-badge">Demo data</span>
+      <div class="plans-grid">
+        <!-- Tier 3: Ad Profit Tracker -->
+        <div class="plan-card">
+          <div class="plan-name">Ad Profit Tracker</div>
+          <p class="plan-for">For brands who just want to know which ad campaigns make money.</p>
+          <div class="plan-price">$40<span class="per"> / mo</span></div>
+          <p class="plan-sub">Your first 30 orders are free.</p>
+          <ul class="plan-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Real profit per Meta campaign</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Products Sold per campaign</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>One-page PDF export</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Shopify, Salla &amp; Zid</li>
+          </ul>
+          <a href="ad-profit-tracker.html" class="btn btn-outline">Explore</a>
         </div>
-        <iframe class="dash-frame" src="demo-dashboard.html" title="Interactive FinVisor demo dashboard running on sample data" loading="lazy"></iframe>
-      </div>
-      <p class="dash-open"><a href="demo-dashboard.html" target="_blank" rel="noopener">Open the demo full screen <span aria-hidden="true">↗</span></a></p>
 
-      <div class="dash-perks">
-        <div class="dash-perk">
-          <span class="dash-perk-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="14" height="10" rx="1.5"/><path d="M1 18h12"/><rect x="16" y="8" width="7" height="13" rx="1.5"/><path d="M19.5 18h.01"/></svg>
-          </span>
-          <div>
-            <h3 class="dash-perk-title">On mobile and web</h3>
-            <p>Open your dashboard from any phone, tablet or computer, wherever you are.</p>
-          </div>
+        <!-- Tier 2: YourCFO (featured) -->
+        <div class="plan-card is-featured">
+          <span class="plan-flag">Most popular</span>
+          <div class="plan-name">YourCFO</div>
+          <p class="plan-for">For brands who want the full picture without hiring a finance team.</p>
+          <div class="plan-price">$60<span class="per"> / mo</span></div>
+          <p class="plan-sub">The dashboard, self-serve.</p>
+          <ul class="plan-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><strong>Everything in Ad Profit Tracker</strong></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Daily P&amp;L and product profit</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cash, equity &amp; stock view</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Refreshed every morning</li>
+          </ul>
+          <a href="yourcfo.html" class="btn btn-accent">Get started</a>
         </div>
-        <div class="dash-perk">
-          <span class="dash-perk-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></svg>
-          </span>
-          <div>
-            <h3 class="dash-perk-title">PDF reports, sent to you</h3>
-            <p>Your Daily P&amp;L and Analysis by Product arrive as a PDF report, ready to read or forward to your team.</p>
-          </div>
+
+        <!-- Tier 1: Outsourced Finance Department -->
+        <div class="plan-card">
+          <div class="plan-name">Outsourced Finance Dept.</div>
+          <p class="plan-for">For brands who want a CFO and finance team to run it all.</p>
+          <div class="plan-price is-custom">On call</div>
+          <p class="plan-sub">Custom retainer &middot; priced to your brand.</p>
+          <ul class="plan-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><strong>Everything in YourCFO</strong></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>A dedicated CFO on call</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Costing, pricing &amp; purchasing done for you</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Daily &amp; monthly reports and reviews</li>
+          </ul>
+          <a href="finance-department.html" class="btn btn-outline">Book a call</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- APP TEASER -->
-  <!-- Doorway to the free FinVisor App tools. Each tile opens its calculator in a new tab; when
-       the paid app ships, only the two hrefs need to point somewhere new. The mini figures inside
-       the tiles are decorative, so they are hidden from assistive tech. -->
-  <section class="section section-dark app-teaser" id="app">
-    <div class="app-teaser-glow" aria-hidden="true"></div>
-    <div class="container">
-      <div class="app-pill"><span class="dot" aria-hidden="true"></span>FinVisor App &middot; Free Beta</div>
-      <h2 class="section-title section-title-light">Run the Numbers Yourself</h2>
-      <p class="section-lead">The same calculations behind every client dashboard, packaged as self-serve tools. Free to use while the FinVisor App is in beta.</p>
-
-      <div class="app-tools">
-        <a class="app-tool" href="pricing.html" target="_blank" rel="noopener" data-tool="pricing">
-          <div class="app-tool-top">
-            <span class="app-tool-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1.5"/></svg>
-            </span>
-            <span class="app-tool-tag">Try it free</span>
-          </div>
-          <span class="app-tool-title">Pricing Your Product</span>
-          <span class="app-tool-desc">Find the selling price that covers product cost, packaging, ad spend and fixed expenses, and still leaves the margin you want.</span>
-          <div class="app-tool-preview" aria-hidden="true">
-            <div class="app-mini">
-              <div><span>Cost / item</span><strong>EGP 393</strong></div>
-              <div><span>Target margin</span><strong>20%</strong></div>
-              <div class="is-key"><span>Your price</span><strong>EGP 472</strong></div>
-            </div>
-          </div>
-          <span class="app-tool-cta">
-            Open the tool
-            <span class="app-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
-          </span>
-          <span class="visually-hidden">(opens in a new tab)</span>
-        </a>
-
-        <a class="app-tool" href="cpa-limit.html" target="_blank" rel="noopener" data-tool="cpa-limit">
-          <div class="app-tool-top">
-            <span class="app-tool-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.34 19a10 10 0 1 1 17.32 0"/><path d="m12 14 4-4"/><circle cx="12" cy="14" r="1.2"/></svg>
-            </span>
-            <span class="app-tool-tag">Try it free</span>
-          </div>
-          <span class="app-tool-title">CPA Limit of Your Product</span>
-          <span class="app-tool-desc">The most you can pay for each order and still make money, after your delivery rate, product cost and fixed expenses.</span>
-          <div class="app-tool-preview" aria-hidden="true">
-            <div class="app-mini">
-              <div><span>Selling price</span><strong>EGP 500</strong></div>
-              <div><span>Delivery rate</span><strong>85%</strong></div>
-              <div class="is-key"><span>CPA limit</span><strong>EGP 221</strong></div>
-            </div>
-          </div>
-          <span class="app-tool-cta">
-            Open the tool
-            <span class="app-tool-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
-          </span>
-          <span class="visually-hidden">(opens in a new tab)</span>
-        </a>
-      </div>
-
-      <p class="app-note">Free during beta, while we build the full FinVisor App.</p>
+      <p class="stats-note" style="text-align:center;">Each tier includes everything in the one before it. Not sure which fits? <a href="#contact" style="color:var(--indigo-600);font-weight:600;">Tell us about your brand</a> and we'll point you to the right one.</p>
     </div>
   </section>
 
@@ -552,7 +355,6 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   </section>
 
   <!-- TESTIMONIALS -->
-  <!-- Clients are credited by business type only; names and brands stay private. -->
   <section class="section section-dark testimonials" id="testimonials">
     <div class="container">
       <p class="eyebrow eyebrow-center eyebrow-light">Testimonials</p>
@@ -562,37 +364,23 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
         <div class="testimonial-track">
           <blockquote class="testimonial is-active">
             <p>&ldquo;Really great service that the whole market needs but doesn't know yet. They take all the finance headache away, so I can fully focus on growing the business.&rdquo;</p>
-            <footer>
-              <span class="testimonial-role">Founder of a general store</span>
-            </footer>
+            <footer><span class="testimonial-role">Founder of a general store</span></footer>
           </blockquote>
-
           <blockquote class="testimonial">
-            <p>&ldquo;I feel like we've really become a proper company since we started working with you. The old accountant was a complete loss. There's no word for 'accountant,' we were totally lost. God bless you, you're truly committed and every word you said has come true.&rdquo;</p>
-            <footer>
-              <span class="testimonial-role">Founder of a body care brand</span>
-            </footer>
+            <p>&ldquo;I feel like we've really become a proper company since we started working with you. The old accountant was a complete loss. God bless you, you're truly committed and every word you said has come true.&rdquo;</p>
+            <footer><span class="testimonial-role">Founder of a body care brand</span></footer>
           </blockquote>
-
           <blockquote class="testimonial">
             <p>&ldquo;With over 300 products and ads running for most, I had no idea which were profitable or how much I was actually earning. Working with FinVisor finally gave me clarity and control over my numbers.&rdquo;</p>
-            <footer>
-              <span class="testimonial-role">Founder of a home & living store</span>
-            </footer>
+            <footer><span class="testimonial-role">Founder of a home & living store</span></footer>
           </blockquote>
-
           <blockquote class="testimonial">
             <p>&ldquo;I wasn't sure which categories were actually driving profit. FinVisor helped me analyze sales data, focus on the best-selling products, and safely move out low-demand items without losing money.&rdquo;</p>
-            <footer>
-              <span class="testimonial-role">Founder of a jewelry brand</span>
-            </footer>
+            <footer><span class="testimonial-role">Founder of a jewelry brand</span></footer>
           </blockquote>
-
           <blockquote class="testimonial">
             <p>&ldquo;They helped me finally understand how much profit I was making and monitor the financials every day. Now I can focus fully on growing my business.&rdquo;</p>
-            <footer>
-              <span class="testimonial-role">Founder of a footwear brand</span>
-            </footer>
+            <footer><span class="testimonial-role">Founder of a footwear brand</span></footer>
           </blockquote>
         </div>
 
@@ -607,34 +395,19 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
     </div>
   </section>
 
-  <!-- PROCESS -->
-  <section class="section section-tint" id="process">
-    <div class="container">
-      <p class="eyebrow eyebrow-center">How It Works</p>
-      <h2 class="section-title">From First Call to Live Dashboard</h2>
-
-      <ol class="process-list">
-        <li>
-          <span class="process-num">01</span>
-          <h3>Financial review</h3>
-          <p>A free session on your current numbers: margins, delivery rate, ad spend, and where the money is actually going.</p>
-        </li>
-        <li>
-          <span class="process-num">02</span>
-          <h3>Implementation</h3>
-          <p>We get the access and data we need from your store, courier and ad accounts, and load your product costs and bill of materials to get started.</p>
-        </li>
-        <li>
-          <span class="process-num">03</span>
-          <h3>Your dashboard goes live</h3>
-          <p>A private instance on your own database, with owner and staff logins, refreshed every morning.</p>
-        </li>
-        <li>
-          <span class="process-num">04</span>
-          <h3>We stay on the numbers</h3>
-          <p>Ongoing daily analysis, daily and monthly reports, and a CFO on call for pricing, purchasing and campaign decisions.</p>
-        </li>
-      </ol>
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+    <div class="container about-grid">
+      <div class="about-media">
+        <img src="assets/img/about-bg.jpg" alt="Financial analyst reviewing a contract" loading="lazy">
+      </div>
+      <div class="about-copy">
+        <p class="eyebrow">About Us</p>
+        <h2 class="section-title section-title-left">Driving Your Financial Success</h2>
+        <p>Founded in 2023, FinVisor is a team of financial analysts with over <strong>10 years</strong> of combined experience in multinational companies across MENA.</p>
+        <p>Most e-commerce brands grow their sales without knowing their real profit. We fix that with product costing, daily P&amp;L, clear ad spending limits and a live dashboard refreshed every morning, backed by a CFO on call.</p>
+        <p>Our mission is simple: help founders price correctly, spend confidently, and grow on profit, not just sales.</p>
+      </div>
     </div>
   </section>
 
@@ -644,7 +417,7 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
       <div class="contact-copy">
         <p class="eyebrow eyebrow-light">Get In Touch</p>
         <h2 class="section-title section-title-left section-title-light">Book Your Free Financial Review</h2>
-        <p>Tell us about your business and we'll walk through your current numbers together — margins, delivery rate, ad efficiency, and where the leaks are. No cost, no obligation.</p>
+        <p>Tell us about your business and we'll walk through your current numbers together &mdash; margins, delivery rate, ad efficiency, and where the leaks are. No cost, no obligation.</p>
 
         <ul class="contact-info">
           <li>
@@ -712,22 +485,6 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
         <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
         <p class="form-privacy">Your details go to FinVisor only, and are never shared.</p>
       </form>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section about" id="about">
-    <div class="container about-grid">
-      <div class="about-media">
-        <img src="assets/img/about-bg.jpg" alt="Financial analyst reviewing a contract" loading="lazy">
-      </div>
-      <div class="about-copy">
-        <p class="eyebrow">About Us</p>
-        <h2 class="section-title section-title-left">Driving Your Financial Success</h2>
-        <p>Founded in 2023, FinVisor is a team of financial analysts with over <strong>10 years</strong> of combined experience in multinational companies across MENA.</p>
-        <p>Most e-commerce brands grow their sales without knowing their real profit. We fix that with product costing, daily P&amp;L, clear ad spending limits and a live dashboard refreshed every morning, backed by a CFO on call.</p>
-        <p>Our mission is simple: help founders price correctly, spend confidently, and grow on profit, not just sales.</p>
-      </div>
     </div>
   </section>
 

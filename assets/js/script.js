@@ -1,22 +1,25 @@
-document.getElementById('year').textContent = new Date().getFullYear();
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // Mobile nav toggle
 const navToggle = document.getElementById('navToggle');
 const nav = document.getElementById('nav');
 
-navToggle.addEventListener('click', () => {
-  const isOpen = nav.classList.toggle('is-open');
-  navToggle.classList.toggle('is-open', isOpen);
-  navToggle.setAttribute('aria-expanded', String(isOpen));
-});
-
-nav.querySelectorAll('.nav-link').forEach((link) => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('is-open');
-    navToggle.classList.remove('is-open');
-    navToggle.setAttribute('aria-expanded', 'false');
+if (navToggle && nav) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('is-open');
+    navToggle.classList.toggle('is-open', isOpen);
+    navToggle.setAttribute('aria-expanded', String(isOpen));
   });
-});
+
+  nav.querySelectorAll('.nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('is-open');
+      navToggle.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
 
 // Active nav link on scroll
 const sections = document.querySelectorAll('main section[id]');
@@ -232,6 +235,7 @@ const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwDqZT
 
 const contactForm = document.getElementById('contactForm');
 const formNote = document.getElementById('formNote');
+if (contactForm) {
 const submitBtn = contactForm.querySelector('button[type="submit"]');
 
 contactForm.addEventListener('submit', async (event) => {
@@ -290,6 +294,7 @@ contactForm.addEventListener('submit', async (event) => {
     submitBtn.disabled = false;
   }
 });
+}
 
 // Meta Pixel: fire Contact when a visitor clicks a direct contact channel
 // (phone, email, or WhatsApp). Guarded so it no-ops if the pixel is blocked.
