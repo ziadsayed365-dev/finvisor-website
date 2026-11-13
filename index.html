@@ -106,6 +106,11 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   .plan-price .per { font-size: 0.9rem; font-weight: 500; color: var(--ink-soft); }
   .plan-price.is-custom { font-size: 1.6rem; }
   .plan-old-price { font-size: 0.95rem; font-weight: 600; color: var(--ink-soft); text-decoration: line-through; text-decoration-color: #ef4444; margin-bottom: 2px; }
+  .billing-toggle { display: inline-flex; gap: 4px; background: #fff; border: 1px solid var(--border); border-radius: 999px; padding: 4px; margin-bottom: 36px; box-shadow: 0 6px 16px -8px rgba(10,15,48,0.25); }
+  .billing-opt { display: inline-flex; align-items: center; gap: 7px; border: none; background: transparent; color: var(--ink-soft); font-family: inherit; font-weight: 600; font-size: 0.92rem; padding: 9px 20px; border-radius: 999px; cursor: pointer; transition: background 0.2s ease, color 0.2s ease; }
+  .billing-opt.is-active { background: linear-gradient(135deg, var(--indigo-500), var(--indigo-600)); color: #fff; }
+  .save-badge { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; background: var(--green-400); color: #fff; padding: 2px 7px; border-radius: 999px; }
+  .billing-opt.is-active .save-badge { background: rgba(255,255,255,0.25); }
   .plan-sub { color: var(--ink-soft); font-size: 0.85rem; margin: 8px 0 22px; }
   .plan-features { display: grid; gap: 11px; margin-bottom: 26px; flex-grow: 1; }
   .plan-features li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.92rem; color: var(--ink); }
@@ -172,15 +177,20 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
       <h1 class="home-wordmark">Fin<span class="accent">&#8209;visor</span></h1>
       <p class="home-tagline">Most brands grow their sales without knowing their real profit. <strong>We fix that</strong>. Pick the level that fits, from a self-serve tracker to a full finance department.</p>
 
+      <div class="billing-toggle" role="group" aria-label="Billing period">
+        <button type="button" class="billing-opt is-active" data-billing="monthly">Monthly</button>
+        <button type="button" class="billing-opt" data-billing="yearly">Yearly <span class="save-badge">Save 25%</span></button>
+      </div>
+
       <div class="plans-grid" id="plans">
         <!-- Ad Profit Tracker (featured) -->
         <div class="plan-card is-featured">
           <span class="product-tier">Most popular</span>
           <div class="plan-name">Ad Profit Tracker</div>
           <p class="plan-for">See which Meta campaigns actually make you money.</p>
-          <div class="plan-old-price">3,000 EGP / month</div>
-          <div class="plan-price">2,000<span class="per"> EGP / mo</span></div>
-          <p class="plan-sub">7 days free &middot; No credit card required</p>
+          <div class="plan-old-price" data-m="3,000 EGP / month" data-y="2,000 EGP / month">3,000 EGP / month</div>
+          <div class="plan-price"><span data-m="2,000" data-y="1,500">2,000</span><span class="per"> EGP / mo</span></div>
+          <p class="plan-sub" data-m="7 days free · No credit card required" data-y="Billed yearly · 7 days free">7 days free &middot; No credit card required</p>
           <ul class="plan-features">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Live Business Insights dashboard</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Unlimited orders</li>
@@ -198,9 +208,9 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
           <span class="product-tier">Scale here</span>
           <div class="plan-name">YourCFO SaaS</div>
           <p class="plan-for">Your whole finance dashboard, self-serve.</p>
-          <div class="plan-old-price">6,000 EGP / month</div>
-          <div class="plan-price">4,000<span class="per"> EGP / mo</span></div>
-          <p class="plan-sub">7 days free &middot; No credit card required</p>
+          <div class="plan-old-price" data-m="6,000 EGP / month" data-y="4,000 EGP / month">6,000 EGP / month</div>
+          <div class="plan-price"><span data-m="4,000" data-y="3,000">4,000</span><span class="per"> EGP / mo</span></div>
+          <p class="plan-sub" data-m="7 days free · No credit card required" data-y="Billed yearly · 7 days free">7 days free &middot; No credit card required</p>
           <ul class="plan-features">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><strong>Ad Profit Tracker</strong></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Live Business Insights dashboard</li>
@@ -499,6 +509,27 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.06-1.33A10 10 0 1 0 12 2zm0 18.06a8 8 0 0 1-4.08-1.12l-.29-.17-3 .79.8-2.93-.19-.3A8.06 8.06 0 1 1 12 20.06zm4.4-5.93c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.18-.7-.62-1.18-1.39-1.32-1.63-.14-.24-.01-.37.11-.49.12-.12.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.04-.33-.04-.45-.08-.12-.5-1.2-.68-1.64-.18-.43-.37-.37-.5-.38-.13-.01-.28-.01-.43-.01-.15 0-.39.06-.6.3-.21.24-.8.78-.8 1.9 0 1.12.82 2.2.94 2.36.12.16 1.6 2.45 3.9 3.34 2.3.89 2.3.59 2.72.55.42-.04 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
 </a>
 
+<script>
+  // Monthly / Yearly billing toggle: swaps the data-m / data-y text on the plan cards.
+  (function () {
+    var toggle = document.querySelector('.billing-toggle');
+    if (!toggle) return;
+    var opts = toggle.querySelectorAll('.billing-opt');
+    var swap = document.querySelectorAll('.plans-grid [data-m]');
+    function apply(mode) {
+      swap.forEach(function (el) {
+        var v = mode === 'yearly' ? el.getAttribute('data-y') : el.getAttribute('data-m');
+        if (v !== null) el.textContent = v;
+      });
+      opts.forEach(function (o) {
+        o.classList.toggle('is-active', o.getAttribute('data-billing') === mode);
+      });
+    }
+    opts.forEach(function (o) {
+      o.addEventListener('click', function () { apply(o.getAttribute('data-billing')); });
+    });
+  })();
+</script>
 <script src="assets/js/script.js"></script>
 </body>
 </html>
