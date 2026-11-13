@@ -115,6 +115,9 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   #plans { scroll-margin-top: 90px; }
   .home-plan-note { text-align: center; color: var(--ink-soft); font-size: 0.9rem; margin-top: 24px; }
   .home-plan-note a { color: var(--indigo-600); font-weight: 600; }
+  .plan-platforms { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 2px 0 22px; }
+  .plan-platforms .pp-label { font-size: 0.8rem; font-weight: 600; color: var(--ink-soft); margin-right: 2px; }
+  .plan-platforms img { height: 30px; width: 30px; object-fit: contain; background: #fff; border: 1px solid var(--border); border-radius: 7px; padding: 3px; }
 
   @media (max-width: 860px) {
     .home-products { grid-template-columns: 1fr; max-width: 440px; margin-inline: auto; }
@@ -166,15 +169,20 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
         <div class="plan-card">
           <span class="product-tier">Start here</span>
           <div class="plan-name">Ad Profit Tracker</div>
-          <p class="plan-for">See which Meta campaigns actually make you money: profit after product cost, cancellations and returns. Works with Shopify, Salla &amp; Zid.</p>
+          <p class="plan-for">See which Meta campaigns actually make you money: profit after product cost, cancellations and returns.</p>
           <div class="plan-price">$40<span class="per"> / mo</span></div>
           <p class="plan-sub">Your first 30 orders are free.</p>
           <ul class="plan-features">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Real profit per Meta campaign</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Products Sold per campaign</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>One-page PDF export</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Shopify, Salla &amp; Zid</li>
           </ul>
+          <div class="plan-platforms">
+            <span class="pp-label">Platforms:</span>
+            <img src="assets/img/platforms/shopify.webp" alt="Shopify" loading="lazy">
+            <img src="assets/img/platforms/easyorders.png" alt="EasyOrders" loading="lazy">
+            <img src="assets/img/platforms/vondera.png" alt="Vondera" loading="lazy">
+          </div>
           <a href="ad-profit-tracker.html" class="btn btn-outline">Explore the tracker</a>
         </div>
 
