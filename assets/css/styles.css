@@ -584,9 +584,9 @@ main section[id] { scroll-margin-top: 76px; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
   .about-media { order: -1; }
-}
-
-@media (max-width: 860px) {
+  /* Collapse to the hamburger here (not 860px): the multi-word product labels
+     (YourCFO Fractional / YourCFO SaaS / Ad Profit Tracker) need the room, so switch
+     to the menu before they would wrap onto two lines. */
   .nav { position: fixed; inset: 76px 0 0 0; background: var(--navy-900); display: none; overflow-y: auto; }
   .nav.is-open { display: block; }
   .nav-list { flex-direction: column; gap: 0; padding: 12px 24px 24px; }
@@ -595,6 +595,9 @@ main section[id] { scroll-margin-top: 76px; }
   .nav-link::after { display: none; }
   .header-cta { display: none; }
   .nav-toggle { display: flex; }
+}
+
+@media (max-width: 860px) {
   .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
   /* Two columns are far wider than four were, so the figures can grow again. The base floor
      is set low enough for the narrow four-column band just above this breakpoint. */
