@@ -417,6 +417,8 @@ main section[id] { scroll-margin-top: 76px; }
 .logo-track img:hover { filter: grayscale(0%); opacity: 1; }
 /* On the navy Clients section, drop the card so the logos sit directly on the navy. */
 .section-dark .logo-track img { background: transparent; border-color: transparent; opacity: 1; }
+/* Amoura's logo is dark on a transparent background, so keep a white tile for it on navy. */
+.section-dark .logo-track img[src$="client-amoura.png"] { background: #fff; }
 
 @keyframes marquee {
   from { transform: translateX(0); }
