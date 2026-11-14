@@ -11,8 +11,7 @@
 (function () {
   'use strict';
 
-  // Live app (Vercel). Switch to https://app.fin-visor.com/auth once its DNS is set up.
-  var APP_AUTH = 'https://finvisor-app-theta.vercel.app/auth';
+  var APP_AUTH = 'https://app.fin-visor.com/auth';
 
   // Build the app auth URL for a given state, forwarding any tracking params.
   function appUrl(state) {
