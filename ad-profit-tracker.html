@@ -70,10 +70,10 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
     overflow: hidden;
     padding: 72px 0 84px;
   }
-  .apt-hero .container { position: relative; max-width: 1120px; }
+  .apt-hero .container { position: relative; max-width: 1160px; }
 
   /* Two-column first section: the pitch (left) + what you see (right) */
-  .apt-hero-split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: start; }
+  .apt-hero-split { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 48px; align-items: start; }
   .apt-hero-copy { min-width: 0; }
   .apt-badge {
     display: inline-flex; align-items: center; gap: 9px;
@@ -120,7 +120,7 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
     display: inline-block; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--indigo-600); margin-bottom: 16px;
   }
-  .apt-need-list { display: grid; gap: 13px; }
+  .apt-need-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .apt-need {
     display: flex; gap: 14px; align-items: flex-start;
     background: var(--light-bg); border: 1px solid var(--border);
@@ -137,14 +137,6 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   .apt-need-body p { color: var(--ink-soft); font-size: 0.92rem; line-height: 1.5; }
   .apt-metrics { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 7px; }
   .apt-metrics span { font-size: 0.72rem; font-weight: 600; color: var(--indigo-600); background: rgba(79,70,229,0.08); border: 1px solid rgba(79,70,229,0.18); border-radius: 6px; padding: 2px 8px; }
-
-  .apt-why-foot {
-    margin-top: 16px; padding: 18px 22px;
-    background: var(--navy-900); color: #fff; border-radius: 14px;
-    font-family: var(--font-head); font-weight: 700;
-    font-size: clamp(1rem, 1.4vw, 1.14rem); text-align: center;
-  }
-  .apt-why-foot span { color: var(--indigo-400); }
 
   /* P&L sample table */
   .pnl-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); background: #fff; margin-top: 40px; }
@@ -239,6 +231,9 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   @media (max-width: 860px) {
     .apt-hero-split { grid-template-columns: 1fr; gap: 36px; }
   }
+  @media (max-width: 560px) {
+    .apt-need-list { grid-template-columns: 1fr; }
+  }
   @media (max-width: 860px) {
     .steps-grid { grid-template-columns: repeat(2, 1fr); }
     .why-grid { grid-template-columns: 1fr; gap: 28px; }
@@ -290,8 +285,8 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
         <!-- LEFT: the pitch -->
         <div class="apt-hero-copy">
           <p class="apt-badge"><span class="dot" aria-hidden="true"></span>FinVisor &middot; Ad Profit Tracker</p>
-          <h1>You spend on Meta every day &mdash; but can you say, with real numbers, which campaign, ad set, or ad actually made you money?</h1>
-          <p class="apt-lead">Meta shows you revenue and ROAS &mdash; but those numbers aren't the real picture. They're counted at checkout and inflated, before cancelled orders, returns, and product cost ever touch them.</p>
+          <h1>You spend on Meta every day. Do you actually know which campaigns <span class="accent">make you money</span>?</h1>
+          <p class="apt-lead">The revenue and ROAS Meta reports are top-line numbers: counted the moment someone checks out, before cancellations, returns, and product cost. They tell you what you sold &mdash; not what you earned.</p>
           <div class="apt-hero-actions">
             <a href="index.html#contact" class="btn btn-accent">Start Now</a>
             <a href="demo-dashboard.html" class="btn btn-outline">See Demo Dashboard</a>
@@ -340,7 +335,7 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
               <span class="n-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.3L21 10l-6.6 1.7L12 18l-2.4-6.3L3 10l6.6-1.7z"/></svg></span>
               <div class="apt-need-body">
                 <strong>Catch the hidden winners</strong>
-                <p>An ad might barely sell the product it targets, yet drive sales of another. That campaign is profitable &mdash; don't kill it by mistake.</p>
+                <p>That campaign you were about to switch off? Its target product barely sold &mdash; but it drove sales of other products that made it profitable. Don't kill a winner you can't see.</p>
               </div>
             </div>
 
@@ -361,7 +356,6 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
             </div>
 
           </div>
-          <p class="apt-why-foot">The profit you actually keep &mdash; <span>per campaign, ad set, and ad. Every day.</span></p>
         </div>
 
       </div>
