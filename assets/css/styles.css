@@ -25,7 +25,9 @@
 /* ---------- Reset ---------- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* Base type scaled down ~6% (16px -> 15px) for a calmer, less dense read
+   across the whole site; everything here is rem/em so it scales uniformly. */
+html { scroll-behavior: smooth; font-size: 93.75%; }
 
 body {
   font-family: var(--font-body);
