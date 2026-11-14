@@ -207,7 +207,7 @@ main section[id] { scroll-margin-top: 76px; }
 }
 .section-title-left { max-width: 560px; }
 
-.section { padding: 96px 0; position: relative; }
+.section { padding: 60px 0; position: relative; }
 .section-dark {
   background: var(--navy-900);
   color: rgba(255, 255, 255, 0.85);
@@ -613,7 +613,7 @@ main section[id] { scroll-margin-top: 76px; }
 }
 
 @media (max-width: 600px) {
-  .section { padding: 64px 0; }
+  .section { padding: 44px 0; }
   .hero { min-height: auto; padding: 70px 0 56px; }
   .services-grid { grid-template-columns: 1fr; }
   .hero-actions { flex-direction: column; align-items: stretch; }
