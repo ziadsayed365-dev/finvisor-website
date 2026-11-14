@@ -70,10 +70,11 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
     overflow: hidden;
     padding: 72px 0 84px;
   }
-  .apt-hero .container { position: relative; max-width: 1080px; }
+  .apt-hero .container { position: relative; max-width: 1120px; }
 
-  /* Intro (top of the first section) */
-  .apt-hero-top { text-align: center; max-width: 760px; margin: 0 auto; }
+  /* Two-column first section: the pitch (left) + what you see (right) */
+  .apt-hero-split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 48px; align-items: start; }
+  .apt-hero-copy { min-width: 0; }
   .apt-badge {
     display: inline-flex; align-items: center; gap: 9px;
     font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
@@ -85,17 +86,17 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   .apt-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-400); box-shadow: 0 0 0 4px rgba(34,197,94,0.15); }
   .apt-hero h1 {
     color: var(--ink);
-    font-size: clamp(2rem, 4.6vw, 3.2rem);
-    font-weight: 800; letter-spacing: -0.015em; line-height: 1.12;
+    font-size: clamp(1.7rem, 3.3vw, 2.5rem);
+    font-weight: 800; letter-spacing: -0.015em; line-height: 1.2;
     margin-bottom: 18px;
   }
   .apt-hero h1 .accent { color: var(--indigo-600); }
-  .apt-lead { font-size: 1.12rem; color: var(--ink-soft); max-width: 640px; margin: 0 auto 28px; }
-  .apt-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; justify-content: center; }
+  .apt-lead { font-size: 1.1rem; color: var(--ink-soft); margin: 0 0 28px; }
+  .apt-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; justify-content: flex-start; }
   .apt-hero-note { margin-top: 18px; font-size: 0.9rem; color: var(--ink-soft); }
   .apt-platforms {
     display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px;
-    align-items: center; justify-content: center;
+    align-items: center; justify-content: flex-start;
   }
   .apt-platforms .lbl { font-size: 0.82rem; color: var(--ink-soft); margin-right: 4px; }
   .apt-chip {
@@ -107,36 +108,23 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   }
   .apt-chip .tick { color: var(--green-400); }
 
-  /* "Why you need it" panel */
+  /* Right column: what you actually see */
   .apt-why {
-    margin-top: 56px;
     background: #fff;
     border: 1px solid var(--border);
     border-radius: 20px;
     box-shadow: var(--shadow);
-    padding: 44px clamp(22px, 4vw, 52px);
+    padding: 30px clamp(20px, 2.4vw, 32px) 28px;
   }
   .apt-why .card-eyebrow {
     display: inline-block; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--indigo-600); margin-bottom: 14px;
+    text-transform: uppercase; color: var(--indigo-600); margin-bottom: 16px;
   }
-  .apt-why-q {
-    color: var(--ink); font-family: var(--font-head);
-    font-size: clamp(1.3rem, 2.6vw, 1.85rem); line-height: 1.25; font-weight: 800;
-    max-width: 840px; margin-bottom: 20px;
-  }
-  .apt-why > p { color: var(--ink-soft); font-size: 1.02rem; line-height: 1.6; max-width: 840px; margin-bottom: 14px; }
-  .apt-why > p strong { color: var(--ink); font-weight: 700; }
-  .apt-why-levels { color: var(--ink) !important; font-weight: 600; font-size: 1.05rem; margin: 24px 0 8px; }
-  .apt-why-levels strong { font-weight: 800; }
-  .apt-why-levels .arrow { color: var(--indigo-600); }
-
-  .apt-why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 22px; }
-  .apt-why-grid .apt-need:last-child { grid-column: 1 / -1; }
+  .apt-need-list { display: grid; gap: 13px; }
   .apt-need {
     display: flex; gap: 14px; align-items: flex-start;
     background: var(--light-bg); border: 1px solid var(--border);
-    border-radius: 12px; padding: 18px;
+    border-radius: 12px; padding: 16px;
   }
   .apt-need .n-icon {
     flex-shrink: 0; width: 38px; height: 38px; border-radius: 10px;
@@ -144,14 +132,17 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
     display: flex; align-items: center; justify-content: center;
   }
   .apt-need .n-icon svg { width: 20px; height: 20px; }
-  .apt-need p { color: var(--ink-soft); font-size: 0.94rem; line-height: 1.5; }
-  .apt-need strong { color: var(--ink); font-weight: 700; display: block; margin-bottom: 3px; }
+  .apt-need-body { min-width: 0; }
+  .apt-need-body strong { color: var(--ink); font-weight: 700; display: block; margin-bottom: 4px; font-size: 0.98rem; }
+  .apt-need-body p { color: var(--ink-soft); font-size: 0.92rem; line-height: 1.5; }
+  .apt-metrics { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 7px; }
+  .apt-metrics span { font-size: 0.72rem; font-weight: 600; color: var(--indigo-600); background: rgba(79,70,229,0.08); border: 1px solid rgba(79,70,229,0.18); border-radius: 6px; padding: 2px 8px; }
 
   .apt-why-foot {
-    margin-top: 26px; padding: 20px 24px;
+    margin-top: 16px; padding: 18px 22px;
     background: var(--navy-900); color: #fff; border-radius: 14px;
     font-family: var(--font-head); font-weight: 700;
-    font-size: clamp(1.02rem, 2vw, 1.22rem); text-align: center;
+    font-size: clamp(1rem, 1.4vw, 1.14rem); text-align: center;
   }
   .apt-why-foot span { color: var(--indigo-400); }
 
@@ -245,9 +236,8 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   .btn-ghost-light { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); color: #fff; }
   .btn-ghost-light:hover { background: rgba(255,255,255,0.18); }
 
-  @media (max-width: 720px) {
-    .apt-why-grid { grid-template-columns: 1fr; }
-    .apt-why { padding: 32px 20px; }
+  @media (max-width: 860px) {
+    .apt-hero-split { grid-template-columns: 1fr; gap: 36px; }
   }
   @media (max-width: 860px) {
     .steps-grid { grid-template-columns: repeat(2, 1fr); }
@@ -295,68 +285,86 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   <!-- HERO -->
   <section class="apt-hero">
     <div class="container">
+      <div class="apt-hero-split">
 
-      <!-- Intro -->
-      <div class="apt-hero-top">
-        <p class="apt-badge"><span class="dot" aria-hidden="true"></span>FinVisor &middot; Ad Profit Tracker</p>
-        <h1>Know exactly which ad campaigns <span class="accent">make you money</span>.</h1>
-        <p class="apt-lead">Connect your store and your Meta ads and see the real profit of every campaign, after product cost, cancelled orders and expected returns. Not the platform's ROAS, the profit you actually keep.</p>
-        <div class="apt-hero-actions">
-          <a href="index.html#contact" class="btn btn-accent">Start Now</a>
-          <a href="demo-dashboard.html" class="btn btn-outline">See Demo Dashboard</a>
-          <a href="#how" class="btn btn-outline">How it works</a>
+        <!-- LEFT: the pitch -->
+        <div class="apt-hero-copy">
+          <p class="apt-badge"><span class="dot" aria-hidden="true"></span>FinVisor &middot; Ad Profit Tracker</p>
+          <h1>You spend on Meta every day &mdash; but can you say, with real numbers, which campaign, ad set, or ad actually made you money?</h1>
+          <p class="apt-lead">Meta shows you revenue and ROAS &mdash; but those numbers aren't the real picture. They're counted at checkout and inflated, before cancelled orders, returns, and product cost ever touch them.</p>
+          <div class="apt-hero-actions">
+            <a href="index.html#contact" class="btn btn-accent">Start Now</a>
+            <a href="demo-dashboard.html" class="btn btn-outline">See Demo Dashboard</a>
+            <a href="#how" class="btn btn-outline">How it works</a>
+          </div>
+          <p class="apt-hero-note">Connected in about a minute. No passwords, no tokens to copy, you approve on Shopify's and Meta's own screens.</p>
+          <div class="apt-platforms">
+            <span class="lbl">Works with</span>
+            <span class="apt-chip"><span class="tick" aria-hidden="true">&#10003;</span>Shopify</span>
+            <span class="apt-chip"><span class="tick" aria-hidden="true">&#10003;</span>EasyOrders</span>
+            <span class="apt-chip"><span class="tick" aria-hidden="true">&#10003;</span>Vondera</span>
+          </div>
         </div>
-        <p class="apt-hero-note">Connected in about a minute. No passwords, no tokens to copy, you approve on Shopify's and Meta's own screens.</p>
-        <div class="apt-platforms">
-          <span class="lbl">Works with</span>
-          <span class="apt-chip"><span class="tick" aria-hidden="true">&#10003;</span>Shopify</span>
-          <span class="apt-chip"><span class="tick" aria-hidden="true">&#10003;</span>EasyOrders</span>
-          <span class="apt-chip"><span class="tick" aria-hidden="true">&#10003;</span>Vondera</span>
+
+        <!-- RIGHT: what FinVisor shows you -->
+        <div class="apt-why">
+          <span class="card-eyebrow">What FinVisor shows you</span>
+          <div class="apt-need-list">
+
+            <div class="apt-need">
+              <span class="n-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span>
+              <div class="apt-need-body">
+                <strong>Your numbers at every level</strong>
+                <div class="apt-metrics"><span>Revenue</span><span>COGS</span><span>Profit</span><span>Profit after returns</span></div>
+                <p>Per Campaign, Ad Set, and Ad, side by side.</p>
+              </div>
+            </div>
+
+            <div class="apt-need">
+              <span class="n-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+              <div class="apt-need-body">
+                <strong>The truth behind Meta's &ldquo;results&rdquo;</strong>
+                <p>Meta says &ldquo;2 results&rdquo;; we show you exactly which orders they were, what they're worth, and the profit on each.</p>
+              </div>
+            </div>
+
+            <div class="apt-need">
+              <span class="n-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/></svg></span>
+              <div class="apt-need-body">
+                <strong>Products sold per level</strong>
+                <p>Know what actually sold inside every campaign, not just what you targeted.</p>
+              </div>
+            </div>
+
+            <div class="apt-need">
+              <span class="n-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.3L21 10l-6.6 1.7L12 18l-2.4-6.3L3 10l6.6-1.7z"/></svg></span>
+              <div class="apt-need-body">
+                <strong>Catch the hidden winners</strong>
+                <p>An ad might barely sell the product it targets, yet drive sales of another. That campaign is profitable &mdash; don't kill it by mistake.</p>
+              </div>
+            </div>
+
+            <div class="apt-need">
+              <span class="n-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88"/><path d="M14.47 14.48 20 20"/><path d="M8.12 8.12 12 12"/></svg></span>
+              <div class="apt-need-body">
+                <strong>Cut the real losers</strong>
+                <p>Pinpoint the exact ad sets and ads bleeding your budget, and switch them off with numbers you can stand on.</p>
+              </div>
+            </div>
+
+            <div class="apt-need">
+              <span class="n-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+              <div class="apt-need-body">
+                <strong>Built for upsells, carousels &amp; message campaigns</strong>
+                <p>Running an upsell, carousel or messaging campaign? See which products really sold inside it, not just the one you targeted.</p>
+              </div>
+            </div>
+
+          </div>
+          <p class="apt-why-foot">The profit you actually keep &mdash; <span>per campaign, ad set, and ad. Every day.</span></p>
         </div>
+
       </div>
-
-      <!-- Why you need it -->
-      <div class="apt-why">
-        <span class="card-eyebrow">Why you need it</span>
-        <h2 class="apt-why-q">You spend on Meta every day &mdash; but can you say, with real numbers, which campaign, ad set, or ad actually made you money?</h2>
-        <p>Meta shows you revenue and ROAS &mdash; but those numbers aren't the real picture. They're counted at checkout and inflated, before cancelled orders, returns, and product cost ever touch them. Meta even tells you a campaign got &ldquo;2 results&rdquo; &mdash; without telling you what those results actually were, how much they were worth, or whether you made a profit on them.</p>
-        <p>That's where the real decisions are made &mdash; and where most stores quietly lose money.</p>
-        <p class="apt-why-levels">FinVisor breaks your profit down to every level &mdash; <strong>Campaign <span class="arrow">&rarr;</span> Ad Set <span class="arrow">&rarr;</span> Ad</strong> &mdash; so you finally see what's real:</p>
-
-        <div class="apt-why-grid">
-          <div class="apt-need">
-            <span class="n-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span>
-            <p><strong>Your numbers at every level</strong>Campaign, Ad Set, and Ad, side by side.</p>
-          </div>
-          <div class="apt-need">
-            <span class="n-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 2 5-6"/></svg></span>
-            <p><strong>Real net profit per level</strong>After product cost, cancellations, and returns.</p>
-          </div>
-          <div class="apt-need">
-            <span class="n-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
-            <p><strong>The truth behind Meta's &ldquo;results&rdquo;</strong>Meta says &ldquo;2 results&rdquo;; we show you exactly which orders they were, what they're worth, and the profit on each.</p>
-          </div>
-          <div class="apt-need">
-            <span class="n-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h12"/></svg></span>
-            <p><strong>The orders behind each level</strong>See exactly which orders each campaign, ad set, and ad brought in.</p>
-          </div>
-          <div class="apt-need">
-            <span class="n-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/></svg></span>
-            <p><strong>Products sold per level</strong>Know what actually sold inside every campaign, not just what you targeted.</p>
-          </div>
-          <div class="apt-need">
-            <span class="n-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.3L21 10l-6.6 1.7L12 18l-2.4-6.3L3 10l6.6-1.7z"/></svg></span>
-            <p><strong>Catch the hidden winners</strong>An ad might barely sell the product it targets, yet drive sales of another. That campaign is profitable &mdash; don't kill it by mistake.</p>
-          </div>
-          <div class="apt-need">
-            <span class="n-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.12 15.88"/><path d="M14.47 14.48 20 20"/><path d="M8.12 8.12 12 12"/></svg></span>
-            <p><strong>Cut the real losers</strong>Pinpoint the exact ad sets and ads bleeding your budget, and switch them off with numbers you can stand on.</p>
-          </div>
-        </div>
-
-        <p class="apt-why-foot">The profit you actually keep &mdash; <span>per campaign, ad set, and ad. Every day.</span></p>
-      </div>
-
     </div>
   </section>
 
