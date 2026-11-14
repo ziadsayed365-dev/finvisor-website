@@ -1,19 +1,19 @@
-/* FinVisor sign-up / sign-in modal.
+/* FinVisor sign-in / sign-up modal.
    Self-contained: injects its own styles + markup, so a page only needs
    <script src="assets/js/auth-modal.js" defer></script>.
 
-   - Opens once per browsing session on first page load.
-   - Opens on demand for any element with [data-auth-open] (e.g. "Start Now").
-   - "Sign up" sends a request-to-connect to the same Google Sheet as the
-     contact form, or the visitor can reach us on WhatsApp.
-   - "Sign in" points existing customers to their live dashboard.
+   - Opens once per browsing session on first page load, and on demand for
+     any element with [data-auth-open] (e.g. the "Start Now" button).
+   - Default view is a simple Sign in form (email + password). The password
+     is never transmitted anywhere; submitting opens the live dashboard app.
+   - "Sign up" switches to the request-to-connect process (sent to the same
+     Google Sheet as the contact form, or via WhatsApp).
    - Closeable with the X, the Esc key, or a click on the backdrop. */
 (function () {
   'use strict';
 
   var WHATSAPP = 'https://wa.me/201270017382';
   var WA_SIGNUP = WHATSAPP + '?text=' + encodeURIComponent("Hi FinVisor, I'd like to connect my store to the Ad Profit Tracker.");
-  var WA_HELP = WHATSAPP + '?text=' + encodeURIComponent('Hi FinVisor, I need help signing in to my dashboard.');
   var APP_URL = 'https://app.fin-visor.com';
   var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwDqZTakq2zi9HbN_8rJxjsdVJFDq0wZUHLUcwrVCGTzIEvXCf-wV8FsIgD40qjtvQ/exec';
   var SEEN_KEY = 'fv_auth_modal_seen';
@@ -23,23 +23,21 @@
   var css = [
     '.fv-modal-overlay{position:fixed;inset:0;z-index:4000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(10,15,48,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease;}',
     '.fv-modal-overlay.is-open{opacity:1;visibility:visible;}',
-    ".fv-modal{position:relative;width:100%;max-width:430px;background:#fff;border-radius:18px;padding:30px 28px 26px;box-shadow:0 30px 70px -20px rgba(10,15,48,.55);transform:translateY(12px) scale(.98);transition:transform .25s ease;max-height:calc(100vh - 40px);overflow-y:auto;font-family:'Inter',sans-serif;}",
+    ".fv-modal{position:relative;width:100%;max-width:400px;background:#fff;border-radius:16px;padding:30px 28px 26px;box-shadow:0 30px 70px -20px rgba(10,15,48,.55);transform:translateY(12px) scale(.98);transition:transform .25s ease;max-height:calc(100vh - 40px);overflow-y:auto;font-family:'Inter',sans-serif;}",
     '.fv-modal-overlay.is-open .fv-modal{transform:none;}',
-    '.fv-modal-close{position:absolute;top:13px;right:13px;width:34px;height:34px;border:none;background:#f1f2f7;color:#0a0f30;border-radius:9px;font-size:20px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;}',
+    '.fv-modal-close{position:absolute;top:13px;right:13px;width:32px;height:32px;border:none;background:#f1f2f7;color:#0a0f30;border-radius:9px;font-size:19px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;}',
     '.fv-modal-close:hover{background:#e4e6f0;}',
-    '.fv-modal-logo{display:block;height:32px;width:auto;margin:0 auto 14px;border-radius:6px;}',
-    ".fv-modal h2{font-family:'Montserrat',sans-serif;font-size:21px;font-weight:800;color:#0a0f30;text-align:center;margin:0 0 6px;}",
-    '.fv-modal .fv-sub{font-size:14px;color:#515a7a;text-align:center;margin:0 0 20px;line-height:1.5;}',
-    '.fv-tabs{display:flex;gap:4px;background:#f1f2f7;border-radius:11px;padding:4px;margin-bottom:20px;}',
-    '.fv-tab{flex:1;border:none;background:transparent;font:inherit;font-size:14px;font-weight:600;color:#515a7a;padding:9px;border-radius:8px;cursor:pointer;}',
-    '.fv-tab.is-active{background:#fff;color:#4338ca;box-shadow:0 2px 6px -2px rgba(10,15,48,.2);}',
-    '.fv-panel{display:none;}',
-    '.fv-panel.is-active{display:block;}',
+    ".fv-modal h2{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:800;color:#0a0f30;margin:0 0 4px;}",
+    '.fv-modal .fv-sub{font-size:13.5px;color:#515a7a;margin:0 0 18px;line-height:1.5;}',
+    '.fv-view{display:none;}',
+    '.fv-view.is-active{display:block;}',
+    '.fv-view h2{margin-bottom:18px;}',
+    '.fv-view.fv-has-sub h2{margin-bottom:4px;}',
     '.fv-field{margin-bottom:12px;}',
     '.fv-field label{display:block;font-size:12.5px;font-weight:600;color:#515a7a;margin-bottom:5px;}',
-    '.fv-field input{width:100%;font:inherit;font-size:14px;color:#0a0f30;padding:10px 12px;border:1px solid #e4e6f0;border-radius:9px;background:#fff;}',
+    '.fv-field input{width:100%;font:inherit;font-size:14px;color:#0a0f30;padding:10px 12px;border:1px solid #e4e6f0;border-radius:9px;background:#fff;box-sizing:border-box;}',
     '.fv-field input:focus{outline:none;border-color:#4f46e5;box-shadow:0 0 0 3px rgba(79,70,229,.15);}',
-    '.fv-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font:inherit;font-size:14px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;text-decoration:none;box-sizing:border-box;}',
+    '.fv-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font:inherit;font-size:14px;font-weight:700;padding:12px;border-radius:10px;border:none;cursor:pointer;text-decoration:none;box-sizing:border-box;margin-top:4px;}',
     '.fv-btn[disabled]{opacity:.6;cursor:default;}',
     '.fv-btn-primary{background:linear-gradient(135deg,#4f46e5,#4338ca);color:#fff;}',
     '.fv-btn-primary:hover{filter:brightness(1.06);}',
@@ -50,8 +48,9 @@
     '.fv-note{font-size:13px;text-align:center;margin-top:10px;min-height:1.2em;line-height:1.4;}',
     '.fv-note.is-success{color:#16a34a;}',
     '.fv-note.is-error{color:#dc2626;}',
-    '.fv-signin-text{font-size:14px;color:#515a7a;text-align:center;margin:0 0 16px;line-height:1.5;}',
-    '.fv-btn + .fv-btn{margin-top:10px;}',
+    '.fv-switch{font-size:13px;color:#515a7a;text-align:center;margin:16px 0 0;}',
+    '.fv-switch a{color:#4338ca;font-weight:600;cursor:pointer;}',
+    '.fv-switch a:hover{text-decoration:underline;}',
     '@media(max-width:480px){.fv-modal{padding:26px 20px 22px;}}'
   ].join('');
 
@@ -65,14 +64,20 @@
   overlay.innerHTML = [
     '<div class="fv-modal" role="dialog" aria-modal="true" aria-labelledby="fvModalTitle">',
     '  <button class="fv-modal-close" data-fv-close aria-label="Close">&times;</button>',
-    '  <img class="fv-modal-logo" src="assets/img/logo.jpg" alt="FinVisor">',
-    '  <h2 id="fvModalTitle">Get started with FinVisor</h2>',
-    '  <p class="fv-sub">Create your account or sign in to your dashboard.</p>',
-    '  <div class="fv-tabs" role="tablist">',
-    '    <button type="button" class="fv-tab is-active" data-fv-tab="signup">Sign up</button>',
-    '    <button type="button" class="fv-tab" data-fv-tab="signin">Sign in</button>',
+
+    '  <div class="fv-view is-active" data-fv-view="signin">',
+    '    <h2 id="fvModalTitle">Sign in</h2>',
+    '    <form class="fv-login" novalidate>',
+    '      <div class="fv-field"><label for="fvEmail">Email</label><input id="fvEmail" name="email" type="email" autocomplete="username" required></div>',
+    '      <div class="fv-field"><label for="fvPass">Password</label><input id="fvPass" name="password" type="password" autocomplete="current-password" required></div>',
+    '      <button type="submit" class="fv-btn fv-btn-primary">Sign in</button>',
+    '    </form>',
+    '    <p class="fv-switch">Don\'t have an account? <a data-fv-goto="signup">Sign up</a></p>',
     '  </div>',
-    '  <div class="fv-panel is-active" data-fv-panel="signup">',
+
+    '  <div class="fv-view fv-has-sub" data-fv-view="signup">',
+    '    <h2>Create your account</h2>',
+    '    <p class="fv-sub">Send a request and we\'ll set up your dashboard with you, no technical work on your side.</p>',
     '    <form class="fv-form" novalidate>',
     '      <div class="fv-field"><label for="fvName">Full name</label><input id="fvName" name="fullName" type="text" autocomplete="name" required></div>',
     '      <div class="fv-field"><label for="fvStore">Store website</label><input id="fvStore" name="storeWebsite" type="text" placeholder="yourstore.com" required></div>',
@@ -82,20 +87,14 @@
     '    </form>',
     '    <div class="fv-or">or</div>',
     '    <a class="fv-btn fv-btn-wa" href="' + WA_SIGNUP + '" target="_blank" rel="noopener">' + WA_ICON + 'Contact us on WhatsApp</a>',
-    '  </div>',
-    '  <div class="fv-panel" data-fv-panel="signin">',
-    '    <p class="fv-signin-text">Already a customer? Open your live dashboard to see your campaign profit.</p>',
-    '    <a class="fv-btn fv-btn-primary" href="' + APP_URL + '" target="_blank" rel="noopener">Open my dashboard</a>',
-    '    <a class="fv-btn fv-btn-wa" href="' + WA_HELP + '" target="_blank" rel="noopener">' + WA_ICON + 'Need help? WhatsApp us</a>',
+    '    <p class="fv-switch">Already have an account? <a data-fv-goto="signin">Sign in</a></p>',
     '  </div>',
     '</div>'
   ].join('');
   document.body.appendChild(overlay);
 
-  var modal = overlay.querySelector('.fv-modal');
-
-  function open(tab) {
-    if (tab) switchTab(tab);
+  function open(view) {
+    switchView(view || 'signin');
     overlay.classList.add('is-open');
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -107,26 +106,31 @@
     document.body.style.overflow = '';
     try { sessionStorage.setItem(SEEN_KEY, '1'); } catch (e) {}
   }
-  function switchTab(name) {
-    overlay.querySelectorAll('.fv-tab').forEach(function (t) {
-      t.classList.toggle('is-active', t.getAttribute('data-fv-tab') === name);
-    });
-    overlay.querySelectorAll('.fv-panel').forEach(function (p) {
-      p.classList.toggle('is-active', p.getAttribute('data-fv-panel') === name);
+  function switchView(name) {
+    overlay.querySelectorAll('.fv-view').forEach(function (v) {
+      v.classList.toggle('is-active', v.getAttribute('data-fv-view') === name);
     });
   }
 
   overlay.addEventListener('click', function (e) {
-    if (e.target === overlay || e.target.closest('[data-fv-close]')) close();
+    if (e.target === overlay || e.target.closest('[data-fv-close]')) { close(); return; }
+    var goto = e.target.closest('[data-fv-goto]');
+    if (goto) { e.preventDefault(); switchView(goto.getAttribute('data-fv-goto')); }
   });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && overlay.classList.contains('is-open')) close();
   });
-  overlay.querySelectorAll('.fv-tab').forEach(function (t) {
-    t.addEventListener('click', function () { switchTab(t.getAttribute('data-fv-tab')); });
+
+  // Sign in: no backend here, so the password is never sent anywhere.
+  // A valid submit opens the live dashboard app, where the real login lives.
+  var login = overlay.querySelector('.fv-login');
+  login.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!login.checkValidity()) { login.reportValidity(); return; }
+    window.location.href = APP_URL;
   });
 
-  // "Sign up" -> request to connect, into the same sheet as the contact form.
+  // Sign up: request to connect, into the same sheet as the contact form.
   var form = overlay.querySelector('.fv-form');
   var note = overlay.querySelector('[data-fv-note]');
   form.addEventListener('submit', function (e) {
@@ -165,11 +169,11 @@
     });
   });
 
-  // Gate buttons such as "Start Now": open the modal instead of navigating.
+  // Gated buttons such as "Start Now": open the modal instead of navigating.
   document.querySelectorAll('[data-auth-open]').forEach(function (el) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      open(el.getAttribute('data-auth-open') || 'signup');
+      open(el.getAttribute('data-auth-open') || 'signin');
     });
   });
 
@@ -177,6 +181,6 @@
   var seen = null;
   try { seen = sessionStorage.getItem(SEEN_KEY); } catch (e) {}
   if (!seen) {
-    window.setTimeout(function () { open('signup'); }, 700);
+    window.setTimeout(function () { open('signin'); }, 700);
   }
 })();
