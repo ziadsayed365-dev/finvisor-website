@@ -106,7 +106,12 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
     padding: 8px 14px; border-radius: 10px;
   }
   .apt-chip .tick { color: var(--green-400); }
-  .apt-chip img { height: 22px; width: auto; display: block; }
+  /* Platform logo tiles, matched to the home page */
+  .pp-logo { width: 42px; height: 42px; border-radius: 11px; background: #fff; box-shadow: 0 4px 10px -4px rgba(10,15,48,0.4); display: inline-flex; align-items: center; justify-content: center; overflow: hidden; }
+  .pp-logo img { width: 100%; height: 100%; object-fit: contain; padding: 7px; }
+  .pp-logo.is-shopify img { padding: 0; object-fit: cover; transform: scale(1.7) translateY(10%); }
+  .pp-logo.is-easyorders img { padding: 6px; }
+  .pp-logo.is-vondera img { padding: 1px; transform: scale(1.18); }
 
   /* Right column: what you actually see */
   .apt-why {
@@ -352,9 +357,9 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
         </div>
         <div class="apt-platforms">
           <span class="lbl">Works with</span>
-          <span class="apt-chip"><img src="assets/img/platforms/shopify.webp" alt="Shopify"></span>
-          <span class="apt-chip"><img src="assets/img/platforms/easyorders.png" alt="EasyOrders"></span>
-          <span class="apt-chip"><img src="assets/img/platforms/vondera.png" alt="Vondera"></span>
+          <span class="pp-logo is-shopify" title="Shopify"><img src="assets/img/platforms/shopify.webp" alt="Shopify" loading="lazy"></span>
+          <span class="pp-logo is-easyorders" title="EasyOrders"><img src="assets/img/platforms/easyorders.png" alt="EasyOrders" loading="lazy"></span>
+          <span class="pp-logo is-vondera" title="Vondera"><img src="assets/img/platforms/vondera.png" alt="Vondera" loading="lazy"></span>
         </div>
 
       </div>
