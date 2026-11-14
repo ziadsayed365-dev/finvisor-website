@@ -72,9 +72,8 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   }
   .apt-hero .container { position: relative; max-width: 1160px; }
 
-  /* Two-column first section: the pitch (left) + what you see (right) */
-  .apt-hero-split { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 48px; align-items: start; }
-  .apt-hero-copy { min-width: 0; }
+  /* Centered first section: pitch, then the points, then the CTAs */
+  .apt-hero-center { max-width: 920px; margin: 0 auto; text-align: center; }
   .apt-badge {
     display: inline-flex; align-items: center; gap: 9px;
     font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
@@ -91,12 +90,12 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
     margin-bottom: 18px;
   }
   .apt-hero h1 .accent { color: var(--indigo-600); }
-  .apt-lead { font-size: 1.1rem; color: var(--ink-soft); margin: 0 0 28px; }
-  .apt-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; justify-content: flex-start; }
+  .apt-lead { font-size: 1.1rem; color: var(--ink-soft); max-width: 700px; margin: 0 auto 32px; }
+  .apt-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; justify-content: center; margin-top: 34px; }
   .apt-hero-note { margin-top: 18px; font-size: 0.9rem; color: var(--ink-soft); }
   .apt-platforms {
-    display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px;
-    align-items: center; justify-content: flex-start;
+    display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px;
+    align-items: center; justify-content: center;
   }
   .apt-platforms .lbl { font-size: 0.82rem; color: var(--ink-soft); margin-right: 4px; }
   .apt-chip {
@@ -118,11 +117,11 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   }
   .apt-why .card-eyebrow {
     display: inline-block; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--indigo-600); margin-bottom: 16px;
+    text-transform: uppercase; color: var(--indigo-600); margin-bottom: 16px; text-align: center;
   }
   .apt-need-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .apt-need {
-    display: flex; gap: 14px; align-items: flex-start;
+    display: flex; gap: 14px; align-items: flex-start; text-align: left;
     background: var(--light-bg); border: 1px solid var(--border);
     border-radius: 12px; padding: 16px;
   }
@@ -228,9 +227,6 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   .btn-ghost-light { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); color: #fff; }
   .btn-ghost-light:hover { background: rgba(255,255,255,0.18); }
 
-  @media (max-width: 860px) {
-    .apt-hero-split { grid-template-columns: 1fr; gap: 36px; }
-  }
   @media (max-width: 560px) {
     .apt-need-list { grid-template-columns: 1fr; }
   }
@@ -280,28 +276,14 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   <!-- HERO -->
   <section class="apt-hero">
     <div class="container">
-      <div class="apt-hero-split">
+      <div class="apt-hero-center">
 
-        <!-- LEFT: the pitch -->
-        <div class="apt-hero-copy">
-          <p class="apt-badge"><span class="dot" aria-hidden="true"></span>FinVisor &middot; Ad Profit Tracker</p>
-          <h1>You spend on Meta every day. Do you actually know which campaigns <span class="accent">make you money</span>?</h1>
-          <p class="apt-lead">The revenue and ROAS Meta reports are top-line numbers: counted the moment someone checks out, before cancellations, returns, and product cost. They tell you what you sold &mdash; not what you earned.</p>
-          <div class="apt-hero-actions">
-            <a href="index.html#contact" class="btn btn-accent">Start Now</a>
-            <a href="demo-dashboard.html" class="btn btn-outline">See Demo Dashboard</a>
-            <a href="#how" class="btn btn-outline">How it works</a>
-          </div>
-          <p class="apt-hero-note">Connected in about a minute. No passwords, no tokens to copy, you approve on Shopify's and Meta's own screens.</p>
-          <div class="apt-platforms">
-            <span class="lbl">Works with</span>
-            <span class="apt-chip"><span class="tick" aria-hidden="true">&#10003;</span>Shopify</span>
-            <span class="apt-chip"><span class="tick" aria-hidden="true">&#10003;</span>EasyOrders</span>
-            <span class="apt-chip"><span class="tick" aria-hidden="true">&#10003;</span>Vondera</span>
-          </div>
-        </div>
+        <!-- Pitch -->
+        <p class="apt-badge"><span class="dot" aria-hidden="true"></span>FinVisor &middot; Ad Profit Tracker</p>
+        <h1>You spend on Meta every day. Do you actually know which campaigns <span class="accent">make you money</span>?</h1>
+        <p class="apt-lead">The revenue and ROAS Meta reports are top-line numbers: counted the moment someone checks out, before cancellations, returns, and product cost. They tell you what you sold &mdash; not what you earned.</p>
 
-        <!-- RIGHT: what FinVisor shows you -->
+        <!-- What FinVisor shows you -->
         <div class="apt-why">
           <span class="card-eyebrow">What FinVisor shows you</span>
           <div class="apt-need-list">
@@ -356,6 +338,20 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
             </div>
 
           </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="apt-hero-actions">
+          <a href="index.html#contact" class="btn btn-accent">Start Now</a>
+          <a href="demo-dashboard.html" class="btn btn-outline">See Demo Dashboard</a>
+          <a href="#how" class="btn btn-outline">How it works</a>
+        </div>
+        <p class="apt-hero-note">Connected in about a minute. No passwords, no tokens to copy, you approve on Shopify's and Meta's own screens.</p>
+        <div class="apt-platforms">
+          <span class="lbl">Works with</span>
+          <span class="apt-chip"><span class="tick" aria-hidden="true">&#10003;</span>Shopify</span>
+          <span class="apt-chip"><span class="tick" aria-hidden="true">&#10003;</span>EasyOrders</span>
+          <span class="apt-chip"><span class="tick" aria-hidden="true">&#10003;</span>Vondera</span>
         </div>
 
       </div>
