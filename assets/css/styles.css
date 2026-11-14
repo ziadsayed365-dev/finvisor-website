@@ -229,7 +229,7 @@ main section[id] { scroll-margin-top: 76px; }
   min-height: calc(100vh - 76px);
   display: flex;
   align-items: center;
-  padding: 110px 0;
+  padding: 72px 0;
 }
 .hero-bg {
   position: absolute;
@@ -614,7 +614,7 @@ main section[id] { scroll-margin-top: 76px; }
 
 @media (max-width: 600px) {
   .section { padding: 44px 0; }
-  .hero { min-height: auto; padding: 70px 0 56px; }
+  .hero { min-height: auto; padding: 48px 0 44px; }
   .services-grid { grid-template-columns: 1fr; }
   .hero-actions { flex-direction: column; align-items: stretch; }
   .contact-form { padding: 26px; }
