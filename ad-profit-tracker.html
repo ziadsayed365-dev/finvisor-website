@@ -187,6 +187,30 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   .ps-item.cancelled { text-decoration: line-through; color: var(--ink-soft); }
   .ps-item .cancel-tag { font-size: 0.64rem; font-weight: 700; text-transform: uppercase; color: #dc2626; margin-left: 6px; text-decoration: none; }
 
+  /* Demo dashboard window: navy sidebar + main */
+  .apt-demo { max-width: 1040px; }
+  .apt-demo-body { display: flex; }
+  .apt-demo-side { flex: 0 0 182px; background: var(--navy-900); padding: 18px 14px; display: flex; flex-direction: column; gap: 18px; }
+  .apt-side-brand { color: #fff; font-family: var(--font-head); font-weight: 800; font-size: 1.05rem; line-height: 1.1; }
+  .apt-side-brand small { display: block; margin-top: 5px; font-weight: 600; font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .apt-side-nav { display: flex; flex-direction: column; gap: 4px; }
+  .apt-nav { text-align: left; border: none; background: transparent; font: inherit; font-weight: 600; font-size: 0.82rem; color: rgba(255,255,255,0.65); padding: 9px 11px; border-radius: 8px; cursor: pointer; }
+  .apt-nav:hover { color: #fff; background: rgba(255,255,255,0.06); }
+  .apt-nav.is-active { color: #fff; background: rgba(255,255,255,0.12); }
+  .apt-nav-static, .apt-nav-static:hover { cursor: default; background: transparent; color: rgba(255,255,255,0.55); }
+  .apt-demo-main { flex: 1; min-width: 0; padding: 16px; background: var(--light-bg); }
+  .apt-kpis { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 14px; }
+  .apt-kpi { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 9px 11px; }
+  .apt-kpi span { display: block; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft); }
+  .apt-kpi b { font-family: var(--font-head); font-size: 1rem; color: var(--navy-900); }
+  .apt-kpi b.pos { color: #059669; }
+  .apt-demo-main .apt-panel { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .apt-demo-main .products-sold { padding: 14px; }
+  @media (max-width: 720px) {
+    .apt-demo-side { flex-basis: 140px; padding: 14px 10px; }
+    .apt-kpis { grid-template-columns: repeat(3, 1fr); }
+  }
+
   /* Steps */
   .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 48px; counter-reset: step; }
   .step-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px; position: relative; }
@@ -379,10 +403,24 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
           <span class="apt-demo-url">app.fin-visor.com &middot; Campaigns P&amp;L</span>
           <span class="apt-demo-badge">Demo data</span>
         </div>
-        <div class="apt-demo-tabs" role="tablist">
-          <button type="button" class="apt-tab is-active" data-panel="pnl">Ads P&amp;L</button>
-          <button type="button" class="apt-tab" data-panel="products">Products Sold</button>
-        </div>
+        <div class="apt-demo-body">
+          <aside class="apt-demo-side">
+            <div class="apt-side-brand">FinVisor<small>Ad Profit Tracker</small></div>
+            <nav class="apt-side-nav" role="tablist">
+              <button type="button" class="apt-tab apt-nav is-active" data-panel="pnl">P&amp;L per Campaign</button>
+              <button type="button" class="apt-tab apt-nav" data-panel="products">Products Sold</button>
+              <span class="apt-nav apt-nav-static">Settings</span>
+            </nav>
+          </aside>
+          <div class="apt-demo-main">
+            <div class="apt-kpis">
+              <div class="apt-kpi"><span>Orders</span><b>314</b></div>
+              <div class="apt-kpi"><span>Revenue</span><b>160,000</b></div>
+              <div class="apt-kpi"><span>Ad Spend</span><b>43,500</b></div>
+              <div class="apt-kpi"><span>Profit</span><b class="pos">45,900</b></div>
+              <div class="apt-kpi"><span>Net Margin</span><b>28.7%</b></div>
+              <div class="apt-kpi"><span>ROAS</span><b>3.7&times;</b></div>
+            </div>
 
         <div class="apt-panel is-active" id="panel-pnl">
           <div class="pnl-scroll">
@@ -461,8 +499,10 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
             </div>
           </div>
         </div>
+          </div>
+        </div>
       </div>
-      <p class="pnl-caption">Sample data for illustration (EGP). Switch tabs to see the exact items each campaign sold, cancelled orders struck through.</p>
+      <p class="pnl-caption">Sample data for illustration (EGP). Switch the view to see the exact items each campaign sold, cancelled orders struck through.</p>
     </div>
   </section>
 
