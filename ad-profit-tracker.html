@@ -165,50 +165,70 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
   .benefit-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
   .benefit-card p { color: var(--ink-soft); font-size: 0.92rem; }
 
-  /* Demo frame */
-  .apt-demo { max-width: 940px; margin: 44px auto 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); background: #fff; }
-  .apt-demo-chrome { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--navy-900); }
+  /* Demo dashboard window (mirrors the real app) */
+  .apt-demo { max-width: 1180px; margin: 44px auto 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); background: #fff; }
+  .apt-demo-chrome { display: flex; align-items: center; gap: 12px; padding: 11px 16px; background: #050a30; }
   .apt-dots { display: inline-flex; gap: 6px; }
   .apt-dots i { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,0.25); }
-  .apt-demo-url { flex: 1; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.6); }
-  .apt-demo-badge { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--navy-900); background: #67e8f9; border-radius: 999px; padding: 3px 10px; }
-  .apt-demo-tabs { display: flex; gap: 4px; padding: 10px 14px 0; border-bottom: 1px solid var(--border); background: var(--light-bg); }
-  .apt-tab { border: none; background: transparent; font: inherit; font-weight: 600; font-size: 0.88rem; color: var(--ink-soft); padding: 10px 16px; border-radius: 8px 8px 0 0; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
-  .apt-tab.is-active { color: var(--indigo-600); border-bottom-color: var(--indigo-600); background: #fff; }
-  .apt-panel { display: none; }
-  .apt-panel.is-active { display: block; }
-  .apt-demo .pnl-scroll { overflow-x: auto; }
-  .apt-demo table.pnl { box-shadow: none; border: none; }
-  .products-sold { padding: 20px; display: grid; gap: 14px; }
-  .ps-camp { border: 1px solid var(--border); border-radius: 12px; padding: 15px 17px; }
-  .ps-camp h4 { font-size: 0.96rem; margin-bottom: 10px; color: var(--ink); }
-  .ps-items { display: flex; flex-wrap: wrap; gap: 8px; }
-  .ps-item { font-size: 0.85rem; background: var(--light-bg); border: 1px solid var(--border); border-radius: 8px; padding: 5px 11px; color: var(--ink); }
-  .ps-item.cancelled { text-decoration: line-through; color: var(--ink-soft); }
-  .ps-item .cancel-tag { font-size: 0.64rem; font-weight: 700; text-transform: uppercase; color: #dc2626; margin-left: 6px; text-decoration: none; }
+  .apt-demo-url { flex: 1; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.55); }
+  .apt-demo-badge { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #050a30; background: #67e8f9; border-radius: 999px; padding: 3px 10px; }
 
-  /* Demo dashboard window: navy sidebar + main */
-  .apt-demo { max-width: 1040px; }
-  .apt-demo-body { display: flex; }
-  .apt-demo-side { flex: 0 0 182px; background: var(--navy-900); padding: 18px 14px; display: flex; flex-direction: column; gap: 18px; }
-  .apt-side-brand { color: #fff; font-family: var(--font-head); font-weight: 800; font-size: 1.05rem; line-height: 1.1; }
-  .apt-side-brand small { display: block; margin-top: 5px; font-weight: 600; font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
-  .apt-side-nav { display: flex; flex-direction: column; gap: 4px; }
-  .apt-nav { text-align: left; border: none; background: transparent; font: inherit; font-weight: 600; font-size: 0.82rem; color: rgba(255,255,255,0.65); padding: 9px 11px; border-radius: 8px; cursor: pointer; }
+  .apt-demo-body { display: flex; align-items: stretch; }
+  .apt-demo-side { flex: 0 0 200px; background: #050a30; padding: 16px 12px; display: flex; flex-direction: column; }
+  .apt-logo { height: 26px; width: auto; display: block; }
+  .apt-tagline { margin: 9px 2px 0; font-weight: 700; font-size: 0.56rem; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .apt-side-nav { display: flex; flex-direction: column; gap: 4px; margin-top: 22px; }
+  .apt-nav { text-align: start; border: none; background: transparent; font: inherit; font-weight: 600; font-size: 0.83rem; color: rgba(255,255,255,0.7); padding: 9px 11px; border-radius: 8px; cursor: pointer; }
   .apt-nav:hover { color: #fff; background: rgba(255,255,255,0.06); }
   .apt-nav.is-active { color: #fff; background: rgba(255,255,255,0.12); }
   .apt-nav-static, .apt-nav-static:hover { cursor: default; background: transparent; color: rgba(255,255,255,0.55); }
-  .apt-demo-main { flex: 1; min-width: 0; padding: 16px; background: var(--light-bg); }
+  .apt-side-foot { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 8px; }
+  .apt-logout { flex: 1; font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.7); padding: 8px 10px; border-radius: 8px; cursor: pointer; }
+  .apt-logout:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .apt-lang { display: flex; overflow: hidden; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); }
+  .apt-lang-btn { border: none; background: transparent; font: inherit; font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.7); padding: 6px 9px; cursor: pointer; }
+  .apt-lang-btn.is-active { background: rgba(255,255,255,0.15); color: #fff; }
+
+  .apt-demo-main { flex: 1; min-width: 0; padding: 18px; background: var(--light-bg); }
+  .apt-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+  .apt-title { font-family: var(--font-head); font-weight: 800; font-size: 1.25rem; color: var(--ink); }
+  .apt-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .apt-ctrl { font-size: 0.78rem; color: var(--ink-soft); background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 6px 9px; }
+  .apt-arrow { color: var(--ink-soft); }
+  .apt-btn-apply { font-size: 0.78rem; font-weight: 600; color: #fff; background: var(--indigo-600); border-radius: 8px; padding: 6px 12px; }
+  .apt-btn-export { font-size: 0.78rem; font-weight: 600; color: var(--ink); background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; }
+  .apt-attr { margin: 10px 0 14px; font-size: 0.74rem; color: var(--ink-soft); }
   .apt-kpis { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 14px; }
-  .apt-kpi { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 9px 11px; }
+  .apt-kpi { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
   .apt-kpi span { display: block; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft); }
-  .apt-kpi b { font-family: var(--font-head); font-size: 1rem; color: var(--navy-900); }
+  .apt-kpi b { font-family: var(--font-head); font-size: 1.05rem; color: #0b1e3c; }
   .apt-kpi b.pos { color: #059669; }
+  .apt-panel { display: none; }
+  .apt-panel.is-active { display: block; }
   .apt-demo-main .apt-panel { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-  .apt-demo-main .products-sold { padding: 14px; }
-  @media (max-width: 720px) {
-    .apt-demo-side { flex-basis: 140px; padding: 14px 10px; }
+  .apt-demo .pnl-scroll { overflow-x: auto; }
+  .apt-demo table.pnl { box-shadow: none; border: none; }
+  .apt-note { padding: 8px 14px; border-top: 1px solid var(--border); font-size: 0.72rem; color: var(--ink-soft); }
+  .apt-recs { margin-top: 14px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .apt-recs-h { font-weight: 700; font-size: 0.9rem; color: #0b1e3c; margin-bottom: 10px; }
+  .apt-recs ul { display: grid; gap: 8px; }
+  .apt-recs li { display: flex; gap: 8px; align-items: flex-start; font-size: 0.84rem; color: var(--ink); }
+  .apt-recs .dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; margin-top: 6px; }
+  .apt-recs .dot.i { background: #6366f1; }
+  .apt-recs .dot.g { background: #10b981; }
+  .apt-recs .dot.b { background: #ef4444; }
+  .products-sold { padding: 16px; display: grid; gap: 14px; }
+  .ps-camp { border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+  .ps-camp h4 { font-size: 0.94rem; margin-bottom: 10px; color: var(--ink); }
+  .ps-items { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ps-item { font-size: 0.83rem; background: var(--light-bg); border: 1px solid var(--border); border-radius: 8px; padding: 5px 11px; color: var(--ink); }
+  .ps-item.cancelled { text-decoration: line-through; color: var(--ink-soft); }
+  .ps-item .cancel-tag { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; color: #dc2626; margin-inline-start: 6px; text-decoration: none; }
+  .apt-demo-body[dir="rtl"] { direction: rtl; }
+  @media (max-width: 760px) {
+    .apt-demo-side { flex-basis: 158px; padding: 14px 10px; }
     .apt-kpis { grid-template-columns: repeat(3, 1fr); }
+    .apt-controls { display: none; }
   }
 
   /* Steps */
@@ -403,102 +423,134 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
           <span class="apt-demo-url">app.fin-visor.com &middot; Campaigns P&amp;L</span>
           <span class="apt-demo-badge">Demo data</span>
         </div>
-        <div class="apt-demo-body">
+        <div class="apt-demo-body" dir="ltr">
           <aside class="apt-demo-side">
-            <div class="apt-side-brand">FinVisor<small>Ad Profit Tracker</small></div>
+            <img class="apt-logo" src="assets/img/logo.png" alt="FinVisor">
+            <p class="apt-tagline" data-en="Ad Profit Tracker" data-ar="متتبع أرباح الإعلانات">Ad Profit Tracker</p>
             <nav class="apt-side-nav" role="tablist">
-              <button type="button" class="apt-tab apt-nav is-active" data-panel="pnl">P&amp;L per Campaign</button>
-              <button type="button" class="apt-tab apt-nav" data-panel="products">Products Sold</button>
-              <span class="apt-nav apt-nav-static">Settings</span>
+              <button type="button" class="apt-tab apt-nav is-active" data-panel="pnl" data-en="P&amp;L per Campaign" data-ar="الربح والخسارة لكل حملة">P&amp;L per Campaign</button>
+              <button type="button" class="apt-tab apt-nav" data-panel="products" data-en="Products Sold" data-ar="المنتجات المباعة">Products Sold</button>
+              <span class="apt-nav apt-nav-static" data-en="Settings" data-ar="الإعدادات">Settings</span>
             </nav>
+            <div class="apt-side-foot">
+              <span class="apt-logout" data-en="Log out" data-ar="تسجيل الخروج">Log out</span>
+              <div class="apt-lang">
+                <button type="button" class="apt-lang-btn is-active" data-lang="en">ENG</button>
+                <button type="button" class="apt-lang-btn" data-lang="ar">عربي</button>
+              </div>
+            </div>
           </aside>
           <div class="apt-demo-main">
-            <div class="apt-kpis">
-              <div class="apt-kpi"><span>Orders</span><b>314</b></div>
-              <div class="apt-kpi"><span>Revenue</span><b>160,000</b></div>
-              <div class="apt-kpi"><span>Ad Spend</span><b>43,500</b></div>
-              <div class="apt-kpi"><span>Profit</span><b class="pos">45,900</b></div>
-              <div class="apt-kpi"><span>Net Margin</span><b>28.7%</b></div>
-              <div class="apt-kpi"><span>ROAS</span><b>3.7&times;</b></div>
+            <div class="apt-head">
+              <h3 class="apt-title" data-en="P&amp;L per Campaign" data-ar="الربح والخسارة لكل حملة">P&amp;L per Campaign</h3>
+              <div class="apt-controls">
+                <span class="apt-ctrl">2026-11-10</span>
+                <span class="apt-arrow">&rarr;</span>
+                <span class="apt-ctrl">2026-11-16</span>
+                <span class="apt-btn-apply" data-en="Apply" data-ar="تطبيق">Apply</span>
+                <span class="apt-ctrl" data-en="Last 7 days &#9662;" data-ar="آخر 7 أيام &#9662;">Last 7 days &#9662;</span>
+                <span class="apt-btn-export" data-en="Export PDF" data-ar="تصدير PDF">Export PDF</span>
+              </div>
+            </div>
+            <p class="apt-attr" data-en="Showing 2026-11-10 &rarr; 2026-11-16 (today is excluded while it fills in). 314 of 360 orders matched to a campaign." data-ar="عرض 2026-11-10 &rarr; 2026-11-16 (يُستثنى اليوم الحالي). 314 من 360 طلب مرتبط بحملة.">Showing 2026-11-10 &rarr; 2026-11-16 (today is excluded while it fills in). 314 of 360 orders matched to a campaign.</p>
+
+            <div class="apt-kpis apt-pnl-only">
+              <div class="apt-kpi"><span data-en="Orders" data-ar="الطلبات">Orders</span><b>314</b></div>
+              <div class="apt-kpi"><span data-en="Revenue" data-ar="الإيرادات">Revenue</span><b>160,000</b></div>
+              <div class="apt-kpi"><span data-en="Ad Spend" data-ar="الإنفاق الإعلاني">Ad Spend</span><b>43,500</b></div>
+              <div class="apt-kpi"><span data-en="Profit (after returns)" data-ar="الربح (بعد المرتجعات)">Profit (after returns)</span><b class="pos">28,020</b></div>
+              <div class="apt-kpi"><span data-en="Net Margin" data-ar="صافي الهامش">Net Margin</span><b>21.9%</b></div>
+              <div class="apt-kpi"><span data-en="ROAS" data-ar="العائد على الإنفاق">ROAS</span><b>3.7&times;</b></div>
             </div>
 
-        <div class="apt-panel is-active" id="panel-pnl">
-          <div class="pnl-scroll">
-            <table class="pnl">
-              <thead>
-                <tr>
-                  <th>Campaign</th>
-                  <th>Orders</th>
-                  <th>Cancelled</th>
-                  <th>Items</th>
-                  <th>Revenue</th>
-                  <th>COGS</th>
-                  <th>Marketing</th>
-                  <th>Profit</th>
-                  <th>Margin&nbsp;%</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="camp">Summer Sale, Prospecting</td>
-                  <td>182</td><td>14</td><td>240</td>
-                  <td>96,400</td><td>41,900</td><td>22,300</td>
-                  <td class="pos">32,200</td><td class="pos">33.4%</td>
-                </tr>
-                <tr>
-                  <td class="camp">Retargeting, 7 Day</td>
-                  <td>74</td><td>5</td><td>93</td>
-                  <td>38,700</td><td>16,100</td><td>6,400</td>
-                  <td class="pos">16,200</td><td class="pos">41.9%</td>
-                </tr>
-                <tr>
-                  <td class="camp">Bundle Offer, Broad</td>
-                  <td>58</td><td>9</td><td>71</td>
-                  <td>24,900</td><td>12,600</td><td>14,800</td>
-                  <td class="neg">&minus;2,500</td><td class="neg">&minus;10.0%</td>
-                </tr>
-              </tbody>
-              <tbody>
-                <tr class="total">
-                  <td>All campaigns</td>
-                  <td>314</td><td>28</td><td>404</td>
-                  <td>160,000</td><td>70,600</td><td>43,500</td>
-                  <td>45,900</td><td>28.7%</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+            <div class="apt-panel is-active" id="panel-pnl">
+              <div class="pnl-scroll">
+                <table class="pnl">
+                  <thead>
+                    <tr>
+                      <th data-en="Campaign" data-ar="الحملة">Campaign</th>
+                      <th data-en="Orders" data-ar="الطلبات">Orders</th>
+                      <th data-en="Cancelled" data-ar="ملغاة">Cancelled</th>
+                      <th data-en="Items" data-ar="القطع">Items</th>
+                      <th data-en="Revenue" data-ar="الإيرادات">Revenue</th>
+                      <th data-en="COGS" data-ar="تكلفة البضاعة">COGS</th>
+                      <th data-en="Marketing" data-ar="التسويق">Marketing</th>
+                      <th data-en="Profit" data-ar="الربح">Profit</th>
+                      <th data-en="Profit After Returns" data-ar="الربح بعد المرتجعات">Profit After Returns</th>
+                      <th data-en="Net Margin %" data-ar="صافي الهامش %">Net Margin %</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="camp">Summer Sale, Prospecting</td>
+                      <td>182</td><td>14</td><td>240</td>
+                      <td>96,400</td><td>41,900</td><td>22,300</td>
+                      <td class="pos">32,200</td><td class="pos">21,300</td><td class="pos">27.6%</td>
+                    </tr>
+                    <tr>
+                      <td class="camp">Retargeting, 7 Day</td>
+                      <td>74</td><td>5</td><td>93</td>
+                      <td>38,700</td><td>16,100</td><td>6,400</td>
+                      <td class="pos">16,200</td><td class="pos">11,680</td><td class="pos">37.7%</td>
+                    </tr>
+                    <tr>
+                      <td class="camp">Bundle Offer, Broad</td>
+                      <td>58</td><td>9</td><td>71</td>
+                      <td>24,900</td><td>12,600</td><td>14,800</td>
+                      <td class="neg">&minus;2,500</td><td class="neg">&minus;4,960</td><td class="neg">&minus;24.9%</td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr class="total">
+                      <td data-en="Total" data-ar="الإجمالي">Total</td>
+                      <td>314</td><td>28</td><td>404</td>
+                      <td>160,000</td><td>70,600</td><td>43,500</td>
+                      <td>45,900</td><td>28,020</td><td>21.9%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="apt-note" data-en="&quot;After returns&quot; assumes an 80% delivery rate (a default we refine per product from real courier outcomes)." data-ar="&quot;بعد المرتجعات&quot; يفترض معدل تسليم 80% (قيمة افتراضية نحسّنها لكل منتج من نتائج الشحن الفعلية).">&quot;After returns&quot; assumes an 80% delivery rate (a default we refine per product from real courier outcomes).</p>
+            </div>
 
-        <div class="apt-panel" id="panel-products">
-          <div class="products-sold">
-            <div class="ps-camp">
-              <h4>Summer Sale, Prospecting</h4>
-              <div class="ps-items">
-                <span class="ps-item">120 &times; Body Scrub</span>
-                <span class="ps-item">78 &times; Shower Gel</span>
-                <span class="ps-item">42 &times; Gift Set</span>
-                <span class="ps-item cancelled">14 &times; Body Scrub<span class="cancel-tag">Cancelled</span></span>
+            <div class="apt-panel" id="panel-products">
+              <div class="products-sold">
+                <div class="ps-camp">
+                  <h4>Summer Sale, Prospecting</h4>
+                  <div class="ps-items">
+                    <span class="ps-item">120 &times; Body Scrub</span>
+                    <span class="ps-item">78 &times; Shower Gel</span>
+                    <span class="ps-item">42 &times; Gift Set</span>
+                    <span class="ps-item cancelled">14 &times; Body Scrub<span class="cancel-tag" data-en="Cancelled" data-ar="ملغاة">Cancelled</span></span>
+                  </div>
+                </div>
+                <div class="ps-camp">
+                  <h4>Retargeting, 7 Day</h4>
+                  <div class="ps-items">
+                    <span class="ps-item">51 &times; Body Oil</span>
+                    <span class="ps-item">30 &times; Lip Balm</span>
+                    <span class="ps-item cancelled">5 &times; Body Oil<span class="cancel-tag" data-en="Cancelled" data-ar="ملغاة">Cancelled</span></span>
+                  </div>
+                </div>
+                <div class="ps-camp">
+                  <h4>Bundle Offer, Broad</h4>
+                  <div class="ps-items">
+                    <span class="ps-item">40 &times; Starter Bundle</span>
+                    <span class="ps-item">31 &times; Foam Cleaner</span>
+                    <span class="ps-item cancelled">9 &times; Starter Bundle<span class="cancel-tag" data-en="Cancelled" data-ar="ملغاة">Cancelled</span></span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="ps-camp">
-              <h4>Retargeting, 7 Day</h4>
-              <div class="ps-items">
-                <span class="ps-item">51 &times; Body Oil</span>
-                <span class="ps-item">30 &times; Lip Balm</span>
-                <span class="ps-item cancelled">5 &times; Body Oil<span class="cancel-tag">Cancelled</span></span>
-              </div>
+
+            <div class="apt-recs apt-pnl-only" id="panel-recs">
+              <p class="apt-recs-h" data-en="CFO analysis &amp; recommendations" data-ar="تحليل وتوصيات المدير المالي">CFO analysis &amp; recommendations</p>
+              <ul>
+                <li><span class="dot i"></span><span data-en="Blended: 160,000 revenue on 43,500 spend (3.7&times; ROAS), 28,020 profit after returns at 80% assumed delivery." data-ar="إجمالي: 160,000 إيرادات مقابل 43,500 إنفاق (عائد 3.7&times;)، 28,020 ربح بعد المرتجعات بمعدل تسليم 80%.">Blended: 160,000 revenue on 43,500 spend (3.7&times; ROAS), 28,020 profit after returns at 80% assumed delivery.</span></li>
+                <li><span class="dot g"></span><span data-en="Scale &quot;Retargeting, 7 Day&quot;: 37.7% net margin and 11,680 profit. Push more budget while it holds." data-ar="وسّع &quot;Retargeting, 7 Day&quot;: صافي هامش 37.7% وربح 11,680. زِد الميزانية ما دام محافظًا على أدائه.">Scale &quot;Retargeting, 7 Day&quot;: 37.7% net margin and 11,680 profit. Push more budget while it holds.</span></li>
+                <li><span class="dot b"></span><span data-en="&quot;Bundle Offer, Broad&quot; loses 4,960 after returns. Spend outruns margin, so cut budget or rework targeting and creative." data-ar="&quot;Bundle Offer, Broad&quot; يخسر 4,960 بعد المرتجعات. الإنفاق يفوق الهامش، فخفّض الميزانية أو عدّل الاستهداف والإعلان.">&quot;Bundle Offer, Broad&quot; loses 4,960 after returns. Spend outruns margin, so cut budget or rework targeting and creative.</span></li>
+              </ul>
             </div>
-            <div class="ps-camp">
-              <h4>Bundle Offer, Broad</h4>
-              <div class="ps-items">
-                <span class="ps-item">40 &times; Starter Bundle</span>
-                <span class="ps-item">31 &times; Foam Cleaner</span>
-                <span class="ps-item cancelled">9 &times; Starter Bundle<span class="cancel-tag">Cancelled</span></span>
-              </div>
-            </div>
-          </div>
-        </div>
           </div>
         </div>
       </div>
@@ -610,7 +662,7 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
       });
     }
 
-    // Demo tabs: Ads P&L / Products Sold
+    // Demo tabs: P&L per Campaign / Products Sold (sidebar nav)
     var tabs = document.querySelectorAll('.apt-tab');
     tabs.forEach(function (t) {
       t.addEventListener('click', function () {
@@ -618,6 +670,26 @@ src="https://www.facebook.com/tr?id=890487917437592&ev=PageView&noscript=1"
         tabs.forEach(function (x) { x.classList.toggle('is-active', x === t); });
         document.querySelectorAll('.apt-panel').forEach(function (p) {
           p.classList.toggle('is-active', p.id === 'panel-' + panel);
+        });
+        // KPIs + CFO recommendations only on the P&L view (like the real app).
+        document.querySelectorAll('.apt-pnl-only').forEach(function (el) {
+          el.style.display = panel === 'pnl' ? '' : 'none';
+        });
+      });
+    });
+
+    // Demo language toggle: ENG / Arabic (mirrors the dashboard).
+    var langBtns = document.querySelectorAll('.apt-lang-btn');
+    var demoBody = document.querySelector('.apt-demo-body');
+    var i18nEls = document.querySelectorAll('.apt-demo [data-en]');
+    langBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var lang = btn.getAttribute('data-lang');
+        langBtns.forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+        if (demoBody) demoBody.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+        i18nEls.forEach(function (el) {
+          var v = el.getAttribute(lang === 'ar' ? 'data-ar' : 'data-en');
+          if (v != null) el.innerHTML = v;
         });
       });
     });
