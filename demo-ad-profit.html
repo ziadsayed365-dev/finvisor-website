@@ -75,6 +75,23 @@
     table.pnl tr.total td { border-top: 2px solid var(--border); background: #f8fafc; font-weight: 700; color: var(--navy-accent); }
     .note { padding: 10px 16px; border-top: 1px solid var(--border); font-size: 0.76rem; color: var(--soft); }
 
+    /* Mobile P&L cards (shown instead of the wide table on small screens) */
+    .pnl-cards { display: none; }
+    .pc { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 15px; margin-bottom: 12px; }
+    .pc-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .pc-name { font-weight: 700; color: var(--ink); }
+    .pc-cancel { flex-shrink: 0; font-size: 0.7rem; font-weight: 700; color: var(--red); background: #fef2f2; border-radius: 999px; padding: 3px 9px; white-space: nowrap; }
+    .pc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px 16px; margin-top: 13px; }
+    .pc-grid i { display: block; font-style: normal; font-size: 0.64rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; color: var(--faint); }
+    .pc-grid b { font-size: 0.95rem; font-weight: 600; color: #334155; }
+    .pc-grid b.pos { color: var(--green); } .pc-grid b.neg { color: var(--red); }
+    .pc-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 13px; padding-top: 13px; border-top: 1px solid #f1f5f9; }
+    .pc-foot span { font-size: 0.88rem; font-weight: 500; color: var(--soft); }
+    .pc-foot b { font-size: 1.05rem; font-weight: 800; }
+    .pc-foot b.pos { color: var(--green); } .pc-foot b.neg { color: var(--red); }
+    .pc-total { background: #f8fafc; border-width: 2px; }
+    .note-m { font-size: 0.74rem; color: var(--soft); padding: 2px 2px 0; }
+
     .recs { margin-top: 18px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
     .recs-h { font-weight: 700; font-size: 0.98rem; color: var(--navy-accent); margin: 0 0 12px; }
     .recs ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
@@ -92,13 +109,26 @@
 
     .layout[dir="rtl"] { direction: rtl; }
     @media (max-width: 820px) {
-      .side { position: static; height: auto; flex-basis: auto; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px; }
-      .side-nav { flex-direction: row; margin-top: 0; }
-      .side-foot { margin: 0; border: none; padding: 0; }
+      .layout { flex-direction: column; }
+      .side { position: sticky; top: 0; z-index: 30; height: auto; flex-basis: auto;
+        flex-direction: row; flex-wrap: wrap; align-items: center; gap: 10px; padding: 12px 14px; }
+      .side-logo { height: 26px; order: 1; }
       .side-tag { display: none; }
+      .side-foot { order: 2; margin-inline-start: auto; border: none; padding: 0; gap: 8px; }
+      .logout { flex: 0 0 auto; padding: 6px 11px; font-size: 0.8rem; background: rgba(255,255,255,0.08); border-radius: 8px; }
+      .side-nav { order: 3; width: 100%; flex-direction: row; gap: 8px; margin-top: 2px;
+        overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      .side-nav::-webkit-scrollbar { display: none; }
+      .nav-item { white-space: nowrap; flex-shrink: 0; padding: 7px 14px; border-radius: 999px;
+        font-size: 0.8rem; background: rgba(255,255,255,0.1); }
+      .nav-item.is-active { background: #fff; color: var(--navy); }
+      .nav-static { background: rgba(255,255,255,0.05); }
       .kpis { grid-template-columns: repeat(2, 1fr); }
       .controls { display: none; }
-      .main { padding: 18px; }
+      .main { padding: 18px 16px; }
+      .title { font-size: 1.3rem; }
+      #panel-pnl > .card { display: none; }
+      .pnl-cards { display: block; }
     }
   </style>
 </head>
@@ -192,6 +222,82 @@
             </table>
           </div>
           <p class="note" data-en="&quot;After returns&quot; assumes an 80% delivery rate (a default we refine per product from real courier outcomes)." data-ar="&quot;بعد المرتجعات&quot; يفترض معدل تسليم 80% (قيمة افتراضية نحسّنها لكل منتج من نتائج الشحن الفعلية).">&quot;After returns&quot; assumes an 80% delivery rate (a default we refine per product from real courier outcomes).</p>
+        </div>
+
+        <!-- Mobile: campaign cards instead of the wide table -->
+        <div class="pnl-cards">
+          <div class="pc">
+            <div class="pc-top">
+              <span class="pc-name">Summer Sale, Prospecting</span>
+              <span class="pc-cancel">14 <span data-en="Cancelled" data-ar="ملغاة">Cancelled</span></span>
+            </div>
+            <div class="pc-grid">
+              <div><i data-en="Orders" data-ar="الطلبات">Orders</i><b>182</b></div>
+              <div><i data-en="Items" data-ar="القطع">Items</i><b>240</b></div>
+              <div><i data-en="Revenue" data-ar="الإيرادات">Revenue</i><b>96,400</b></div>
+              <div><i data-en="COGS" data-ar="تكلفة البضاعة">COGS</i><b>41,900</b></div>
+              <div><i data-en="Marketing" data-ar="التسويق">Marketing</i><b>22,300</b></div>
+              <div><i data-en="Net Margin %" data-ar="صافي الهامش %">Net Margin %</i><b class="pos">27.6%</b></div>
+            </div>
+            <div class="pc-foot">
+              <span data-en="Profit After Returns" data-ar="الربح بعد المرتجعات">Profit After Returns</span>
+              <b class="pos">21,300</b>
+            </div>
+          </div>
+
+          <div class="pc">
+            <div class="pc-top">
+              <span class="pc-name">Retargeting, 7 Day</span>
+              <span class="pc-cancel">5 <span data-en="Cancelled" data-ar="ملغاة">Cancelled</span></span>
+            </div>
+            <div class="pc-grid">
+              <div><i data-en="Orders" data-ar="الطلبات">Orders</i><b>74</b></div>
+              <div><i data-en="Items" data-ar="القطع">Items</i><b>93</b></div>
+              <div><i data-en="Revenue" data-ar="الإيرادات">Revenue</i><b>38,700</b></div>
+              <div><i data-en="COGS" data-ar="تكلفة البضاعة">COGS</i><b>16,100</b></div>
+              <div><i data-en="Marketing" data-ar="التسويق">Marketing</i><b>6,400</b></div>
+              <div><i data-en="Net Margin %" data-ar="صافي الهامش %">Net Margin %</i><b class="pos">37.7%</b></div>
+            </div>
+            <div class="pc-foot">
+              <span data-en="Profit After Returns" data-ar="الربح بعد المرتجعات">Profit After Returns</span>
+              <b class="pos">11,680</b>
+            </div>
+          </div>
+
+          <div class="pc">
+            <div class="pc-top">
+              <span class="pc-name">Bundle Offer, Broad</span>
+              <span class="pc-cancel">9 <span data-en="Cancelled" data-ar="ملغاة">Cancelled</span></span>
+            </div>
+            <div class="pc-grid">
+              <div><i data-en="Orders" data-ar="الطلبات">Orders</i><b>58</b></div>
+              <div><i data-en="Items" data-ar="القطع">Items</i><b>71</b></div>
+              <div><i data-en="Revenue" data-ar="الإيرادات">Revenue</i><b>24,900</b></div>
+              <div><i data-en="COGS" data-ar="تكلفة البضاعة">COGS</i><b>12,600</b></div>
+              <div><i data-en="Marketing" data-ar="التسويق">Marketing</i><b>14,800</b></div>
+              <div><i data-en="Net Margin %" data-ar="صافي الهامش %">Net Margin %</i><b class="neg">&minus;24.9%</b></div>
+            </div>
+            <div class="pc-foot">
+              <span data-en="Profit After Returns" data-ar="الربح بعد المرتجعات">Profit After Returns</span>
+              <b class="neg">&minus;4,960</b>
+            </div>
+          </div>
+
+          <div class="pc pc-total">
+            <div class="pc-top">
+              <span class="pc-name" data-en="Total" data-ar="الإجمالي">Total</span>
+            </div>
+            <div class="pc-grid">
+              <div><i data-en="Orders" data-ar="الطلبات">Orders</i><b>314</b></div>
+              <div><i data-en="Items" data-ar="القطع">Items</i><b>404</b></div>
+              <div><i data-en="Revenue" data-ar="الإيرادات">Revenue</i><b>160,000</b></div>
+              <div><i data-en="COGS" data-ar="تكلفة البضاعة">COGS</i><b>70,600</b></div>
+              <div><i data-en="Marketing" data-ar="التسويق">Marketing</i><b>43,500</b></div>
+              <div><i data-en="Profit After Returns" data-ar="الربح بعد المرتجعات">Profit After Returns</i><b>28,020</b></div>
+            </div>
+          </div>
+
+          <p class="note-m" data-en="&quot;After returns&quot; assumes an 80% delivery rate (a default we refine per product from real courier outcomes)." data-ar="&quot;بعد المرتجعات&quot; يفترض معدل تسليم 80% (قيمة افتراضية نحسّنها لكل منتج من نتائج الشحن الفعلية).">&quot;After returns&quot; assumes an 80% delivery rate (a default we refine per product from real courier outcomes).</p>
         </div>
       </div>
 
