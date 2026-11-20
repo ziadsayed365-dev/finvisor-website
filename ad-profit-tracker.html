@@ -226,9 +226,46 @@ src="https://www.facebook.com/tr?id=1931012607869883&ev=PageView&noscript=1"
   .ps-item .cancel-tag { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; color: #dc2626; margin-inline-start: 6px; text-decoration: none; }
   .apt-demo-body[dir="rtl"] { direction: rtl; }
   @media (max-width: 760px) {
-    .apt-demo-side { flex-basis: 158px; padding: 14px 10px; }
+    .apt-demo-side { flex-basis: 150px; padding: 14px 10px; }
     .apt-kpis { grid-template-columns: repeat(3, 1fr); }
     .apt-controls { display: none; }
+  }
+  /* Phone: stack the window, sidebar becomes a top bar, table slims down */
+  @media (max-width: 560px) {
+    .apt-demo { margin-top: 28px; border-radius: 12px; }
+    .apt-demo-chrome { padding: 10px 12px; gap: 8px; }
+    .apt-demo-url { font-size: 0.68rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .apt-demo-body { flex-direction: column; }
+    .apt-demo-side { flex: 0 0 auto; width: 100%; flex-direction: row; flex-wrap: wrap;
+      align-items: center; gap: 9px 10px; padding: 11px 13px; }
+    .apt-logo { height: 22px; order: 1; }
+    .apt-tagline { display: none; }
+    .apt-side-foot { order: 2; margin: 0 0 0 auto; padding: 0; border: none; gap: 7px; }
+    .apt-logout { flex: 0 0 auto; padding: 6px 10px; font-size: 0.74rem; background: rgba(255,255,255,0.08); border-radius: 7px; }
+    .apt-side-nav { order: 3; width: 100%; flex-direction: row; gap: 7px; margin-top: 0;
+      overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .apt-side-nav::-webkit-scrollbar { display: none; }
+    .apt-nav { white-space: nowrap; flex-shrink: 0; padding: 7px 13px; border-radius: 999px;
+      font-size: 0.76rem; background: rgba(255,255,255,0.1); }
+    .apt-nav.is-active { background: #fff; color: #050a30; }
+    .apt-nav-static { background: rgba(255,255,255,0.05); }
+    .apt-demo-main { padding: 14px 13px; }
+    .apt-title { font-size: 1.1rem; }
+    .apt-attr { font-size: 0.72rem; margin: 9px 0 12px; }
+    .apt-kpis { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .apt-kpi { padding: 10px 11px; }
+    .apt-kpi b { font-size: 1rem; }
+    .apt-demo .pnl-scroll { -webkit-overflow-scrolling: touch; }
+    .apt-demo table.pnl { min-width: 0; width: 100%; font-size: 0.78rem; }
+    .apt-demo table.pnl th, .apt-demo table.pnl td { padding: 9px 8px; }
+    /* Drop secondary columns (Cancelled, Items, COGS, Profit-before-returns) so
+       the key numbers fit a phone without a cramped sideways scroll. */
+    .apt-demo table.pnl th:nth-child(3), .apt-demo table.pnl td:nth-child(3),
+    .apt-demo table.pnl th:nth-child(4), .apt-demo table.pnl td:nth-child(4),
+    .apt-demo table.pnl th:nth-child(6), .apt-demo table.pnl td:nth-child(6),
+    .apt-demo table.pnl th:nth-child(8), .apt-demo table.pnl td:nth-child(8) { display: none; }
+    .apt-note { font-size: 0.68rem; padding: 8px 10px; }
+    .products-sold { padding: 13px; }
   }
 
   /* Steps */
